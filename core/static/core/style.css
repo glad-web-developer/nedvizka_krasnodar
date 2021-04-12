@@ -43,12 +43,16 @@ header{
 
 .btn-info{
     text-transform: uppercase;
-    background-color: #60beaf;
+    background-color: #60beaf !important;
     font-family: 'Myriad Pro', sans-serif;
     padding: 10px 35px;
     font-size: 11pt;
-    border: 1px solid #60beaf;
+    border: 1px solid #60beaf !important;
     border-radius: 20px;
+}
+
+.text-info{
+    color: #60beaf !important;
 }
 
 .otkritie_sidbara{
@@ -65,12 +69,30 @@ header{
 }
 
 .btn-info:hover, .btn-info:active, .btn-info:visited{
-    border: 1px solid #60beaf;
-    background: none;
+    border: 1px solid #60beaf !important;
+    background-color: rgba(0,0,0,0) !important;
 }
+
+.btn-outline-info{
+    border: 1px solid #60beaf !important;
+    color: #fff;
+     text-transform: uppercase;
+    font-family: 'Myriad Pro', sans-serif;
+    padding: 10px 35px;
+    font-size: 11pt;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.btn-outline-info:hover, .btn-outline-info:active, .btn-outline-info:visited{
+      background-color:  #60beaf !important;
+}
+
+
 
 .bg-black{
     background-color: #000;
+
 }
 
 .collapse.width {
@@ -140,4 +162,16 @@ header{
     height: 140px;
     padding: 25px  0 10px;
     text-align: center;
+}
+
+.footer{
+    position: relative;
+}
+
+.predlozenia_na_ubk, .predlozenia_na_ubk .fonovoe_izobrazenie_plugin_zatemnenie{
+    border-radius: 20px;
+}
+
+.predlozenia_na_ubk:hover{
+        box-shadow: 0 3px 20px rgb(96, 190, 175);
 }

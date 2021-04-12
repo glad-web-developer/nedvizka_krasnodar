@@ -1,5 +1,26 @@
 {% load cms_tags  static %}
 
-<footer class="">
+<footer class="bg-black py-5">
+    <div class="container-fluid px-5">
+        <div class="row">
+            <div class="col-12 col-lg text-lg-left text-center mb-3">
+                {% static_placeholder 'footer_logo' %}
+            </div>
+
+            <div class="col-12 col-lg-2 col-xl-1 text-lg-left text-center pl-lg-0">
+                {% static_placeholder 'footer_menu1' %}
+            </div>
+
+            <div class="col-12 col-lg-2 col-xl-1 text-lg-left text-center px-lg-0">
+                {% static_placeholder 'footer_menu2' %}
+            </div>
+
+            <div class="col-12 col-lg-3 col-xl-3 mt-lg-0 mt-3 pr-lg-0">
+                {% static_placeholder 'footer_kontakti' %}
+            </div>
+        </div>
+
+    </div>
+
 
 </footer>

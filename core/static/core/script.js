@@ -65,7 +65,7 @@ $(() => {
             });
 
             $('.otkritie_sidbara').on('click', function () {
-                $('.my_sidebar').addClass('active');
+                $('.my_sidebar').toggleClass('active');
                 // $('.overlay').addClass('active');
                 // $('.collapse.in').toggleClass('in');
                 // $('a[aria-expanded=true]').attr('aria-expanded', 'false');
