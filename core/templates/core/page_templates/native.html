@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% load cms_tags menu_tags sekizai_tags static %}
+{% block content %}
+
+
+    {% include 'core/elements/navbar.html' %}
+
+
+    <main>
+        {% placeholder "content" %}
+    </main>
+
+
+    {% include 'core/elements/footer.html' %}
+
+{% endblock %}
+

@@ -1,0 +1,148 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+<div class="container-fluid galereia_na_glavnoi mb-5 mt-5">
+    <div class="row align-items-center">
+        <div class="col-12">
+            <h2 class="text-center h1 text-uppercase font-weight-bold mb-3">Галерея</h2>
+        </div>
+
+        {% if instance.img %}
+            <div class="d-none d-md-block col-md-8 text-center">
+                <img src="{% thumbnail instance.img 1200x1200 %}" class="img-fluid" alt="">
+            </div>
+        {% endif %}
+
+        {% if instance.img_phone %}
+            <div class="d-md-none col-12  text-center">
+                <img src="{% thumbnail instance.img_phone 900x600 %}" class="img-fluid" alt="">
+            </div>
+        {% endif %}
+
+        <div class="col-12 col-md-4 text_opisania my-2 animated">
+            <a href="/photo" class="text-dark text-uppercase ">
+
+
+                <b class="">Показать ещё<br>фотографии</b><i class="fa fa-chevron-circle-right fa-lg strelka text-warning  ml-2"></i>
+
+
+            </a>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% addtoblock 'css' %}
+    <style>
+
+    @keyframes galereia-na-glavnoi-animaziia {
+        0% {
+padding-top: 0;
+            padding-bottom: 30px;
+        }
+
+        100% {
+           padding-top: 30px;
+            padding-bottom: 0;
+        }
+    }
+
+        .galereia_na_glavnoi a.text-dark {
+            color: #000 !important;
+        }
+
+        .galereia_na_glavnoi .animated{
+
+             animation: galereia-na-glavnoi-animaziia 1s infinite alternate;
+        }
+
+        .galereia_na_glavnoi a.text-dark:hover {
+            color: #f17e00 !important;
+        }
+
+        {#col#}
+        @media (max-width: 575px) {
+            .galereia_na_glavnoi .h1 {
+                font-size: 4.5rem;
+
+            }
+
+            .galereia_na_glavnoi .text_opisania{
+                padding-left: 10%;
+            }
+
+
+            .galereia_na_glavnoi a {
+                font-size: 2rem;
+
+            }
+
+            .galereia_na_glavnoi .strelka {
+                font-size: 4rem;
+            }
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+            .galereia_na_glavnoi .h1 {
+                font-size: 6rem;
+            }
+
+            .galereia_na_glavnoi a {
+                font-size: 2.7rem;
+            }
+
+            .galereia_na_glavnoi .strelka {
+                font-size: 4rem;
+            }
+        }
+
+
+        {#md#}
+        @media (min-width: 768px) {
+            .galereia_na_glavnoi a {
+                font-size: 2.5rem;
+            }
+
+            .galereia_na_glavnoi .strelka {
+                font-size: 4rem;
+            }
+        }
+
+        {#lg#}
+        @media (min-width: 992px) {
+
+            .galereia_na_glavnoi .h1 {
+                font-size: 8rem;
+            }
+
+            .galereia_na_glavnoi a {
+                font-size: 2.8rem;
+            }
+
+            .galereia_na_glavnoi .strelka {
+                font-size: 6rem;
+            }
+        }
+
+        {#xl#}
+        @media (min-width: 1120px) {
+
+            .galereia_na_glavnoi .h1 {
+                font-size: 9rem;
+            }
+
+            .galereia_na_glavnoi a {
+                font-size: 3rem;
+            }
+
+            .galereia_na_glavnoi .strelka {
+                font-size: 5rem;
+            }
+        }
+
+
+    </style>
+{% endaddtoblock %}

@@ -1,0 +1,21 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 trenera-dv my-3">
+
+    <div class="text-center">
+        <a href="{{ instance.ssilka }}">
+            <img class="img-thumbnail rounded-circle" src="{% thumbnail instance.img 240x240 %}" alt="">
+        </a>
+    </div>
+
+    <div class="">
+        <h3 class="my-3 text-warning text-uppercase text-center"> <b> <a class="text-warning" href="{{ instance.ssilka }}">{{ instance.fio }}</a></b></h3>
+        {{ instance.opisanie }}
+
+
+    </div>
+
+
+</div>
+

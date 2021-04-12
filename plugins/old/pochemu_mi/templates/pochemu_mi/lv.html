@@ -1,0 +1,87 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+<div class="pochemu_mi_lv pt-5 ">
+    <h2 class="text-center h1 text-uppercase mb-3">Почему нас выбирают</h2>
+
+    <div class="bg-img w-100 d-none d-lg-inline-block"></div>
+
+    <div class="w-75 m-auto ">
+
+        <div class="row " style="padding: 60px 0">
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+                {% if not forloop.counter|divisibleby:"2" %}
+                    <div class="col-lg-4"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% addtoblock 'css' %}
+    <style>
+        .pochemu_mi_lv {
+            position: relative;
+        }
+
+
+        .pochemu_mi_lv .bg-img {
+            height: 700px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: absolute;
+            background-image: url('/static/core/img/2.png');
+
+        }
+
+
+
+
+        {#lg#}
+        @media (min-width: 992px) {
+
+            .pochemu_mi_lv .h1, .napravlenia_trenirovok_lv .h1 {
+                font-size: 4rem;
+            }
+
+
+        }
+
+        {#md#}
+        @media (min-width: 768px) {
+
+            .pochemu_mi_lv .h1, .napravlenia_trenirovok_lv .h1 {
+                font-size: 4rem;
+            }
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+
+            .pochemu_mi_lv .h1, .napravlenia_trenirovok_lv .h1 {
+                font-size: 4rem;
+            }
+        }
+
+         {#xl#}
+        @media (min-width: 1120px) {
+
+            .pochemu_mi_lv .h1, .napravlenia_trenirovok_lv .h1 {
+                font-size: 5rem;
+            }
+
+            .pochemu_mi_dv {
+                margin: 65px 0;
+            }
+        }
+
+        {#col#}
+        @media (max-width: 575px) {
+
+
+        }
+    </style>
+{% endaddtoblock %}

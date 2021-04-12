@@ -1,0 +1,104 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+
+<div class="fonovoe_izobrazenie_plugin {{ instance.css_class|default_if_none:'' }}"
+     style="
+             background-image: url('{{ instance.get_szatoe_izobrazenie }}');
+             {% if instance.fix_razmer_height %}
+                 height:{{ instance.height|stringformat:"d" }}px;
+
+             {% endif %}
+             {% if instance.fix_razmer_width %}
+                 width: {{ instance.width|stringformat:"d" }}px;
+             {% endif %}
+             {{ instance.css_style|default_if_none:'' }}">
+
+    <div class="fonovoe_izobrazenie_plugin_wrap">
+        <div class="embed-item
+        d-flex
+        align-items-center
+        justify-content-center
+        h-100">
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if instance.zatmenie_color %}<div class="fonovoe_izobrazenie_plugin_zatemnenie" style="background-color: rgba({{ instance.zatmenie_color }});"></div>{% endif %}
+
+</div>
+
+{% addtoblock 'css' %}
+    <style>
+
+        .fonovoe_izobrazenie_plugin {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .fonovoe_izobrazenie_plugin_wrap {
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        .fonovoe_izobrazenie_plugin_zatemnenie {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+
+        }
+
+
+        {#col#}
+        @media (max-width: 575px) {
+            .fonovoe_izobrazenie_plugin {
+                padding: 50px 0;
+            }
+
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+            .fonovoe_izobrazenie_plugin {
+                padding: 50px 0;
+            }
+
+        }
+
+        {#md#}
+        @media (min-width: 768px) {
+            .fonovoe_izobrazenie_plugin {
+
+            }
+        }
+
+
+        {#lg#}
+        @media (min-width: 992px) {
+            .fonovoe_izobrazenie_plugin {
+                padding: 100px 0;
+            }
+        }
+
+        {#xl#}
+        @media (min-width: 1120px) {
+
+        }
+
+
+    </style>
+{% endaddtoblock %}

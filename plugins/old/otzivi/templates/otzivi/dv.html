@@ -1,0 +1,31 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="otziv otziv_dv card px-3 pt-3 pb-3 ten-1 ">
+
+    <div class="row ">
+        <div class="col-3 col-md-3">
+            <img class="m-auto mt-2 rounded-circle  " src="{% thumbnail instance.img 200x200 %}" alt="">
+        </div>
+        <div class="col-9 col-md-9 text-left">
+            <div>{{ instance.avtor }}</div>
+            <span class="text-secondary small">{{ instance.data }}</span>
+            <div><a class="text-warning" href="{{ instance.ssilla }}">{{ instance.nazvanie_otzivnika }}</a></div>
+
+        </div>
+
+        <div class="col-12">
+            <hr class="mb-0 pb-0">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 text-left py-1">
+            {{ instance.opisanie|linebreaks }}
+        </div>
+    </div>
+
+
+</div>
+

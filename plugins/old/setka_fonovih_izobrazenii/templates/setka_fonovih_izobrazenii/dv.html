@@ -1,0 +1,22 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 p-0 napravlenia_trenirovok_dv">
+    <div class="wrap" style="background-image: url({% thumbnail instance.img 700x900 %})">
+
+    </div>
+
+
+        <span href="" class="d-inline-block w-100 h-100 position-relative">
+            <div class="h4 mb-0  text-left text-uppercase py-3 px-3 animated w-100">
+                <div class="row align-items-center fonovi-block text-center">
+                    <div class="col-12 col-xl-12">
+                        <b>{{ instance.zagolovok|linebreaks }}</b>
+                    </div>
+                </div>
+            </div>
+
+        </span>
+
+</div>
+

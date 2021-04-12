@@ -1,0 +1,11 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+
+<{{ instance.tag_type }} {% if instance.css_classs %} class="{{ instance.css_classs }}" {% endif %}   {% if instance.css_style %} style="{{ instance.css_style}}" {% endif %}>
+
+{% for plugin in instance.child_plugin_instances %}
+    {% render_plugin plugin %}
+{% endfor %}
+
+</{{ instance.tag_type }}>

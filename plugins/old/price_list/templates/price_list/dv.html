@@ -1,0 +1,14 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class=" price_list price_list_dv card px-3 pt-3 pb-3 ten-1">
+
+    <div class="mb-4 h4 text-center font-weight-bold">{{ instance.zagolovok|linebreaks }}</div>
+    {{ instance.opisanie|linebreaks }}
+
+        <img class="w-75 m-auto mt-2   " src="{% thumbnail instance.img 450x600 %}" alt="">
+
+
+
+</div>
+

@@ -1,0 +1,107 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+<div class="setka-fonovih-izobrazenii-plugin container-fluid {{ instance.css_class }}" {% if instance.css_style %}
+     style="{{ css_style }}" {% endif %}>
+    <div class="row">
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    </div>
+</div>
+
+
+{% addtoblock 'css' %}
+    <style>
+        .napravlenia_trenirovok_dv {
+            height: 320px;
+        }
+
+        .napravlenia_trenirovok_dv .fonovi-block {
+            min-height: 66px;
+        }
+
+        .napravlenia_trenirovok_lv {
+        {#border-top: #f17e00 solid 10px;#}{#border-bottom: #f17e00 solid 10px;#}
+        }
+
+        .napravlenia_trenirovok_dv .wrap {
+            position: absolute;
+            height: 320px;
+            width: 100%;
+            filter: grayscale(70%);
+            transition: 1s;
+            background-size: cover;
+        }
+
+        .napravlenia_trenirovok_dv:hover .wrap {
+            filter: grayscale(0);
+        }
+
+        .napravlenia_trenirovok_dv .strelka {
+
+        {#display: block;#}
+        }
+
+
+        .napravlenia_trenirovok_dv .animated {
+            transition-property: background-color, color;
+            transition-duration: 1s;
+        }
+
+
+        .napravlenia_trenirovok_dv .h4 {
+            color: #f17e00 !important;
+            position: absolute;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .napravlenia_trenirovok_dv:hover .h4 {
+            background-color: rgba(241, 126, 0, 0.8);
+            color: #fff !important;
+        }
+
+        .napravlenia_trenirovok_dv .h4 p {
+            margin: 0;
+        }
+
+
+        {#col#}
+        @media (max-width: 575px) {
+            .napravlenia_trenirovok_lv .h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+
+        }
+
+        {#md#}
+        @media (min-width: 768px) {
+
+        }
+
+        {#lg#}
+        @media (min-width: 992px) {
+            .napravlenia_trenirovok_lv .h1 {
+                font-size: 5rem;
+            }
+        }
+
+
+        {#xl#}
+        @media (min-width: 1120px) {
+            .napravlenia_trenirovok_lv .h1 {
+                font-size: 7rem;
+            }
+        }
+
+
+
+    </style>
+{% endaddtoblock %}
+
+

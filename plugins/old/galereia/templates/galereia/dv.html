@@ -1,0 +1,25 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 p-0 napravlenia_trenirovok_dv">
+    <div class="wrap" style="background-image: url({% thumbnail instance.img 600x800 %})">
+
+    </div>
+
+
+        <a href="{{ instance.ssilka }}" class="d-inline-block w-100 h-100 position-relative">
+            <div class="h3 mb-0  text-left text-uppercase py-3 px-3 animated w-100">
+                <div class="row align-items-center">
+                    <div class="col-9 col-xl-10">
+                        <b>{{ instance.zagolovok|linebreaks }}</b>
+                    </div>
+                    <div class="col-3 col-xl-2">
+                        <i class="fa fa-chevron-circle-right fa-lg strelka"></i>
+                    </div>
+                </div>
+            </div>
+
+        </a>
+
+</div>
+

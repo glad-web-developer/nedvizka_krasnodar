@@ -1,0 +1,108 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+<div class="fullscreen_slider_lv embed-responsive embed-responsive-16by9 d-none d-sm-none d-md-block" style="min-height: 300px">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>
+
+{% addtoblock 'css' %}
+    <style>
+        .fullscreen_slider_dv_video {
+            position: relative;
+        }
+
+        .fullscreen_slider_dv_video .bg_fon {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+
+        {#хз начало#}
+        .carousel-control-prev-icon:hover, .carousel-control-next-icon:hover, .fullscreen-bootom-arow:hover {
+            color: #f17e00;
+        }
+
+        .fullscreen_img {
+            position: relative;
+            background-size: cover;
+            image-rendering: initial;
+            object-fit: cover;
+            background-position: center;
+        }
+
+        .fullscreen-bootom-arow {
+            z-index: 10000;
+            position: absolute;
+            color: #ddd;
+        }
+
+        .fullscreen_img b {
+            position: relative;
+            font-size: 3rem;
+            color: #fff;
+            z-index: 1000;
+        }
+
+        .fullscreen_img p {
+            position: relative;
+            font-size: 2rem;
+            color: #fff;
+            z-index: 1000;
+        }
+
+        .fullscreen_img .outer_layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+
+        {#хз конец#}
+
+        {#xl#}
+        @media (min-width: 1120px) {
+            .fullscreen_slider_dv_video .logotip {
+                width: 35%;
+            }
+        }
+
+        {#lg#}
+        @media (min-width: 992px) {
+            .fullscreen_slider_dv_video .logotip {
+                width: 30%;
+            }
+        }
+
+        {#md#}
+        @media (min-width: 768px) {
+            .fullscreen_slider_dv_video .logotip {
+                width: 45%;
+            }
+
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+            .fullscreen_slider_dv_video .logotip {
+                width: 40%;
+            }
+
+        }
+
+        {#col#}
+        @media (max-width: 575px) {
+            .fullscreen_slider_dv_video .logotip {
+                width: 40%;
+            }
+
+        }
+    </style>
+{% endaddtoblock %}

@@ -1,0 +1,20 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+<div class="{{ instance.css_class }}" style="{{ instance.css_style }}">
+    <div id="player{{ instance.id }}"
+         class=""
+         style="{% if instance.height %}height: {{ instance.height }};{% endif %}
+                 {% if instance.width %}width: {{ instance.width }};{% endif %}"
+    ></div>
+</div>
+
+
+{% addtoblock 'js' %}
+    <script src="{% static 'video_player_js/playerjs.js' %}" type="text/javascript"></script>
+{% endaddtoblock %}
+{% addtoblock 'js' %}
+    <script>
+        new Playerjs({id: "player{{ instance.id }}", file: "{{instance.video.url}}"});
+    </script>
+{% endaddtoblock %}

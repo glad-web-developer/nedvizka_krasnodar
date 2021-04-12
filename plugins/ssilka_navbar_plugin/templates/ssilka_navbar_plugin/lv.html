@@ -1,0 +1,54 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+
+<div class="ssilka_navbar_plugin {{ instance.css_class|default_if_none:'' }}"
+     style="{{ instance.css_|default_if_none:'' }}">
+    <a href="{{ instance.get_link }}" class="nav-link ">{{ instance.title }} </a>
+</div>
+
+
+
+{% addtoblock 'css' %}
+    <style>
+
+
+        {#col#}
+        @media (max-width: 575px) {
+            .fonovoe_izobrazenie_plugin {
+                padding: 50px 0;
+            }
+
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+            .fonovoe_izobrazenie_plugin {
+                padding: 50px 0;
+            }
+
+        }
+
+        {#md#}
+        @media (min-width: 768px) {
+            .fonovoe_izobrazenie_plugin {
+
+            }
+        }
+
+
+        {#lg#}
+        @media (min-width: 992px) {
+            .fonovoe_izobrazenie_plugin {
+                padding: 100px 0;
+            }
+        }
+
+        {#xl#}
+        @media (min-width: 1120px) {
+
+        }
+
+
+    </style>
+{% endaddtoblock %}

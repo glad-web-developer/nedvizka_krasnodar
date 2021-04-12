@@ -1,0 +1,8 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="pochemu_mi_dv col-12 col-lg-4 text-left text-uppercase mb-5">
+    {% if instance.img %}<img class="float-left px-3" src="{% thumbnail instance.img 70x70 %}">{% endif %}
+    <span class="zagolovok_preemushestva h3 p-0"> <b>{{ instance.zagolovok|linebreaks  }}</b> </span>
+</div>
+

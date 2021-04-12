@@ -1,0 +1,164 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+<div class="container-fluid  price_list price_list_lv text-center bg-light py-md-3 py-3">
+    <h2 class="h1 mb-5 text-uppercase font-weight-bold">Прайс-лист<br class="d-block d-lg-none"></h2>
+    <div class="price_wrap owl-carousel owl-theme ">
+        {% for plugin in instance.child_plugin_instances %}
+            {% render_plugin plugin %}
+        {% endfor %}
+    </div>
+</div>
+
+{% addtoblock 'js' %}
+    <script>
+
+
+        $(function () {
+            $('.price_wrap').owlCarousel({
+                center: false,
+                autoplay: false,
+                smartSpeed: 1000,
+                margin: 10,
+                loop: true,
+                 nav:false,
+                autoplaySpeed:3000,
+                autoplayHoverPause:true,
+                stagePadding: 100,
+                responsive: {
+                    0: {
+                        stagePadding: 20,
+                        items: 1,
+                        autoplay: false,
+                    },
+                    576: {
+                        stagePadding: 20,
+                        items: 2,
+                        autoplay: false,
+                    },
+                    768: {
+                        items: 2,
+                        autoplay: true,
+                    },
+                    1120: {
+                        items: 2,
+                        nav:true,
+                        autoplay: true,
+                    },
+                    1400: {
+                        items: 3,
+                        autoplay: true,
+                        nav:true,
+                    }
+                    ,
+                    1600: {
+                        items: 4,
+                        autoplay: true,
+                        nav:true,
+                    }
+                }
+            });
+        })
+    </script>
+{% endaddtoblock %}
+
+
+
+{% addtoblock 'css' %}
+    <style>
+        .price_list p, .price_list li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .price_list .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{
+            background-color: #f17e00 !important;
+        }
+
+        .price_list .owl-dots{
+            margin: 20px 0;
+        }
+
+        .price_list .owl-carousel .owl-stage-outer{
+            position: relative;
+        }
+
+        .price_list .owl-carousel .owl-nav{
+            top: 45%;
+            width: 100%;
+            position: absolute;
+        }
+
+        .price_list .owl-prev, .price_list .owl-theme .owl-nav [class*=owl-]:hover, .price_list .owl-next{
+            font-size: 40pt !important;
+            {#border: solid 1px black !important;#}
+            text-align: center !important;
+            color: #f17e00 !important;
+            font-weight: bold !important;
+            background: none;
+        }
+
+        .price_list .owl-prev{
+            left: 10px;
+            position: absolute;
+        }
+
+        .price_list .owl-next{
+            right: 10px;
+            position: absolute;
+        }
+
+        .price_list ul {
+            padding: 0 5px;
+        }
+
+        .price_list .price_list_dv {
+            height: 490px;
+
+        }
+
+
+        {#col#}
+        @media (max-width: 575px) {
+            .price_list .h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+            .price_list .h1 {
+                font-size: 4rem;
+            }
+        }
+
+
+        {#md#}
+        @media (min-width: 768px) {
+            .price_list .h1 {
+                font-size: 5rem;
+            }
+        }
+
+        {#lg#}
+        @media (min-width: 992px) {
+
+            .price_list .price_list_dv {
+                height: 600px;
+
+            }
+        }
+
+        {#xl#}
+        @media (min-width: 1120px) {
+
+            .price_list .h1 {
+                font-size: 8rem;
+            }
+        }
+
+
+    </style>
+
+
+{% endaddtoblock %}
