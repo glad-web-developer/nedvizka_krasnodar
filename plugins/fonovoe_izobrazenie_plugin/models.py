@@ -18,7 +18,7 @@ class FonovoeIzobrazeniePluginSetting(CMSPlugin):
     css_class = models.CharField('CSS класс', null=True, blank=True, max_length=255)
     css_style = models.CharField('CSS стиль', null=True, blank=True, max_length=1000)
 
-    zatmenie_color = models.CharField('Затеменение изображения(r,g,b,a)', null=True, blank=True, max_length=255, default='0, 0, 0, 1')
+    zatmenie_color = models.CharField('Затеменение изображения(r,g,b,a)', null=True, blank=True, max_length=255, default='0, 0, 0, 0.1')
 
 
     fix_razmer_width = models.BooleanField('Фиксированный размер ширины?', default=True)

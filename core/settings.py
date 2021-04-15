@@ -137,6 +137,7 @@ INSTALLED_APPS = [
     'plugins.fonovoe_izobrazenie_plugin',
     'plugins.moi_stil',
     'plugins.ssilka_navbar_plugin',
+    'plugins.slaider_s_navigaziei_izobrazeniyami_plugin',
 
 ]
 
