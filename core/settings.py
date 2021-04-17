@@ -138,6 +138,10 @@ INSTALLED_APPS = [
     'plugins.moi_stil',
     'plugins.ssilka_navbar_plugin',
     'plugins.slaider_s_navigaziei_izobrazeniyami_plugin',
+    'plugins.otzivi_plugin',
+    'plugins.svoi_stili_i_scripti_plugin',
+    'plugins.stilizovani_zagolovok_plugin',
+    'plugins.video_player_js',
 
 ]
 

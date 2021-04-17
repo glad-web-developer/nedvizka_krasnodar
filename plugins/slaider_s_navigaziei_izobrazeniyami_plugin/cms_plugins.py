@@ -9,7 +9,7 @@ from plugins.slaider_s_navigaziei_izobrazeniyami_plugin.models import SlaiderSNa
 class SlaidInline(admin.TabularInline):
     model = SlaiderSNavigazieiIzobrazeniyami
     fk_name = 'slaider'
-    extra = 3
+    extra = 0
 
 
 

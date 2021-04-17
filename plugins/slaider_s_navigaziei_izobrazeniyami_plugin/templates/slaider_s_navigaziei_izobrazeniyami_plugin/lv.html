@@ -4,7 +4,7 @@
 {% with slaidi=instance.get_slaidi %}
 
 
-    <div class="swiper-container main-slider loading">
+    <div class="swiper-container main-slider  main-slider{{ instance.id|stringformat:"d"  }} loading">
         <div class="swiper-wrapper">
 
             {% for i_slaid in slaidi %}
@@ -38,7 +38,7 @@
             <i class="fas fa-chevron-down btn_down text-info  h1 "></i>
         </div>
 
-        <div class="swiper-container nav-slider loading">
+        <div class="swiper-container nav-slider nav-slider{{ instance.id|stringformat:"d"  }} loading">
 
 
             <div class="swiper-wrapper" role="navigation">
@@ -228,9 +228,10 @@
 
     {% addtoblock 'js' %}
         <script>
+        function slaider_s_navigaziei_izobrazeniyami_plugin_{{ instance.id|stringformat:"d"  }}(){
             // Params
-            let mainSliderSelector = '.main-slider',
-                navSliderSelector = '.nav-slider',
+            let mainSliderSelector = '.main-slider{{ instance.id|stringformat:"d"  }}',
+                navSliderSelector = '.nav-slider{{ instance.id|stringformat:"d"  }}',
                 interleaveOffset = 0.5;
 
             // Main Slider
@@ -310,6 +311,8 @@
             // Matching sliders
             mainSlider.controller.control = navSlider;
             navSlider.controller.control = mainSlider;
+            }
+            slaider_s_navigaziei_izobrazeniyami_plugin_{{ instance.id|stringformat:"d"   }}();
         </script>
     {% endaddtoblock %}
 
@@ -319,46 +322,9 @@
         <link rel="stylesheet" href="{% static 'slaider_s_navigaziei_izobrazeniyami_plugin/lib/swiper.min.css' %}">
     {% endaddtoblock %}
 
-    {% addtoblock 'js' %}
-        <script>
-
-        </script>
-    {% endaddtoblock %}
 
 
-    {% addtoblock 'css' %}
-        <style>
-
-            {#col#}
-            @media (max-width: 575px) {
 
 
-            }
-
-            {#sm#}
-            @media (min-width: 576px) {
-
-
-            }
-
-            {#md#}
-            @media (min-width: 768px) {
-
-            }
-
-
-            {#lg#}
-            @media (min-width: 992px) {
-
-            }
-
-            {#xl#}
-            @media (min-width: 1120px) {
-
-            }
-
-
-        </style>
-    {% endaddtoblock %}
 
 {% endwith %}

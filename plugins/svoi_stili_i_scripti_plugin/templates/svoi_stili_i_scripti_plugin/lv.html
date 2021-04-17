@@ -1,0 +1,7 @@
+{% load sekizai_tags static cms_tags %}
+
+{% if instance.type == 'style' %}
+    <style>{{ instance.text }}</style>
+{% elif instance.type == 'script' %}
+    <script>{{ instance.text }}</script>
+{% endif %}

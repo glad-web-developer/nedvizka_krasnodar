@@ -1,0 +1,147 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+{% with otzivi=instance.otzivi_set.all %}
+
+
+    <div class="owl-carousel owl-theme otzivi_plugin  otziv_plugin_wrap_{{ instance.id|stringformat:"d"  }} {{ instance.css_class }}">
+        {% for i_otziv in otzivi %}
+            <div class="item">
+                <p class="text-info mb-0">
+                    <b>{{ i_otziv.avtor|default_if_none:'' }}</b> <span>{{ i_otziv.data|default_if_none:'' }}</span>
+                </p>
+                <p class="mb-4 mt-0"><a href="{{ i_otziv.ssilla|default_if_none:'' }}"
+                                        class="text-info">{{ i_otziv.ssilla|default_if_none:'<br>' }}</a></p>
+
+                <p class="text-white  pre_wrap">{{ i_otziv.opisanie }}</p>
+
+                <div class="text-info text-right">
+                    {% for i in i_otziv.get_zapolninih_zvezd %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+
+                    {% for i in i_otziv.get_ne_zapolninih_zvezd %}
+                        <i class="far fa-star"></i>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endwith %}
+
+{% addtoblock 'js' %}
+    <script src="{% static 'otzivi_plugin/lib/OwlCarousel2/owl.carousel.min.js' %}"></script>
+{% endaddtoblock %}
+
+{% addtoblock 'css' %}
+    <link rel="stylesheet" href="{% static 'otzivi_plugin/lib/OwlCarousel2/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'otzivi_plugin/lib/OwlCarousel2/assets/owl.theme.default.min.css' %}">
+{% endaddtoblock %}
+
+{% addtoblock 'js' %}
+    <script>
+        $(function () {
+            $('.otziv_plugin_wrap_{{ instance.id|stringformat:"d"  }}').owlCarousel({
+                loop: true,
+                margin: 30,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+
+
+                    800: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            })
+        });
+    </script>
+{% endaddtoblock %}
+
+
+
+{% addtoblock 'css' %}
+    <style>
+
+        .otzivi_plugin .owl-nav {
+            position: absolute;
+            top: 15%;
+            width: 100%
+        }
+
+        .otzivi_plugin .owl-prev {
+            left: -50px;
+            position: absolute;
+        }
+
+        .otzivi_plugin .owl-next {
+            right: -50px;
+            position: absolute;
+        }
+
+        .otzivi_plugin .owl-next:hover, .otzivi_plugin .owl-prev:hover {
+            background: none !important;
+            color: #fff !important;
+        }
+
+        .otzivi_plugin .owl-nav button span {
+            font-size: 80pt;
+            color: #60beaf;
+        }
+
+        .otzivi_plugin .owl-nav button span:hover {
+            color: #FFFFFF;
+        }
+
+        .otzivi_plugin .owl-dot.active span, .otzivi_plugin .owl-dot.active span:hover {
+            background: #60beaf !important;
+            color: #FFFFFF;
+
+
+        }
+
+
+        {#col#}
+        @media (max-width: 575px) {
+
+        }
+
+        {#sm#}
+        @media (min-width: 576px) {
+
+        }
+
+
+        {#md#}
+        @media (min-width: 768px) {
+
+        }
+
+        {#lg#}
+        @media (min-width: 992px) {
+
+
+        }
+
+        {#xl#}
+        @media (min-width: 1120px) {
+
+        }
+
+
+
+
+    </style>
+
+{% endaddtoblock %}
+
+

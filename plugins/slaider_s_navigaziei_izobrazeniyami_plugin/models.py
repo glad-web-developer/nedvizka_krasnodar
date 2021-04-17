@@ -19,6 +19,12 @@ class SlaiderSNavigazieiIzobrazeniyamiPluginLvSetting(CMSPlugin):
     width = models.IntegerField('Ширина при обрезке', default=1600)
     height = models.IntegerField('Высота при обрезке', default=900)
 
+    def copy_relations(self, oldinstance):
+        for instance in oldinstance.slaidi_set.all():
+            instance.pk = None
+            instance.slaider = self
+            instance.save()
+
     def get_slaidi(self):
         return self.slaidi_set.select_related('img')
 

@@ -1,0 +1,46 @@
+{% load sekizai_tags static cms_tags %}
+
+
+<{{ instance.tag }} class='stilizovani_zagolovok_plugin_{{ instance.id|stringformat:"d"  }} {{ instance.css_class }}'>
+{{ instance.text|safe }}
+</{{ instance.tag }}>
+
+<style>
+
+    .stilizovani_zagolovok_plugin_{{ instance.id|stringformat:"d"  }} {
+        {{ instance.all_style }}
+    }
+
+
+    /*sm*/
+    @media (min-width: 576px) {
+        .stilizovani_zagolovok_plugin_{{ instance.id|stringformat:"d"  }} {
+        {{ instance.sm_style }}
+        }
+    }
+
+
+    /*md*/
+    @media (min-width: 768px) {
+        .stilizovani_zagolovok_plugin_{{ instance.id|stringformat:"d"  }} {
+        {{ instance.md_style }}
+        }
+    }
+
+    /*lg*/
+    @media (min-width: 992px) {
+        .stilizovani_zagolovok_plugin_{{ instance.id|stringformat:"d"  }} {
+        {{ instance.lg_style }}
+        }
+
+    }
+
+    /*xl*/
+    @media (min-width: 1120px) {
+        .stilizovani_zagolovok_plugin_{{ instance.id|stringformat:"d"  }} {
+        {{ instance.xl_style }}
+        }
+    }
+
+
+</style>

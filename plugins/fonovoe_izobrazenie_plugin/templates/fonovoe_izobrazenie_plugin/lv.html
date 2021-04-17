@@ -14,12 +14,9 @@
              {% endif %}
              {{ instance.css_style|default_if_none:'' }}">
 
-    <div class="fonovoe_izobrazenie_plugin_wrap pt-4 pb-3 px-3">
+    <div class="fonovoe_izobrazenie_plugin_wrap pt-4 pb-3 px-3 ">
         <div class="
-{#        embed-item#}
-{#        d-flex#}
-{#        align-items-center#}
-{#        justify-content-center#}
+            {{ instance.css_class_contenta }}
         h-100">
             {% for plugin in instance.child_plugin_instances %}
                 {% render_plugin plugin %}

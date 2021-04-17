@@ -8,7 +8,7 @@ from plugins.video_player_js.models import VideoPlayerJSPluginSetting
 class VideoPlayerJSPlugin(CMSPluginBase):
 
     render_template = "video_player_js/video_player_js.html"
-    module = 'Кастомные плагины'
+    module = '01. Кастомные плагины'
     model = VideoPlayerJSPluginSetting
     name = 'Видео плеер JS'
 
