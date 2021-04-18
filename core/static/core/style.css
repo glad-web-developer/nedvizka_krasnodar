@@ -230,11 +230,12 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 }
 
 
-
-
 /*col*/
-@media (max-width: 575px) {
-
+@media (min-width: 1px) {
+    .header_black {
+        background-color: #000000;
+        height: 96px;
+    }
 }
 
 /*sm*/
@@ -245,7 +246,10 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 
 /*md*/
 @media (min-width: 768px) {
+    .header_black {
 
+        height: 140px;
+    }
 }
 
 /*lg*/
@@ -258,4 +262,6 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 @media (min-width: 1120px) {
 
 }
+
+
 

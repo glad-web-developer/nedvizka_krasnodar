@@ -1,0 +1,53 @@
+{% load sekizai_tags static cms_tags %}
+
+<div class="nedvizka_panel_upravlenia card p-2 {{ instance.css_classs|default_if_none:'' }}" {% if instance.css_style %}
+     style="{{ instance.css_style }}" {% endif %}>
+
+    <div class="row">
+        <div class="col-7">
+            {% if instance.pokazat_kartu %}
+                <a href="#" class="text-uppercase btn btn-info"><b><i class="fas fa-map-marker-alt"></i> Карта
+                    недвижимости</b></a>
+            {% endif %}
+        </div>
+
+
+        <div class="col-5 text-right">
+            {% if instance.pokazat_sortirovku %}
+                <a href="#" class="text-uppercase btn btn-info"><b><i
+                        class="fas fa-sort-amount-down-alt"></i>Сортировать</b></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% addtoblock 'css' %}
+    <style>
+
+        .nedvizka_panel_upravlenia .btn-info {
+            background-color: #60beaf !important;
+            padding: 2px 10px;
+            text-align: center;
+            color: #fff;
+            font-size: 10pt;
+            border: 1px solid #60beaf !important;
+            border-radius: 20px;
+
+        }
+
+        .nedvizka_panel_upravlenia .btn-info:hover, .nedvizka_panel_upravlenia .btn-info:active{
+            color: #60beaf;
+            background-color: #fff;
+        }
+
+        .nedvizka_panel_upravlenia {
+            -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            border-radius: 35px;
+        }
+
+
+    </style>
+
+{% endaddtoblock %}

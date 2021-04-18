@@ -1,0 +1,166 @@
+{% load sekizai_tags static cms_tags thumbnail %}
+
+<div class="nedvizka_spisok_obiectov  {{ instance.css_class|default_if_none:'' }}" {% if instance.css_style %}
+     style="{{ instance.css_style }}" {% endif %}>
+
+    <div class="row">
+        {% for i_nedvizka in dannie_nedvizki %}
+            <div class="col-12 mb-3 ">
+                <div class="card p-3 ten">
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                            <div class="embed-responsive embed-responsive-1by1 position-relative">
+                                <a href="#" class="img_ssilka_na_obect">
+                                    <img class="embed-responsive-item img-fluid p-1 prevyu"
+                                         src="{% thumbnail i_nedvizka.previu 600x600 crop %}"
+                                         alt="">
+
+
+                                    <div class="podshet_foto_wrap">
+                                        <p class="btn btn-info podshet_foto"><b>{{ i_nedvizka.get_colvo_img }} фото</b>
+                                        </p>
+                                    </div>
+
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-8">
+
+                            <div class="row">
+                                <div class="col-8">
+                                    <a href="#" class="h3 zagolovok"><b>{{ i_nedvizka.nazvanie }}</b></a>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <a href="#" class="btn-info mr-2">{{ i_nedvizka.nomer }}</a>
+                                    <a href="#" class="text-info mr-2 dobavit_v_izbranoe"><i class="fas fa-heart "></i></a>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p>{{ i_nedvizka.opisaanaie_kratkoe }}</p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-xl-6">
+                                    <div class="row small text-center">
+                                        <div class="col-4">
+                                            <img height="30" width="30"
+                                                 src="{% static 'nedvizka/img/plosad_doma.png' %}" alt="">
+                                            <p><b>{{ i_nedvizka.ploshad_osnovnogo_doma|floatformat }} кв.м</b></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <img height="25" style="margin-bottom: 5px"
+                                                 src="{% static 'nedvizka/img/ploshad_uchastka.png' %}" alt="">
+                                            <p><b>{{ i_nedvizka.ploshad_uchastka|floatformat }} соток</b></p>
+                                        </div>
+                                        <div class="col-4">
+                                            <img height="30" src="{% static 'nedvizka/img/spalni.png' %}" alt="">
+                                            <p><b>{{ i_nedvizka.kolvo_spalen }} спални</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-xl-6 text-xl-right text-center">
+                                    <a href="#" class="btn-info "><b>{{ i_nedvizka.price_rub|floatformat }} РУБ.
+                                        / {{ i_nedvizka.price_dollor|floatformat }} $</b></a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% addtoblock 'css' %}
+    <style>
+
+        .nedvizka_spisok_obiectov .btn-info {
+            background-color: #60beaf !important;
+            padding: 2px 10px;
+            text-align: center;
+            color: #fff;
+            font-size: 11pt;
+            border: 1px solid #60beaf !important;
+            border-radius: 20px;
+
+        }
+
+
+        .podshet_foto_wrap {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            bottom: 20px;
+            text-align: center;
+        }
+
+        .nedvizka_spisok_obiectov .podshet_foto {
+            padding: 2px 50px;
+            z-index: 500;
+            -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            font-size: 80%;
+        }
+
+        .nedvizka_spisok_obiectov .img_ssilka_na_obect:hover .podshet_foto, .nedvizka_spisok_obiectov .img_ssilka_na_obect:active .podshet_foto {
+            color: #60beaf !important;
+            border-color: #60beaf !important;
+            background: none !important;
+        }
+
+        .nedvizka_spisok_obiectov  .img_ssilka_na_obect img{
+              filter: brightness(100%);
+            transition: all 0.3s ease;
+        }
+
+        .nedvizka_spisok_obiectov  .img_ssilka_na_obect:hover img, .nedvizka_spisok_obiectov  .img_ssilka_na_obect:active img {
+           filter: brightness(40%);
+            transition: all 0.3s ease;
+        }
+
+        .nedvizka_spisok_obiectov .small {
+            font-size: 60%;
+        }
+
+        .nedvizka_spisok_obiectov .zagolovok {
+            color: #000;
+        }
+
+        .nedvizka_spisok_obiectov .zagolovok:hover, .nedvizka_spisok_obiectov .zagolovok:active {
+            color: #60beaf !important;
+        }
+
+        .nedvizka_spisok_obiectov .prevyu, .nedvizka_spisok_obiectov .card {
+            border-radius: 20px;
+        }
+
+        .nedvizka_spisok_obiectov .btn-info:hover, .nedvizka_spisok_obiectov .btn-info:active {
+            color: #60beaf;
+            background-color: #fff;
+        }
+
+        .nedvizka_spisok_obiectov .ten {
+            -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            border-radius: 35px;
+        }
+
+        .nedvizka_spisok_obiectov .dobavit_v_izbranoe:hover, .nedvizka_spisok_obiectov .dobavit_v_izbranoe:active {
+            color: #60beaf !important;
+            cursor: pointer;
+        }
+
+
+    </style>
+
+{% endaddtoblock %}

@@ -1,0 +1,45 @@
+{% load sekizai_tags static cms_tags %}
+
+<div class="nedvizka_izbranoe_plugin card p-3 {{ instance.css_classs|default_if_none:'' }}" {% if instance.css_style %}
+     style="{{ instance.css_style }}" {% endif %}>
+    <p class="text-uppercase title"><b>Избранное</b></p>
+    <div class="izbranie_punkti">
+        <p class="text-uppercase"><a href="#" class="text-info"><i class="fas fa-heart "></i></a> <b>Видовой дом у подножия Медведь-горы</b></p>
+        <p class="text-uppercase"><a href="#" class="text-info"><i class="fas fa-heart"></i></a> <b>Видовой дом у подножия Медведь-горы</b></p>
+        <p class="text-uppercase"><a href="#" class="text-info"><i class="fas fa-heart"></i></a> <b>Видовой дом у подножия Медведь-горы</b></p>
+    </div>
+</div>
+
+{% addtoblock 'css' %}
+    <style>
+
+    .nedvizka_izbranoe_plugin .izbranie_punkti{
+        font-size: 10pt;
+    }
+
+        .nedvizka_izbranoe_plugin .title {
+            background-color: #60beaf !important;
+            padding: 5px 10px;
+            text-align: center;
+            color: #fff;
+            font-size: 11pt;
+            border: 1px solid #60beaf !important;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .nedvizka_izbranoe_plugin {
+            padding-bottom: 70px !important;
+            -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+            border-radius: 35px;
+        }
+
+        .nedvizka_izbranoe_plugin .text-info:hover, .nedvizka_izbranoe_plugin .text-info:hover {
+            color: #60beaf !important;
+        }
+
+    </style>
+
+{% endaddtoblock %}

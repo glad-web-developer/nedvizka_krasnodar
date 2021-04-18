@@ -7,8 +7,8 @@ from filer.fields.image import FilerImageField
 
 class Dom(models.Model):
     class Meta:
-        verbose_name = 'Недвижка'
-        verbose_name_plural = 'Недвижка'
+        verbose_name = 'Дом'
+        verbose_name_plural = 'Дома'
 
     pokazivat = models.BooleanField('Показывать', default=True, choices=(
         (True, 'Показывать на сайте'),
@@ -22,6 +22,9 @@ class Dom(models.Model):
 
     nazvanie = models.CharField('Название', max_length=255)
     nomer = models.CharField('Номер(id объекта)', max_length=50)
+
+
+    previu = FilerImageField(verbose_name='Превью', null=True, blank=True, on_delete=models.CASCADE)
 
     price_rub = models.FloatField('Цена руб', null=True, blank=True,
                                   help_text='Оставьте пустым, и сайт предложит пользователю запросить цену')
@@ -59,10 +62,14 @@ class Dom(models.Model):
         ))
     opisaanaie = models.TextField('Описание для страницы детальной информации', null=True, blank=True,
                                   help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
-    iframe_panorami = models.TextField('Описание для страницы детальной информации', null=True, blank=True,
+    iframe_panorami = models.CharField('Код панорами', null=True, blank=True, max_length=1000,
                                        help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
-    video = models.TextField('Ссылка на видео youtube', null=True, blank=True,
+    video = models.CharField('Ссылка на видео youtube', null=True, blank=True, max_length=1000,
                                        help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
+
+
+    def get_colvo_img(self):
+        return  self.foto_set.count()
 
     def __str__(self):
         try:
@@ -72,44 +79,65 @@ class Dom(models.Model):
 
 class FotoDomov(models.Model):
     class Meta:
-        verbose_name = 'Фото домов'
-        verbose_name_plural = 'Фото домов'
+        verbose_name = 'Фото дома'
+        verbose_name_plural = 'Фото дома'
 
-    dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True)
-    img = FilerImageField(verbose_name='Превью', )
+    dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True, related_name='foto_set')
+    img = FilerImageField(verbose_name='Фото', on_delete=models.CASCADE)
 
-# class Novost(models.Model):
-#     class Meta:
-#         verbose_name = 'Новость'
-#         verbose_name_plural = 'Новости'
-#         ordering = ['-data_sozdania', ]
-#
-#     title = models.CharField('Заголовок', max_length = 255)
-#     img = FilerImageField(verbose_name='Превью',)
-#     data_sozdania = models.DateField('Дата новости')
-#     dlinnoe_opisanie = HTMLField('Текст новости', blank=True, null=True,)
-#     anotazia = models.TextField('Анотация', help_text='До 200 символов', blank=True, null=True, max_length=200)
-#
-#     def get_thumbnailer_img(self):
-#         thumbnailer = get_thumbnailer(self.img)
-#         return thumbnailer.get_thumbnail({'size': (400, 300), 'crop': True, })
-#
-#
-#     def __str__(self):
-#         return self.title
-#
-#
-# class NovostImg(models.Model):
-#     class Meta:
-#         verbose_name = 'Фото новости'
-#         verbose_name_plural = 'Фото новости'
-#
-#     novost = models.ForeignKey(Novost, verbose_name='Новость', on_delete=models.CASCADE, related_name='fotki')
-#     img = FilerImageField(verbose_name='Фото', )
-#
-#     def get_thumbnailer_img(self):
-#         thumbnailer = get_thumbnailer(self.img)
-#         return thumbnailer.get_thumbnail({'size': (250, 200), 'crop': True, })
-#
-#     def __str__(self):
-#         return ''
+
+
+class NedvizkaSpisokObiectovPluginPluginSetting(CMSPlugin):
+    class Meta:
+        verbose_name = 'Недвижка. Список объектов'
+        verbose_name_plural = 'Недвижка. Список объектов'
+
+    def __str__(self):
+        return 'Недвижка. Список объектов'
+
+    tip_nedvizki = models.CharField('Тип недвижки', max_length=255, choices=(
+        ('dom_prodaza', 'Дом-продажа'),
+        ('dom_arenda', 'Дом-аренда'),
+    ))
+
+    obiectov_na_stranize = models.IntegerField('Выводить по ', default=10)
+
+    css_class = models.CharField('CSS класс', null=True, blank=True, max_length=255)
+    css_style = models.CharField('CSS стиль', null=True, blank=True, max_length=1000)
+
+    def get_short_description(self):
+        tip_nedvizki = self.tip_nedvizki or '-'
+        obiectov_na_stranize = self.obiectov_na_stranize or '-'
+        return f'{tip_nedvizki} (по {obiectov_na_stranize} шт.)'
+
+
+
+class NedvizkaIzbranoePluginSetting(CMSPlugin):
+    class Meta:
+        verbose_name = 'Недвижка. Избранное'
+        verbose_name_plural = 'Недвижка. Избранное'
+
+    def __str__(self):
+        return 'Недвижка. Избранное'
+
+    css_class = models.CharField('CSS класс', null=True, blank=True, max_length=255)
+    css_style = models.CharField('CSS стиль', null=True, blank=True, max_length=1000)
+
+
+
+
+class NedvizkaPanelUpravleniaPluginSetting(CMSPlugin):
+    class Meta:
+        verbose_name = 'Недвижка. Избранное'
+        verbose_name_plural = 'Недвижка. Избранное'
+
+    def __str__(self):
+        return 'Недвижка. Избранное'
+
+    pokazat_kartu = models.BooleanField('Показывать карту', default=True)
+    pokazat_sortirovku = models.BooleanField('Показывать сортировку', default=True)
+    css_class = models.CharField('CSS класс', null=True, blank=True, max_length=255)
+    css_style = models.CharField('CSS стиль', null=True, blank=True, max_length=1000)
+
+
+

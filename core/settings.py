@@ -142,6 +142,7 @@ INSTALLED_APPS = [
     'plugins.svoi_stili_i_scripti_plugin',
     'plugins.stilizovani_zagolovok_plugin',
     'plugins.video_player_js',
+    'apps.nedvizka',
 
 ]
 
