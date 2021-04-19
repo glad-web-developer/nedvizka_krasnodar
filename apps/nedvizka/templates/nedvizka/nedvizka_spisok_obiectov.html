@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4 mb-3 mb-md-0">
                             <div class="embed-responsive embed-responsive-1by1 position-relative">
-                                <a href="#" class="img_ssilka_na_obect">
+                                <a href="{{ i_nedvizka.get_url }}" class="img_ssilka_na_obect">
                                     <img class="embed-responsive-item img-fluid p-1 prevyu"
                                          src="{% thumbnail i_nedvizka.previu 600x600 crop %}"
                                          alt="">
@@ -30,10 +30,10 @@
 
                             <div class="row">
                                 <div class="col-8">
-                                    <a href="#" class="h3 zagolovok"><b>{{ i_nedvizka.nazvanie }}</b></a>
+                                    <a href="{{ i_nedvizka.get_url }}" class="h3 zagolovok"><b>{{ i_nedvizka.nazvanie }}</b></a>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="#" class="btn-info mr-2">{{ i_nedvizka.nomer }}</a>
+                                    <a href="{{ i_nedvizka.get_url }}" class="btn-info mr-2">{{ i_nedvizka.nomer }}</a>
                                     <a href="#" class="text-info mr-2 dobavit_v_izbranoe"><i class="fas fa-heart "></i></a>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                 </div>
 
                                 <div class="col-12 col-xl-6 text-xl-right text-center">
-                                    <a href="#" class="btn-info "><b>{{ i_nedvizka.price_rub|floatformat }} РУБ.
+                                    <a href="{{ i_nedvizka.get_url }}" class="btn-info "><b>{{ i_nedvizka.price_rub|floatformat }} РУБ.
                                         / {{ i_nedvizka.price_dollor|floatformat }} $</b></a>
                                 </div>
                             </div>

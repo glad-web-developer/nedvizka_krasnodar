@@ -1,0 +1,170 @@
+{% extends "core/base.html" %}
+{% load cms_tags menu_tags sekizai_tags static %}
+{% block content %}
+    {% load thumbnail %}
+
+
+    {% include 'core/elements/navbar.html' %}
+
+
+    <main>
+
+        <div class="header_black"></div>
+
+        <div class="bg-secondary text-white">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-3">
+                        <a href="#" class="text-uppercase px-3 btn btn-light">Показать на карте</a>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <h1>{{ danie_nedvizki.nazvanie|default_if_none:'Безымянный объект' }}</h1>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <span class="mb-3"><b>{{ danie_nedvizki.raspolozenie_gorod|default_if_none:'' }}</b></span>
+                        <span class="btn btn-light">{{ danie_nedvizki.nomer|default_if_none:'' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- слайдер -->
+
+        <div class="owl-carousel owl_carousel_nedvizka owl-theme">
+            {% for i_nedvizka in danie_nedvizki.get_foto_set %}
+                <div class="item">
+                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 900x900 %}" alt="">
+                </div>
+            {% endfor %}
+        </div>
+
+
+    </main>
+
+
+    {% include 'core/elements/footer.html' %}
+
+
+    {% addtoblock 'js' %}
+        <script src="{% static 'otzivi_plugin/lib/OwlCarousel2/owl.carousel.min.js' %}"></script>
+    {% endaddtoblock %}
+
+    {% addtoblock 'css' %}
+        <link rel="stylesheet" href="{% static 'otzivi_plugin/lib/OwlCarousel2/assets/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'otzivi_plugin/lib/OwlCarousel2/assets/owl.theme.default.min.css' %}">
+    {% endaddtoblock %}
+
+
+    {% addtoblock 'js' %}
+        <script>
+            $(function () {
+                $('.owl_carousel_nedvizka').owlCarousel({
+                    loop: true,
+                    margin: 5,
+                    nav: true,
+                    center: true,
+                    autoWidth: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+
+
+                        800: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 3
+                        }
+                    }
+                })
+            });
+        </script>
+    {% endaddtoblock %}
+
+
+
+    {% addtoblock 'css' %}
+        <style>
+
+            .owl_carousel_nedvizka .owl-nav {
+                position: absolute;
+                top: 25%;
+                width: 100%
+            }
+
+            .owl_carousel_nedvizka .owl-dots{
+                display: none;
+            }
+
+            .owl_carousel_nedvizka .owl-theme .owl-nav{
+                margin: 0;
+            }
+
+            .owl_carousel_nedvizka .owl-prev {
+                left: 5px;
+                position: absolute;
+            }
+
+            .owl_carousel_nedvizka .owl-next {
+                right: 5px;
+                position: absolute;
+            }
+
+            .owl_carousel_nedvizka .owl-next:hover, .owl_carousel_nedvizka .owl-prev:hover {
+                background: none !important;
+                color: #fff !important;
+            }
+
+            .owl_carousel_nedvizka .owl-nav button span {
+                font-size: 80pt;
+                color: #60beaf;
+            }
+
+            .owl_carousel_nedvizka .owl-nav button span:hover {
+                color: #FFFFFF;
+            }
+
+            .owl_carousel_nedvizka .owl-dot.active span, .owl_carousel_nedvizka .owl-dot.active span:hover {
+                background: #60beaf !important;
+                color: #FFFFFF;
+
+
+            }
+
+
+            {#col#}
+            @media (max-width: 575px) {
+
+            }
+
+            {#sm#}
+            @media (min-width: 576px) {
+
+            }
+
+
+            {#md#}
+            @media (min-width: 768px) {
+
+            }
+
+            {#lg#}
+            @media (min-width: 992px) {
+
+
+            }
+
+            {#xl#}
+            @media (min-width: 1120px) {
+
+            }
+
+
+        </style>
+
+    {% endaddtoblock %}
+
+
+{% endblock %}
+

@@ -23,6 +23,8 @@ class Dom(models.Model):
     nazvanie = models.CharField('Название', max_length=255)
     nomer = models.CharField('Номер(id объекта)', max_length=50)
 
+    slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True )
+
 
     previu = FilerImageField(verbose_name='Превью', null=True, blank=True, on_delete=models.CASCADE)
 
@@ -67,15 +69,22 @@ class Dom(models.Model):
     video = models.CharField('Ссылка на видео youtube', null=True, blank=True, max_length=1000,
                                        help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
 
+    def get_foto_set(self):
+        return self.foto_set.select_related('img')
 
     def get_colvo_img(self):
-        return  self.foto_set.count()
+        return  self.foto_set.select_related('img') .count()
 
     def __str__(self):
         try:
             return f'{self.nomer} - {self.nazvanie}'
         except Exception:
             return ''
+
+    def get_url(self):
+        if self.slug:
+            return self.slug
+        return self.id
 
 class FotoDomov(models.Model):
     class Meta:
