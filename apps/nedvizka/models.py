@@ -90,11 +90,14 @@ class FotoDomov(models.Model):
     class Meta:
         verbose_name = 'Фото дома'
         verbose_name_plural = 'Фото дома'
+        ordering = ['-index_sortirivki']
 
     dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True, related_name='foto_set')
     img = FilerImageField(verbose_name='Фото', on_delete=models.CASCADE)
+    index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
 
-
+    def __str__(self):
+        return f'Фото {self.img.url}'
 
 class NedvizkaSpisokObiectovPluginPluginSetting(CMSPlugin):
     class Meta:

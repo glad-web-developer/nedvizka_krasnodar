@@ -7,22 +7,25 @@
     {% include 'core/elements/navbar.html' %}
 
 
-    <main>
+    <main class="dv_nedvizka">
 
         <div class="header_black"></div>
 
-        <div class="bg-secondary text-white">
+        <!--  -->
+        <div class="bg-dark text-white oblast_zagolovka py-3">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-3">
-                        <a href="#" class="text-uppercase px-3 btn btn-light">Показать на карте</a>
+                    <div class="col-12 col-lg-3 d-none d-lg-block">
+                        <a href="#" class="text-uppercase px-3 btn btn-light"><b>Показать на карте</b></a>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <h1>{{ danie_nedvizki.nazvanie|default_if_none:'Безымянный объект' }}</h1>
+                        <h1 class="text-uppercase text-center h2">
+                            <b>{{ danie_nedvizki.nazvanie|default_if_none:'Безымянный объект' }}</b></h1>
                     </div>
-                    <div class="col-12 col-lg-3">
-                        <span class="mb-3"><b>{{ danie_nedvizki.raspolozenie_gorod|default_if_none:'' }}</b></span>
-                        <span class="btn btn-light">{{ danie_nedvizki.nomer|default_if_none:'' }}</span>
+                    <div class="col-12 col-lg-3 text-center text-lg-right">
+                        <span class="mb-3 mr-2 d-block d-lg-inline"><b>{{ danie_nedvizki.raspolozenie_gorod|default_if_none:'' }}</b></span>
+                        <span class="btn btn-light py-1 d-inline-block d-lg-inline"><b>{{ danie_nedvizki.nomer|default_if_none:'' }}</b></span>
+                        {% if user.is_superuser %}<a target="_blank" href="/admin/nedvizka/dom/{{ danie_nedvizki.id }}/change/" class="text-info py-1 d-block "><b>Открыть в админке</b></a>{% endif %}
                     </div>
                 </div>
             </div>
@@ -33,7 +36,7 @@
         <div class="owl-carousel owl_carousel_nedvizka owl-theme">
             {% for i_nedvizka in danie_nedvizki.get_foto_set %}
                 <div class="item">
-                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 900x900 %}" alt="">
+                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 900x600   %}" alt="">
                 </div>
             {% endfor %}
         </div>
@@ -89,30 +92,48 @@
 
             .owl_carousel_nedvizka .owl-nav {
                 position: absolute;
-                top: 25%;
-                width: 100%
+                top: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0 !important;
             }
 
-            .owl_carousel_nedvizka .owl-dots{
+            .owl_carousel_nedvizka .owl-nav button.owl-next, .owl_carousel_nedvizka .owl-nav button.owl-prev {
+                background: rgba(0,0,0, 0.5);
+                color: inherit;
+                border: none;
+                font: inherit;
+                height: 100%;
+                margin: 0!important;
+                border-radius: 0;
+                padding: 0!important;
+                width: 90px;
+            }
+
+            .owl_carousel_nedvizka .owl-dots {
                 display: none;
             }
 
-            .owl_carousel_nedvizka .owl-theme .owl-nav{
+            .owl_carousel_nedvizka .owl-theme .owl-nav {
                 margin: 0;
             }
 
             .owl_carousel_nedvizka .owl-prev {
-                left: 5px;
+                left: 0;
                 position: absolute;
             }
 
             .owl_carousel_nedvizka .owl-next {
-                right: 5px;
+                right: 0;
                 position: absolute;
             }
 
-            .owl_carousel_nedvizka .owl-next:hover, .owl_carousel_nedvizka .owl-prev:hover {
-                background: none !important;
+            .owl_carousel_nedvizka .owl-next:hover, .owl_carousel_nedvizka .owl-prev:hover   {
+                background: rgba(96, 190, 175, 0.7) !important;
+                color: #fff !important;
+            }
+
+            .owl_carousel_nedvizka .owl-next:hover span, .owl_carousel_nedvizka .owl-prev:hover span{
                 color: #fff !important;
             }
 
@@ -130,6 +151,10 @@
                 color: #FFFFFF;
 
 
+            }
+
+            .dv_nedvizka .oblast_zagolovka .btn-light {
+                border-radius: 20px;
             }
 
 
