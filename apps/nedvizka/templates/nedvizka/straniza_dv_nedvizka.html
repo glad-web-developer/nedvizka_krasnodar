@@ -25,7 +25,9 @@
                     <div class="col-12 col-lg-3 text-center text-lg-right">
                         <span class="mb-3 mr-2 d-block d-lg-inline"><b>{{ danie_nedvizki.raspolozenie_gorod|default_if_none:'' }}</b></span>
                         <span class="btn btn-light py-1 d-inline-block d-lg-inline"><b>{{ danie_nedvizki.nomer|default_if_none:'' }}</b></span>
-                        {% if user.is_superuser %}<a target="_blank" href="/admin/nedvizka/dom/{{ danie_nedvizki.id }}/change/" class="text-info py-1 d-block "><b>Открыть в админке</b></a>{% endif %}
+                        {% if user.is_superuser %}
+                            <a target="_blank" href="/admin/nedvizka/dom/{{ danie_nedvizki.id }}/change/"
+                               class="text-info py-1 d-block "><b>Открыть в админке</b></a>{% endif %}
                     </div>
                 </div>
             </div>
@@ -36,9 +38,56 @@
         <div class="owl-carousel owl_carousel_nedvizka owl-theme">
             {% for i_nedvizka in danie_nedvizki.get_foto_set %}
                 <div class="item">
-                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 900x600   %}" alt="">
+                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 900x600 %}" alt="">
                 </div>
             {% endfor %}
+        </div>
+
+
+        <div class="bg-light py-3">
+
+            <!--  цена площади и тд -->
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-12 col-lg-4 col-xl-5 text-center text-lg-left mb-5 mb-lg-0">
+                        <a href="#" class="btn btn-dark"><b>₽/$</b></a>
+                        <span class="h2"><b>{{ danie_nedvizki.price_dollor|floatformat }}$</b></span>
+                        <span class="h2 d-none"><b>{{ danie_nedvizki.price_rub|floatformat }}руб.</b></span>
+                    </div>
+
+                    <div class="col-12 col-lg-8 col-xl-7  text-center text-lg-right">
+                        <div class="row">
+
+
+                            <div class="col-4 text-center d-lg-inline">
+                                <img class=" d-lg-inline mb-2" height="35" width="35"
+                                     src="{% static 'nedvizka/img/plosad_doma.png' %}" alt="">
+
+                                <b class="h6 font-weight-bold m-0 ml-lg-1 mr-lg-4 d-lg-inline   d-block">{{ danie_nedvizki.ploshad_osnovnogo_doma|floatformat }}
+                                    кв.м</b>
+                            </div>
+
+                            <div class="col-4 text-center d-lg-inline">
+                                <img class=" mb-2" height="35"
+                                     src="{% static 'nedvizka/img/ploshad_uchastka.png' %}" alt="">
+                                <b class="h6 font-weight-bold  m-0 ml-lg-1 mr-lg-4  d-lg-inline  d-block">{{ danie_nedvizki.ploshad_uchastka|floatformat }}
+                                    соток</b>
+                            </div>
+                            <div class="col-4 text-center d-lg-inline">
+
+                                <img height="35" class=" mb-2" src="{% static 'nedvizka/img/spalni.png' %}" alt="">
+                                <b class="h6 font-weight-bold  m-0 ml-lg-1 mr-lg-4   d-block d-lg-inline">{{ danie_nedvizki.kolvo_spalen }} спален</b>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -90,6 +139,12 @@
     {% addtoblock 'css' %}
         <style>
 
+            .dv_nedvizka .btn-dark {
+                border-radius: 25px;
+                padding: 2px 20px;
+                vertical-align: text-bottom;
+            }
+
             .owl_carousel_nedvizka .owl-nav {
                 position: absolute;
                 top: 0;
@@ -99,14 +154,14 @@
             }
 
             .owl_carousel_nedvizka .owl-nav button.owl-next, .owl_carousel_nedvizka .owl-nav button.owl-prev {
-                background: rgba(0,0,0, 0.5);
+                background: rgba(0, 0, 0, 0.5);
                 color: inherit;
                 border: none;
                 font: inherit;
                 height: 100%;
-                margin: 0!important;
+                margin: 0 !important;
                 border-radius: 0;
-                padding: 0!important;
+                padding: 0 !important;
                 width: 90px;
             }
 
@@ -128,12 +183,12 @@
                 position: absolute;
             }
 
-            .owl_carousel_nedvizka .owl-next:hover, .owl_carousel_nedvizka .owl-prev:hover   {
+            .owl_carousel_nedvizka .owl-next:hover, .owl_carousel_nedvizka .owl-prev:hover {
                 background: rgba(96, 190, 175, 0.7) !important;
                 color: #fff !important;
             }
 
-            .owl_carousel_nedvizka .owl-next:hover span, .owl_carousel_nedvizka .owl-prev:hover span{
+            .owl_carousel_nedvizka .owl-next:hover span, .owl_carousel_nedvizka .owl-prev:hover span {
                 color: #fff !important;
             }
 
