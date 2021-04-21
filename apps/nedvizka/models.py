@@ -1,5 +1,6 @@
 from cms.models import PlaceholderField, CMSPlugin
 from django.db import models
+from django.utils.safestring import mark_safe
 from djangocms_text_ckeditor.fields import HTMLField
 from easy_thumbnails.files import get_thumbnailer
 from filer.fields.image import FilerImageField
@@ -23,8 +24,7 @@ class Dom(models.Model):
     nazvanie = models.CharField('Название', max_length=255)
     nomer = models.CharField('Номер(id объекта)', max_length=50)
 
-    slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True )
-
+    slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
 
     previu = FilerImageField(verbose_name='Превью', null=True, blank=True, on_delete=models.CASCADE)
 
@@ -64,16 +64,14 @@ class Dom(models.Model):
         ))
     opisaanaie = models.TextField('Описание для страницы детальной информации', null=True, blank=True,
                                   help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
-    iframe_panorami = models.CharField('Код панорами', null=True, blank=True, max_length=1000,
-                                       help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
-    video = models.CharField('Ссылка на видео youtube', null=True, blank=True, max_length=1000,
-                                       help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
+
 
     def get_foto_set(self):
         return self.foto_set.select_related('img')
 
+
     def get_colvo_img(self):
-        return  self.foto_set.select_related('img') .count()
+        return self.foto_set.select_related('img').count()
 
     def __str__(self):
         try:
@@ -86,18 +84,53 @@ class Dom(models.Model):
             return self.slug
         return self.id
 
+
 class FotoDomov(models.Model):
     class Meta:
         verbose_name = 'Фото дома'
         verbose_name_plural = 'Фото дома'
         ordering = ['-index_sortirivki']
 
-    dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True, related_name='foto_set')
+    dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+                            related_name='foto_set')
     img = FilerImageField(verbose_name='Фото', on_delete=models.CASCADE)
     index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
 
     def __str__(self):
         return f'Фото {self.img.url}'
+
+
+class VideoDomov(models.Model):
+    class Meta:
+        verbose_name = 'Видео дома'
+        verbose_name_plural = 'Видео дома'
+        ordering = ['-index_sortirivki']
+
+    dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+                            related_name='video_set')
+    video = models.CharField('Ссылка на видео youtube', max_length=1000,
+                             help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
+    index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
+
+    def __str__(self):
+        return mark_safe(f'Видео <a target="_blank" href="{self.video}">{self.video}</a>')
+
+
+class PanoramiDomov(models.Model):
+    class Meta:
+        verbose_name = 'Панорамы домов'
+        verbose_name_plural = 'Панорамы домов'
+        ordering = ['-index_sortirivki']
+
+    dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+                            related_name='panorami_set')
+    iframe_code = models.TextField('iframe код',
+                                   help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
+    index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
+
+    def __str__(self):
+        return f'Панорама {self.iframe_code[0:100]}...'
+
 
 class NedvizkaSpisokObiectovPluginPluginSetting(CMSPlugin):
     class Meta:
@@ -123,7 +156,6 @@ class NedvizkaSpisokObiectovPluginPluginSetting(CMSPlugin):
         return f'{tip_nedvizki} (по {obiectov_na_stranize} шт.)'
 
 
-
 class NedvizkaIzbranoePluginSetting(CMSPlugin):
     class Meta:
         verbose_name = 'Недвижка. Избранное'
@@ -134,8 +166,6 @@ class NedvizkaIzbranoePluginSetting(CMSPlugin):
 
     css_class = models.CharField('CSS класс', null=True, blank=True, max_length=255)
     css_style = models.CharField('CSS стиль', null=True, blank=True, max_length=1000)
-
-
 
 
 class NedvizkaPanelUpravleniaPluginSetting(CMSPlugin):
@@ -150,6 +180,3 @@ class NedvizkaPanelUpravleniaPluginSetting(CMSPlugin):
     pokazat_sortirovku = models.BooleanField('Показывать сортировку', default=True)
     css_class = models.CharField('CSS класс', null=True, blank=True, max_length=255)
     css_style = models.CharField('CSS стиль', null=True, blank=True, max_length=1000)
-
-
-

@@ -1,10 +1,18 @@
 from django.contrib import admin
 
-from apps.nedvizka.models import FotoDomov, Dom
+from apps.nedvizka.models import FotoDomov, Dom, VideoDomov, PanoramiDomov
 
 
 class FotoDomovInline(admin.TabularInline):
     model = FotoDomov
+    extra = 0
+
+class VideoDomovInline(admin.TabularInline):
+    model = VideoDomov
+    extra = 0
+
+class PanoramiDomovInline(admin.TabularInline):
+    model = PanoramiDomov
     extra = 0
 
 
@@ -12,7 +20,7 @@ class DomAdmin(admin.ModelAdmin):
     list_display = ['nomer','nazvanie', 'pokazivat', 'tip_operazii', 'price_dollor']
     search_fields = ['id','nomer','nazvanie', 'pokazivat', 'tip_operazii', 'price_dollor']
     list_filter  = ['tip_operazii','pokazivat']
-    inlines = [FotoDomovInline,]
+    inlines = [FotoDomovInline, VideoDomovInline, PanoramiDomovInline]
 
     save_as = True
     save_on_top = True
@@ -34,8 +42,6 @@ class DomAdmin(admin.ModelAdmin):
                 'tip_oformlenia_stranizi_obiekta',
                 'opisaanaie_kratkoe',
                 'opisaanaie',
-                'iframe_panorami',
-                'video',
             )
         }),
         (('Расположение и площадь'), {
