@@ -62,7 +62,7 @@ class Dom(models.Model):
             ('sablon', 'Шаблонный(стандартный)'),
             ('proizvolni', 'Произвольный(можно самому настроить оформление)'),
         ))
-    opisaanaie = models.TextField('Описание для страницы детальной информации', null=True, blank=True,
+    opisaanaie = HTMLField('Описание для страницы детальной информации', null=True, blank=True,
                                   help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
 
 
