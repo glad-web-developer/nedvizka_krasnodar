@@ -62,7 +62,7 @@ class Dom(models.Model):
             ('sablon', 'Шаблонный(стандартный)'),
             ('proizvolni', 'Произвольный(можно самому настроить оформление)'),
         ))
-    opisaanaie = models.TextField('Описание для страницы детальной информации', null=True, blank=True,
+    opisaanaie = HTMLField('Описание для страницы детальной информации', null=True, blank=True,
                                   help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
     iframe_panorami = models.CharField('Код панорами', null=True, blank=True, max_length=1000,
                                        help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
