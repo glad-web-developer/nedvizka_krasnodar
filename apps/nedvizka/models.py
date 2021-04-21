@@ -63,12 +63,10 @@ class Dom(models.Model):
             ('proizvolni', 'Произвольный(можно самому настроить оформление)'),
         ))
     opisaanaie = HTMLField('Описание для страницы детальной информации', null=True, blank=True,
-                                  help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
-
+                           help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
 
     def get_foto_set(self):
         return self.foto_set.select_related('img')
-
 
     def get_colvo_img(self):
         return self.foto_set.select_related('img').count()
@@ -108,12 +106,12 @@ class VideoDomov(models.Model):
 
     dom = models.ForeignKey(Dom, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
                             related_name='video_set')
-    video = models.CharField('Ссылка на видео youtube', max_length=1000,
+    video = models.TextField('Iframe код видео',
                              help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
     index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
 
     def __str__(self):
-        return mark_safe(f'Видео <a target="_blank" href="{self.video}">{self.video}</a>')
+        return str(self.id)
 
 
 class PanoramiDomov(models.Model):
@@ -129,7 +127,7 @@ class PanoramiDomov(models.Model):
     index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
 
     def __str__(self):
-        return f'Панорама {self.iframe_code[0:100]}...'
+        return str(self.id)
 
 
 class NedvizkaSpisokObiectovPluginPluginSetting(CMSPlugin):

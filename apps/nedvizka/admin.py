@@ -6,14 +6,17 @@ from apps.nedvizka.models import FotoDomov, Dom, VideoDomov, PanoramiDomov
 class FotoDomovInline(admin.TabularInline):
     model = FotoDomov
     extra = 0
+    classes = ['collapse']
 
 class VideoDomovInline(admin.TabularInline):
     model = VideoDomov
     extra = 0
+    classes = ['collapse']
 
 class PanoramiDomovInline(admin.TabularInline):
     model = PanoramiDomov
     extra = 0
+    classes = ['collapse']
 
 
 class DomAdmin(admin.ModelAdmin):
@@ -63,6 +66,8 @@ class DomAdmin(admin.ModelAdmin):
                 ('bassein', 'zona_barbeku'),
             ),
         }),
+
+
 
     ]
 
