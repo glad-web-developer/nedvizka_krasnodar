@@ -30,7 +30,8 @@
 
                             <div class="row">
                                 <div class="col-8">
-                                    <a href="{{ i_nedvizka.get_url }}" class="h3 zagolovok"><b>{{ i_nedvizka.nazvanie }}</b></a>
+                                    <a href="{{ i_nedvizka.get_url }}"
+                                       class="h3 zagolovok"><b>{{ i_nedvizka.nazvanie }}</b></a>
                                 </div>
                                 <div class="col-4 text-right">
                                     <a href="{{ i_nedvizka.get_url }}" class="btn-info mr-2">{{ i_nedvizka.nomer }}</a>
@@ -63,7 +64,8 @@
                                 </div>
 
                                 <div class="col-12 col-xl-6 text-xl-right text-center">
-                                    <a href="{{ i_nedvizka.get_url }}" class="btn-info "><b>{{ i_nedvizka.price_rub|floatformat }} РУБ.
+                                    <a href="{{ i_nedvizka.get_url }}"
+                                       class="btn-info "><b>{{ i_nedvizka.price_rub|floatformat }} РУБ.
                                         / {{ i_nedvizka.price_dollor|floatformat }} $</b></a>
                                 </div>
                             </div>
@@ -76,6 +78,80 @@
             </div>
         {% endfor %}
 
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center ">
+
+
+                    <li class="page-item {% if page_now == 1 %}disabled{% endif %}">
+                        <a class="page-link " href="?page=1" aria-label="В начало">
+                            <span aria-hidden="true"><b><i class="fa fa-fast-backward"></i></b></span>
+                            <span class="sr-only">В начало</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item {% if page_now == 1 %}disabled{% endif %}">
+                        <a class="page-link " href="?page={{ page_now|add:-1 }}" aria-label="Назад">
+                            <span aria-hidden="true"><b><i class="fa fa-backward"></i></b></span>
+                            <span class="sr-only">Назад</span>
+                        </a>
+                    </li>
+
+                    {% if page_now > 2 %}
+                        <li class="page-item">
+                            <a class="page-link " href="?page={{ page_now|add:-2 }}"><b>{{ page_now|add:-2 }}</b></a>
+                        </li>
+                    {% endif %}
+
+                    {% if page_now != 1 %}
+                        <li class="page-item">
+                            <a class="page-link " href="?page={{ page_now|add:-1 }}"><b>{{ page_now|add:-1 }}</b></a>
+                        </li>
+                    {% endif %}
+
+
+                    <li class="page-item active">
+                        <a class="page-link " href="?page={{ page_now }}"><b>{{ page_now }}</b></a>
+                    </li>
+
+
+                    {% if page_now != straniz_vsego %}
+                        <li class="page-item ">
+                            <a class="page-link " href="?page={{ page_now|add:1 }}"><b>{{ page_now|add:1 }}</b></a>
+                        </li>
+                    {% endif %}
+
+                    {% if page_now < straniz_vsego|add:-1 %}
+                        <li class="page-item">
+                            <a class="page-link " href="?page={{ page_now|add:2 }}"><b>{{ page_now|add:2 }}</b></a>
+                        </li>
+                    {% endif %}
+
+
+
+                    <li class="page-item {% if page_now == straniz_vsego %}disabled{% endif %}">
+                        <a class="page-link "
+                           href="?page={{ page_now|add:1 }}" aria-label="Далее">
+                            <span aria-hidden="true"><b><i class="fa fa-forward"></i></b></span>
+                            <span class="sr-only">Далее</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item {% if page_now == straniz_vsego %}disabled{% endif %}">
+                        <a class="page-link "
+                           href="?page={{ straniz_vsego }}" aria-label="В конец">
+                            <span aria-hidden="true"><b><i class="fa fa-fast-forward"></i> </b></span>
+                            <span class="sr-only">В конец</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 
@@ -91,6 +167,18 @@
             border: 1px solid #60beaf !important;
             border-radius: 20px;
 
+        }
+
+        .page-link{
+            color: #60beaf;
+            border-radius: 25px !important;
+        }
+
+
+
+        .page-item{
+            margin: 0 10px;
+            border-radius: 25px;
         }
 
 
@@ -117,13 +205,13 @@
             background: none !important;
         }
 
-        .nedvizka_spisok_obiectov  .img_ssilka_na_obect img{
-              filter: brightness(100%);
+        .nedvizka_spisok_obiectov .img_ssilka_na_obect img {
+            filter: brightness(100%);
             transition: all 0.3s ease;
         }
 
-        .nedvizka_spisok_obiectov  .img_ssilka_na_obect:hover img, .nedvizka_spisok_obiectov  .img_ssilka_na_obect:active img {
-           filter: brightness(40%);
+        .nedvizka_spisok_obiectov .img_ssilka_na_obect:hover img, .nedvizka_spisok_obiectov .img_ssilka_na_obect:active img {
+            filter: brightness(40%);
             transition: all 0.3s ease;
         }
 
