@@ -18,6 +18,8 @@ class SlaiderSNavigazieiIzobrazeniyamiPluginLvSetting(CMSPlugin):
 
     width = models.IntegerField('Ширина при обрезке', default=1600)
     height = models.IntegerField('Высота при обрезке', default=900)
+    speed = models.IntegerField('Скорость смены слайдов(мс)', default=1500)
+    smena_cherez = models.IntegerField('Смена слайда через (мс)', default=3000)
 
     def copy_relations(self, oldinstance):
         for instance in oldinstance.slaidi_set.all():

@@ -230,12 +230,16 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 }
 
 
+
 /*col*/
 @media (min-width: 1px) {
     .header_black {
         background-color: #000000;
         height: 96px;
     }
+
+
+
 }
 
 /*sm*/
@@ -254,7 +258,9 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 
 /*lg*/
 @media (min-width: 992px) {
-
+    .razdel_o_nas {
+        padding-left: 70px !important;
+    }
 
 }
 
@@ -264,4 +270,11 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 }
 
 
+.menu_vibora_tipa_kvartir {
+
+}
+
+.startovii_ecran_fonovoe_izobrazenie {
+    padding: 40vh 0;
+}
 

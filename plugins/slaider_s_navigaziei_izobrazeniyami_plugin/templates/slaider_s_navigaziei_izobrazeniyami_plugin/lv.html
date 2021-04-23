@@ -4,7 +4,7 @@
 {% with slaidi=instance.get_slaidi %}
 
 
-    <div class="swiper-container main-slider  main-slider{{ instance.id|stringformat:"d"  }} loading">
+    <div class="swiper-container main-slider  main-slider{{ instance.id|stringformat:"d" }} loading">
         <div class="swiper-wrapper">
 
             {% for i_slaid in slaidi %}
@@ -28,17 +28,22 @@
         </div>
 
 
-        <!-- Thumbnail navigation -->
+        <!-- Навигация -->
 
-        <div class="slide_up text-center">
+        <div class=" text-center d-block d-lg-none palez_listania">
+            <i class="fas fa-hand-point-up fa-2x"></i>
+
+        </div>
+
+        <div class="slide_up d-none text-center">
             <i class="fas fa-chevron-up btn_up text-info  h1 "></i>
         </div>
 
-     <div class="slide_bottom text-center">
+        <div class="slide_bottom d-none d-lg-block text-center">
             <i class="fas fa-chevron-down btn_down text-info  h1 "></i>
         </div>
 
-        <div class="swiper-container nav-slider nav-slider{{ instance.id|stringformat:"d"  }} loading">
+        <div class="swiper-container d-none d-lg-block nav-slider nav-slider{{ instance.id|stringformat:"d" }} loading">
 
 
             <div class="swiper-wrapper" role="navigation">
@@ -73,6 +78,19 @@
     {% addtoblock 'css' %}
         <style>
 
+            @keyframes slaider_s_navigaziei_izobrazeniyami_plugin_zatemnenie_go_left_right {
+                from {
+                    left: 45%;
+                    transform: rotate(-10deg);
+
+                }
+                to {
+                    left: 50%;
+                    transform: rotate(10deg);
+
+                }
+            }
+
             .slaider_s_navigaziei_izobrazeniyami_plugin_zatemnenie {
                 position: absolute;
                 top: 0;
@@ -84,6 +102,15 @@
                 z-index: 1;
             }
 
+            .swiper-container .palez_listania {
+                position: absolute;
+                bottom: 25px;
+                color: #FFF !important;
+                font-size: 25px;
+                z-index: 1000000;
+                animation: slaider_s_navigaziei_izobrazeniyami_plugin_zatemnenie_go_left_right 0.85s infinite alternate;
+            }
+
             .slide_up {
                 position: absolute;
                 z-index: 500;
@@ -91,7 +118,7 @@
                 display: block;
                 width: 15%;
                 right: 50px;
-                top:5%;
+                top: 5%;
                 cursor: pointer;
             }
 
@@ -102,7 +129,7 @@
                 display: block;
                 width: 15%;
                 right: 50px;
-                bottom:5%;
+                bottom: 5%;
                 cursor: pointer;
             }
 
@@ -122,16 +149,6 @@
             {#float: left;#} transition: opacity 0.6s ease, transform 0.3s ease;
             }
 
-            .swiper-container.nav-slider {
-                width: 15%;
-                padding-left: 5px;
-                position: absolute;
-                top: 15%;
-                bottom: 0;
-                right: 50px;
-                height: 70%;
-
-            }
 
             .swiper-container.nav-slider .swiper-wrapper {
 
@@ -181,35 +198,6 @@
                 display: none;
             }
 
-            .swiper-slide .content {
-                position: absolute;
-                top: 40%;
-                left: 0;
-                width: 40%;
-
-                color: #fff;
-                z-index: 1000;
-                background-color: rgba(96, 190, 175, 0.5);
-                padding: 20px 0 20px 5%;
-                border-radius: 0 20px 20px 0;
-            }
-
-            .swiper-slide .content .title {
-                font-size: 2.6em;
-                font-weight: bold;
-                margin-bottom: 30px;
-            }
-
-            .swiper-slide .content .caption {
-                display: block;
-                font-size: 24px;
-                white-space:pre-wrap;
-
-                line-height: 1.4;
-                transform: translateX(0);
-                opacity: 1;
-                transition: opacity 0.3s ease, transform 0.7s ease;
-            }
 
             .swiper-slide .content .caption.show {
                 transform: translateX(0);
@@ -223,95 +211,190 @@
             }
 
 
+            .swiper-slide .content {
+                position: absolute;
+                top: 30%;
+                left: 0;
+                width: 90%;
+
+                color: #fff;
+                z-index: 1000;
+                background-color: rgba(96, 190, 175, 0.5);
+                padding: 20px 0 20px 5%;
+                border-radius: 0 20px 20px 0;
+            }
+
+
+            .swiper-slide .content .title {
+                font-size: 1.5em;
+                font-weight: bold;
+                margin-bottom: 30px;
+            }
+
+            .swiper-slide .content .caption {
+                display: block;
+                font-size: 1.2em;
+                white-space: pre-wrap;
+
+                line-height: 1.4;
+                transform: translateX(0);
+                opacity: 1;
+                transition: opacity 0.3s ease, transform 0.7s ease;
+            }
+
+
+            {#sm#}
+            @media (min-width: 576px) {
+
+            }
+
+
+            {#md#}
+            @media (min-width: 768px) {
+                .swiper-slide .content {
+                    position: absolute;
+                    top: 40%;
+                    left: 0;
+                    width: 80%;
+                }
+            }
+
+
+            {#lg#}
+            @media (min-width: 992px) {
+                .swiper-slide .content {
+                    position: absolute;
+                    top: 40%;
+                    left: 0;
+                    width: 40%;
+                }
+
+                .swiper-container.nav-slider {
+                    width: 30%;
+                    padding-left: 5px;
+                    position: absolute;
+                    top: 15%;
+                    bottom: 0;
+                    right: 50px;
+                    height: 70%;
+
+                }
+
+
+                .swiper-slide .content .title {
+                    font-size: 2.6em;
+                    font-weight: bold;
+                    margin-bottom: 30px;
+                    line-height: 45px;
+                }
+
+            }
+
+            {#xl#}
+            @media (min-width: 1120px) {
+                .swiper-container.nav-slider {
+                    width: 20%;
+                    padding-left: 5px;
+                    position: absolute;
+                    top: 15%;
+                    bottom: 0;
+                    right: 50px;
+                    height: 70%;
+
+                }
+            }
+
+
         </style>
     {% endaddtoblock %}
 
     {% addtoblock 'js' %}
         <script>
-        function slaider_s_navigaziei_izobrazeniyami_plugin_{{ instance.id|stringformat:"d"  }}(){
-            // Params
-            let mainSliderSelector = '.main-slider{{ instance.id|stringformat:"d"  }}',
-                navSliderSelector = '.nav-slider{{ instance.id|stringformat:"d"  }}',
-                interleaveOffset = 0.5;
+            function slaider_s_navigaziei_izobrazeniyami_plugin_{{ instance.id|stringformat:"d"  }}() {
+                // Params
+                let mainSliderSelector = '.main-slider{{ instance.id|stringformat:"d"  }}',
+                    navSliderSelector = '.nav-slider{{ instance.id|stringformat:"d"  }}',
+                    interleaveOffset = 0.5;
 
-            // Main Slider
-            let mainSliderOptions = {
-                loop: true,
-                speed: 1000,
-                autoplay: {
-                    delay: 3000
-                },
-                loopAdditionalSlides: 10,
-                grabCursor: true,
-                watchSlidesProgress: true,
-                navigation: {
-                    nextEl: '.slide_bottom',
-                    prevEl: '.slide_up',
-                },
-                on: {
-                    init: function () {
-                        this.autoplay.stop();
+                // Main Slider
+                let mainSliderOptions = {
+                    loop: true,
+                    speed: {{ instance.speed|stringformat:'s' }},
+                    autoplay: {
+                        delay: {{ instance.smena_cherez|stringformat:'s' }}
                     },
-                    imagesReady: function () {
-                        this.el.classList.remove('loading');
-                        this.autoplay.start();
+                    loopAdditionalSlides: 10,
+                    grabCursor: true,
+                    watchSlidesProgress: true,
+                    navigation: {
+                        nextEl: '.slide_bottom',
+                        prevEl: '.slide_up',
                     },
+                    on: {
+                        init: function () {
+                            this.autoplay.stop();
+                        },
+                        imagesReady: function () {
+                            this.el.classList.remove('loading');
+                            this.autoplay.start();
+                        },
 
-                    progress: function () {
-                        let swiper = this;
-                        for (let i = 0; i < swiper.slides.length; i++) {
-                            let slideProgress = swiper.slides[i].progress,
-                                innerOffset = swiper.width * interleaveOffset,
-                                innerTranslate = slideProgress * innerOffset;
+                        progress: function () {
+                            let swiper = this;
+                            for (let i = 0; i < swiper.slides.length; i++) {
+                                let slideProgress = swiper.slides[i].progress,
+                                    innerOffset = swiper.width * interleaveOffset,
+                                    innerTranslate = slideProgress * innerOffset;
 
-                            swiper.slides[i].querySelector(".slide-bgimg").style.transform =
-                                "translateX(" + innerTranslate + "px)";
-                        }
-                    },
-                    touchStart: function () {
-                        let swiper = this;
-                        for (let i = 0; i < swiper.slides.length; i++) {
-                            swiper.slides[i].style.transition = "";
-                        }
-                    },
-                    setTransition: function (speed) {
-                        let swiper = this;
-                        for (let i = 0; i < swiper.slides.length; i++) {
-                            swiper.slides[i].style.transition = speed + "ms";
-                            swiper.slides[i].querySelector(".slide-bgimg").style.transition =
-                                speed + "ms";
+                                swiper.slides[i].querySelector(".slide-bgimg").style.transform =
+                                    "translateX(" + innerTranslate + "px)";
+                            }
+                        },
+                        touchStart: function () {
+                            let swiper = this;
+                            for (let i = 0; i < swiper.slides.length; i++) {
+                                swiper.slides[i].style.transition = "";
+                            }
+                        },
+                        setTransition: function (speed) {
+                            let swiper = this;
+                            for (let i = 0; i < swiper.slides.length; i++) {
+                                swiper.slides[i].style.transition = speed + "ms";
+                                swiper.slides[i].querySelector(".slide-bgimg").style.transition =
+                                    speed + "ms";
+                            }
                         }
                     }
-                }
-            };
-            let mainSlider = new Swiper(mainSliderSelector, mainSliderOptions);
+                };
+                let mainSlider = new Swiper(mainSliderSelector, mainSliderOptions);
 
-            // Navigation Slider
-            let navSliderOptions = {
-                loop: true,
-                loopAdditionalSlides: 3,
-                speed: 1000,
-                spaceBetween: 30,
-                slidesPerView: 3,
-                centeredSlides: true,
-                touchRatio: 0.2,
-                slideToClickedSlide: true,
-                direction: 'vertical',
-                on: {
-                    imagesReady: function () {
-                        this.el.classList.remove('loading');
-                    },
-                    click: function () {
-                        mainSlider.autoplay.stop();
+                // Navigation Slider
+                let navSliderOptions = {
+                    loop: true,
+                    loopAdditionalSlides: 3,
+                    speed: {{ instance.speed|stringformat:'s' }},
+                    spaceBetween: 30,
+                    slidesPerView: 3,
+                    centeredSlides: true,
+                    touchRatio: 0.2,
+                    slideToClickedSlide: true,
+                    direction: 'vertical',
+                    on: {
+                        imagesReady: function () {
+                            this.el.classList.remove('loading');
+                        },
+                        click: function () {
+                            mainSlider.autoplay.stop();
+                        }
                     }
-                }
-            };
-            let navSlider = new Swiper(navSliderSelector, navSliderOptions);
+                };
+                let navSlider = new Swiper(navSliderSelector, navSliderOptions);
 
-            // Matching sliders
-            mainSlider.controller.control = navSlider;
-            navSlider.controller.control = mainSlider;
+                // Matching sliders
+                mainSlider.controller.control = navSlider;
+                navSlider.controller.control = mainSlider;
             }
+
             slaider_s_navigaziei_izobrazeniyami_plugin_{{ instance.id|stringformat:"d"   }}();
         </script>
     {% endaddtoblock %}
