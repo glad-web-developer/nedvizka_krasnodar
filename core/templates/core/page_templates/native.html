@@ -2,14 +2,15 @@
 {% load cms_tags menu_tags sekizai_tags static %}
 {% block content %}
 
+    <div id="wrapper">
+        {% include 'core/elements/navbar.html' %}
 
-    {% include 'core/elements/navbar.html' %}
 
+        <main>
+            {% placeholder "content" %}
+        </main>
 
-    <main>
-        {% placeholder "content" %}
-    </main>
-
+    </div>
 
     {% include 'core/elements/footer.html' %}
 

@@ -6,10 +6,32 @@ from easy_thumbnails.files import get_thumbnailer
 from filer.fields.image import FilerImageField
 
 
+class Gorod(models.Model):
+    class Meta:
+        verbose_name = 'Город'
+        verbose_name_plural = 'Город'
+
+    nazvanie  = models.CharField('название', max_length=255)
+
+    def __str__(self):
+        return self.nazvanie
+
+class Spezialist(models.Model):
+    class Meta:
+        verbose_name = 'Специалист'
+        verbose_name_plural = 'Специалист'
+
+    gorod = models.ForeignKey(Gorod, verbose_name='Город', on_delete=models.CASCADE)
+    fio = models.CharField('ФИО', max_length=255)
+    photo = FilerImageField(verbose_name='Аватарка', null=True, blank=True, on_delete=models.CASCADE)
+
+
 class Dom(models.Model):
     class Meta:
         verbose_name = 'Дом'
         verbose_name_plural = 'Дома'
+
+
 
     pokazivat = models.BooleanField('Показывать', default=True, choices=(
         (True, 'Показывать на сайте'),
