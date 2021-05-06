@@ -1,0 +1,49 @@
+{% load sekizai_tags static cms_tags %}
+{% load thumbnail %}
+
+
+<span class="{{ instance.css_class|default_if_none:'' }} razmer_texta_plugin_{{ instance.id|stringformat:'d' }}">{{ instance.text }}</span>
+
+
+{% addtoblock 'css' %}
+    <style>
+
+        .razmer_texta_plugin_{{ instance.id|stringformat:'d' }} {
+            font-size: {{ instance.col_size }};
+            white-space: pre-wrap;
+        {{ instance.all_style }}
+        }
+
+
+        /*sm*/
+        @media (min-width: 576px) {
+            .razmer_texta_plugin_{{ instance.id|stringformat:'d' }} {
+                font-size: {{ instance.sm_size }};
+            }
+        }
+
+
+        /*md*/
+        @media (min-width: 768px) {
+            .razmer_texta_plugin_{{ instance.id|stringformat:'d' }} {
+                font-size: {{ instance.md_size }};
+            }
+        }
+
+        /*lg*/
+        @media (min-width: 992px) {
+            .razmer_texta_plugin_{{ instance.id|stringformat:'d' }} {
+                font-size: {{ instance.lg_size }};
+            }
+
+        }
+
+        /*xl*/
+        @media (min-width: 1120px) {
+            .razmer_texta_plugin_{{ instance.id|stringformat:'d' }} {
+                font-size: {{ instance.xl_size }};
+            }
+        }
+    </style>
+{% endaddtoblock %}
+
