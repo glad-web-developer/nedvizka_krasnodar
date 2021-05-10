@@ -17,6 +17,12 @@ class FormaObratnoiSviaziSetting(CMSPlugin):
         return 'Форма обратной связи'
 
 
+class ZakazanieZvonki(CMSPlugin):
+    class Meta:
+        verbose_name = 'Заказаные обратные звонки'
+        verbose_name_plural = 'Заказаные обратные звонки'
 
-
-
+    name = models.CharField('Имя', max_length=255, null=True, blank=True)
+    phone = models.CharField('Телефон', max_length=255, null=True, blank=True)
+    data = models.DateTimeField('Дата', auto_now_add=True, editable=False)
+    perezvonili = models.BooleanField('Перезвонили?', default=False)

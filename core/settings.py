@@ -143,6 +143,8 @@ INSTALLED_APPS = [
     'plugins.stilizovani_zagolovok_plugin',
     'plugins.video_player_js',
     'plugins.razmer_texta_plugin',
+    'plugins.formi_obratnoi_sviazi_plugin',
+    'plugins.modalnoe_okno_plugin',
     'apps.nedvizka',
 
 ]

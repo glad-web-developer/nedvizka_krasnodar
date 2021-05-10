@@ -92,6 +92,10 @@ header {
     background-color: #000;
 
 }
+.bg-info {
+    background-color: #60beaf !important;
+
+}
 
 .collapse.width {
     height: auto;

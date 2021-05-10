@@ -21,6 +21,7 @@ urlpatterns = [
 
 urlpatterns += (
     url(r'^admin/', admin.site.urls),  # NOQA
+    url(r'^formi_obratnoi_sviazi/', include('plugins.formi_obratnoi_sviazi_plugin.urls', namespace='formi_obratnoi_sviazi')),
     url(r'^', include('cms.urls')),
 )
 

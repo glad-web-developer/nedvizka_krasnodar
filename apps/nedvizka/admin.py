@@ -3,6 +3,7 @@ from django.contrib import admin
 from apps.nedvizka.models import FotoDomov, Dom, VideoDomov, PanoramiDomov, Gorod, Spezialist
 
 
+
 class FotoDomovInline(admin.TabularInline):
     model = FotoDomov
     extra = 0
