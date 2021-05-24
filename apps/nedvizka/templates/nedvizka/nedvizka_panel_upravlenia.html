@@ -14,12 +14,34 @@
 
         <div class="col-5 text-right">
             {% if instance.pokazat_sortirovku %}
-                <a href="#" class="text-uppercase btn btn-info"><b><i
-                        class="fas fa-sort-amount-down-alt"></i>Сортировать</b></a>
+
+                <div class="dropdown">
+                    <a class="text-uppercase btn btn-info dropdown-toggle" href="#" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <b><i class="fas fa-sort-amount-down-alt"></i>Сортировать</b>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Без сортировки</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">По возрастанию цены</a>
+                        <a class="dropdown-item" href="#">По убыванию цены</a>
+                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">По возрастанию площади дома</a>
+                        <a class="dropdown-item" href="#">По убыванию площади дома</a>
+                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">По возрастанию площади участка</a>
+                        <a class="dropdown-item" href="#">По убыванию площади участка</a>
+{#                        <div class="dropdown-divider"></div>#}
+{#                        <a class="dropdown-item" href="#">По возрастанию кол. спален</a>#}
+{#                        <a class="dropdown-item" href="#">По убыванию кол. спален</a>#}
+
+                    </div>
+                </div>
             {% endif %}
         </div>
     </div>
 </div>
+
 
 {% addtoblock 'css' %}
     <style>
@@ -35,12 +57,12 @@
 
         }
 
-        .nedvizka_panel_upravlenia .btn-info:hover, .nedvizka_panel_upravlenia .btn-info:active{
+        .nedvizka_panel_upravlenia .btn-info:hover, .nedvizka_panel_upravlenia .btn-info:active {
             color: #60beaf;
             background-color: #fff;
         }
 
-        .nedvizka_panel_upravlenia {
+        .nedvizka_panel_upravlenia, .nedvizka_panel_sortirovki {
             -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
             -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
             box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);

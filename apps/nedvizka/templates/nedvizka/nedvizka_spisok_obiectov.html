@@ -48,17 +48,17 @@
                                     <div class="row small text-center">
                                         <div class="col-4">
                                             <img height="30" width="30"
-                                                 src="{% static 'nedvizka/img/plosad_doma.png' %}" alt="">
+                                                 src="{% static 'nedvizka/img/plosad_doma.png' %}" alt="площадь объекта">
                                             <p><b>{{ i_nedvizka.ploshad_osnovnogo_doma|floatformat }} кв.м</b></p>
                                         </div>
                                         <div class="col-4">
                                             <img height="25" style="margin-bottom: 5px"
-                                                 src="{% static 'nedvizka/img/ploshad_uchastka.png' %}" alt="">
+                                                 src="{% static 'nedvizka/img/ploshad_uchastka.png' %}" alt="площадь участка">
                                             <p><b>{{ i_nedvizka.ploshad_uchastka|floatformat }} соток</b></p>
                                         </div>
                                         <div class="col-4">
-                                            <img height="30" src="{% static 'nedvizka/img/spalni.png' %}" alt="">
-                                            <p><b>{{ i_nedvizka.kolvo_spalen }} спални</b></p>
+                                            <img height="30" src="{% static 'nedvizka/img/spalni.png' %}" alt="спален">
+                                            <p><b>{{ i_nedvizka.kolvo_spalen }} спальни</b></p>
                                         </div>
                                     </div>
                                 </div>
@@ -87,14 +87,14 @@
 
 
                     <li class="page-item {% if page_now == 1 %}disabled{% endif %}">
-                        <a class="page-link " href="?page=1" aria-label="В начало">
+                        <a class="page-link page-link-10px" href="?page=1" aria-label="В начало">
                             <span aria-hidden="true"><b><i class="fa fa-fast-backward"></i></b></span>
                             <span class="sr-only">В начало</span>
                         </a>
                     </li>
 
                     <li class="page-item {% if page_now == 1 %}disabled{% endif %}">
-                        <a class="page-link " href="?page={{ page_now|add:-1 }}" aria-label="Назад">
+                        <a class="page-link page-link-10px" href="?page={{ page_now|add:-1 }}" aria-label="Назад">
                             <span aria-hidden="true"><b><i class="fa fa-backward"></i></b></span>
                             <span class="sr-only">Назад</span>
                         </a>
@@ -133,7 +133,7 @@
 
 
                     <li class="page-item {% if page_now == straniz_vsego %}disabled{% endif %}">
-                        <a class="page-link "
+                        <a class="page-link page-link-10px"
                            href="?page={{ page_now|add:1 }}" aria-label="Далее">
                             <span aria-hidden="true"><b><i class="fa fa-forward"></i></b></span>
                             <span class="sr-only">Далее</span>
@@ -141,7 +141,7 @@
                     </li>
 
                     <li class="page-item {% if page_now == straniz_vsego %}disabled{% endif %}">
-                        <a class="page-link "
+                        <a class="page-link page-link-10px"
                            href="?page={{ straniz_vsego }}" aria-label="В конец">
                             <span aria-hidden="true"><b><i class="fa fa-fast-forward"></i> </b></span>
                             <span class="sr-only">В конец</span>

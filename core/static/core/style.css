@@ -297,3 +297,8 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
         height: 100%;
     }
 }
+
+.page-link-10px{
+    padding-left: 10px;
+    padding-right: 10px;
+}

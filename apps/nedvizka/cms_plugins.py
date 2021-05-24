@@ -4,7 +4,7 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
 from apps.nedvizka.models import NedvizkaIzbranoePluginSetting, NedvizkaPanelUpravleniaPluginSetting, \
-    NedvizkaSpisokObiectovPluginPluginSetting, Dom
+    NedvizkaSpisokObiectovPluginPluginSetting, Dom, NedvizkaFiltriPoiskaPluginPluginSetting
 
 
 @plugin_pool.register_plugin
@@ -73,6 +73,22 @@ class NedvizkaIzbranoePlugin(CMSPluginBase):
     name = 'Избранное'
     cache = False
     model = NedvizkaIzbranoePluginSetting
+#
+    def render(self, context, instance, placeholder):
+
+        context.update({'instance':instance})
+        return context
+
+
+
+@plugin_pool.register_plugin
+class NedvizkaFiltriPoiskaPluginPlugin(CMSPluginBase):
+
+    render_template = "nedvizka/nedvizka_filtri_plugin.html"
+    module = '02. Недвижка'
+    name = 'Фильтр и поиск'
+    cache = False
+    model = NedvizkaFiltriPoiskaPluginPluginSetting
 #
     def render(self, context, instance, placeholder):
 

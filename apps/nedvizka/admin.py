@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.nedvizka.models import FotoDomov, Dom, VideoDomov, PanoramiDomov, Gorod, Spezialist
+from apps.nedvizka.models import FotoDomov, Dom, VideoDomov, PanoramiDomov
 
 
 
@@ -75,25 +75,3 @@ class DomAdmin(admin.ModelAdmin):
 
 admin.site.register(Dom, DomAdmin)
 
-class GorodAdmin(admin.ModelAdmin):
-    list_display = ['id', 'nazvanie',]
-    search_fields = ['id','nazvanie',]
-    # list_filter  = ['tip_operazii','pokazivat']
-    # inlines = [FotoDomovInline, VideoDomovInline, PanoramiDomovInline]
-
-    save_as = True
-    save_on_top = True
-
-admin.site.register(Gorod, GorodAdmin)
-
-
-class SpezialistAdmin(admin.ModelAdmin):
-    list_display = ['id', 'gorod', 'fio']
-    search_fields = ['id','nazvanie', 'fio']
-    list_filter  = ['gorod',]
-    # inlines = [FotoDomovInline, VideoDomovInline, PanoramiDomovInline]
-
-    save_as = True
-    save_on_top = True
-
-admin.site.register(Spezialist, SpezialistAdmin)

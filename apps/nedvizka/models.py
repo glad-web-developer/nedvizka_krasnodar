@@ -5,25 +5,7 @@ from djangocms_text_ckeditor.fields import HTMLField
 from easy_thumbnails.files import get_thumbnailer
 from filer.fields.image import FilerImageField
 
-
-class Gorod(models.Model):
-    class Meta:
-        verbose_name = 'Город'
-        verbose_name_plural = 'Город'
-
-    nazvanie  = models.CharField('название', max_length=255)
-
-    def __str__(self):
-        return self.nazvanie
-
-class Spezialist(models.Model):
-    class Meta:
-        verbose_name = 'Специалист'
-        verbose_name_plural = 'Специалист'
-
-    gorod = models.ForeignKey(Gorod, verbose_name='Город', on_delete=models.CASCADE)
-    fio = models.CharField('ФИО', max_length=255)
-    photo = FilerImageField(verbose_name='Аватарка', null=True, blank=True, on_delete=models.CASCADE)
+from apps.nedvizka.CONST import TIP_NEDVIZKI
 
 
 class Dom(models.Model):
@@ -58,7 +40,7 @@ class Dom(models.Model):
     obshaia_ploshad = models.FloatField('Общая площадь (кв. м)', null=True, blank=True)
 
     raspolozenie_gorod = models.CharField('Город', null=True, blank=True, max_length=255)
-    kordinati_na_karte = models.CharField('Кардинаты на карте', null=True, blank=True, max_length=255)
+    kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255)
 
     ploshad_uchastka = models.FloatField('Площадь участка (соток)', null=True, blank=True, max_length=255)
     ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
@@ -160,10 +142,7 @@ class NedvizkaSpisokObiectovPluginPluginSetting(CMSPlugin):
     def __str__(self):
         return 'Недвижка. Список объектов'
 
-    tip_nedvizki = models.CharField('Тип недвижки', max_length=255, choices=(
-        ('dom_prodaza', 'Дом-продажа'),
-        ('dom_arenda', 'Дом-аренда'),
-    ))
+    tip_nedvizki = models.CharField('Тип недвижки', max_length=255, choices=TIP_NEDVIZKI)
 
     obiectov_na_stranize = models.IntegerField('Выводить по ', default=10)
 
@@ -200,3 +179,13 @@ class NedvizkaPanelUpravleniaPluginSetting(CMSPlugin):
     pokazat_sortirovku = models.BooleanField('Показывать сортировку', default=True)
     css_class = models.CharField('CSS класс', null=True, blank=True, max_length=255)
     css_style = models.CharField('CSS стиль', null=True, blank=True, max_length=1000)
+
+
+
+class NedvizkaFiltriPoiskaPluginPluginSetting(CMSPlugin):
+    class Meta:
+        verbose_name = 'Недвижка. Фильтры/поиск'
+        verbose_name_plural = 'Недвижка. Фильтры/поиск'
+
+    tip_nedvizki = models.CharField('Тип недвижки', max_length=255, choices=TIP_NEDVIZKI)
+

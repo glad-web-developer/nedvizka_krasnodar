@@ -38,7 +38,7 @@
         <div class="owl-carousel owl_carousel_nedvizka owl-theme">
             {% for i_nedvizka in danie_nedvizki.get_foto_set %}
                 <div class="item">
-                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 900x600 %}" alt="">
+                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 1800x900 %}" alt="">
                 </div>
             {% endfor %}
         </div>
@@ -180,7 +180,8 @@
             <!-- табица описание и видео -->
             <div class="container-fluid mt-5">
                 <div class="row">
-                    <div class="col-12 col-lg-6">
+
+                    <div class="col- {% if danie_nedvizki.video_set.count > 0 or  danie_nedvizki.panorami_set.count > 0 %} col-lg-6 {% else %} col-lg-12  {% endif %}">
                         <p>
                             {{ danie_nedvizki.opisaanaie|safe }}
                         </p>
@@ -256,7 +257,7 @@
                             items: 2
                         },
                         1000: {
-                            items: 3
+                            items: 2
                         }
                     }
                 });
