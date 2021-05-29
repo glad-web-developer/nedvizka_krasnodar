@@ -1,30 +1,32 @@
 from django.contrib import admin
 
-from apps.nedvizka.models import FotoDomov, Dom, VideoDomov, PanoramiDomov
+from apps.nedvizka.models import FotoDomProdaza, VideoDomProdaza, PanoramiDomProdaza, DomProdaza
 
 
-
-class FotoDomovInline(admin.TabularInline):
-    model = FotoDomov
-    extra = 0
-    classes = ['collapse']
-
-class VideoDomovInline(admin.TabularInline):
-    model = VideoDomov
-    extra = 0
-    classes = ['collapse']
-
-class PanoramiDomovInline(admin.TabularInline):
-    model = PanoramiDomov
+class FotoDomProdazaInline(admin.TabularInline):
+    model = FotoDomProdaza
     extra = 0
     classes = ['collapse']
 
 
-class DomAdmin(admin.ModelAdmin):
-    list_display = ['nomer','nazvanie', 'pokazivat', 'tip_operazii', 'price_dollor']
-    search_fields = ['id','nomer','nazvanie', 'pokazivat', 'tip_operazii', 'price_dollor']
-    list_filter  = ['tip_operazii','pokazivat']
-    inlines = [FotoDomovInline, VideoDomovInline, PanoramiDomovInline]
+class VideoDomProdazaInline(admin.TabularInline):
+    model = VideoDomProdaza
+    extra = 0
+    classes = ['collapse']
+
+
+class PanoramiDomProdazaInline(admin.TabularInline):
+    model = PanoramiDomProdaza
+    extra = 0
+    classes = ['collapse']
+
+
+class DomProdazaAdmin(admin.ModelAdmin):
+    list_display = ['nomer', 'nazvanie', 'pokazivat', 'price_dollor']
+    search_fields = ['id', 'nomer', 'nazvanie', 'pokazivat', 'price_dollor']
+    list_filter = ['pokazivat', 'filter_peshai_dostupnost_k_pliazu', 'filter_kotedzni_poselok', 'filter_bassein',
+                   'filter_vid_na_moria']
+    inlines = [FotoDomProdazaInline, VideoDomProdazaInline, PanoramiDomProdazaInline]
 
     save_as = True
     save_on_top = True
@@ -34,38 +36,32 @@ class DomAdmin(admin.ModelAdmin):
             'fields': (
                 'nomer',
                 'nazvanie',
-                ('pokazivat', 'tip_operazii',),
-                 'previu',
-                 ('price_dollor','price_rub',),
+                'pokazivat',
+                'previu',
+                ('price_dollor', 'price_rub',),
+                ('raspolozenie_gorod', 'kordinati_na_karte'),
+                ('obshaia_ploshad', 'ploshad_uchastka', 'ploshad_osnovnogo_doma',  'spalen',),
 
             )
         }),
-        ('Описание',{
+
+        ('Фильтры', {
+
+            'fields': (
+                'filter_peshai_dostupnost_k_pliazu',
+                'filter_kotedzni_poselok',
+                'filter_bassein',
+                'filter_vid_na_moria',
+            )
+        }),
+
+        ('Описание и таблица параметров', {
             'classes': ('collapse',),
-            'fields':(
-                'tip_oformlenia_stranizi_obiekta',
+            'fields': (
                 'opisaanaie_kratkoe',
                 'opisaanaie',
+                'tabliza_harakterisstik',
             )
-        }),
-        (('Расположение и площадь'), {
-            'classes': ('collapse',),
-            'fields': (
-                ('raspolozenie_gorod', 'kordinati_na_karte'),
-                'obshaia_ploshad',
-                ('ploshad_uchastka', 'ploshad_osnovnogo_doma'),
-                ('rastoianie_do_moria', 'rastoianie_do_goroda'),
-            ),
-        }),
-
-        (('Параметры дома'), {
-            'classes': ('collapse',),
-            'fields': (
-                ('etaznost', 'kolvo_komnat'),
-                ('kolvo_spalen', 'kolvo_sanuzlov'),
-                ('otdelka', 'mebel'),
-                ('bassein', 'zona_barbeku'),
-            ),
         }),
 
 
@@ -73,5 +69,4 @@ class DomAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(Dom, DomAdmin)
-
+admin.site.register(DomProdaza, DomProdazaAdmin)

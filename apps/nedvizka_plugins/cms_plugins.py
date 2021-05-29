@@ -3,8 +3,9 @@ from math import ceil
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from apps.nedvizka.models import NedvizkaIzbranoePluginSetting, NedvizkaPanelUpravleniaPluginSetting, \
-    NedvizkaSpisokObiectovPluginPluginSetting, Dom, NedvizkaFiltriPoiskaPluginPluginSetting
+from apps.nedvizka.models import DomProdaza
+from apps.nedvizka_plugins.models import NedvizkaSpisokObiectovPluginPluginSetting, \
+    NedvizkaPanelUpravleniaPluginSetting, NedvizkaIzbranoePluginSetting, NedvizkaFiltriPoiskaPluginPluginSetting
 
 
 @plugin_pool.register_plugin
@@ -22,7 +23,7 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
         page = 1
         kol_vo_obiectov = instance.obiectov_na_stranize
         tip_nedvizki = instance.tip_nedvizki
-        dannie_nedvizki = Dom.objects.select_related('previu').all()
+        dannie_nedvizki = DomProdaza.objects.select_related('previu').all()
 
         try:
             page = int(context['request'].GET['page'])

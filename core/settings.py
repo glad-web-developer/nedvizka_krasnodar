@@ -146,6 +146,7 @@ INSTALLED_APPS = [
     'plugins.formi_obratnoi_sviazi_plugin',
     'plugins.modalnoe_okno_plugin',
     'apps.nedvizka',
+    'apps.nedvizka_plugins',
 
 ]
 

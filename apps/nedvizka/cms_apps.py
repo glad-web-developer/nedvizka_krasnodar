@@ -6,7 +6,7 @@ from apps.nedvizka.views import dom_dv
 
 
 @apphook_pool.register
-class NovostiApp(CMSApp):
+class NedvizkaApp(CMSApp):
     app_name = 'nedvizka'
     name = "Недвижка"
 
