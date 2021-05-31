@@ -44,8 +44,8 @@ a.text-dark {
 
 .btn-warning, .btn-warning2 {
   display: inline-block;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background: none;
   background-color: $color1;
 
@@ -94,6 +94,14 @@ a.text-light {
   }
 }
 
+.zakritie_sidbara a {
+  color: #000;
+
+  &:hover, &:active {
+    color: $color1;
+  }
+}
+
 
 header {
   position: absolute;
@@ -119,6 +127,35 @@ header {
   }
 }
 
+.__header_logo_mobile {
+  color: #000;
+  text-transform: uppercase;
+  font-size: 8pt;
+  line-height: 1;
+  font-family: 'Brygada 1918', sans-serif;
+
+  strong {
+    font-size: 15pt;
+    letter-spacing: 7px;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.__header_logo_mobile_link {
+  .nav-link {
+    border-bottom: 3px solid #fee500;
+    display: inline-block;
+    font-size: 10pt;
+  }
+
+  p {
+    margin-bottom: 10px;
+  }
+}
+
 .__header_footer_pc {
   color: #000;
   text-transform: uppercase;
@@ -134,8 +171,34 @@ header {
 }
 
 .cms-toolbar-expanded header {
+
   top: 45px;
 }
+
+@media (max-width: 576px) {
+  //.cms-toolbar-expanded {
+  //  display: none;
+  //}
+  .cms-toolbar-expanded header {
+    top: 0;
+  }
+
+  .cms-toolbar {
+    display: none;
+  }
+
+  .cms-toolbar-expanded {
+    margin: 0 !important;
+  }
+
+  .cms-toolbar-expanded .my_sidebar {
+    top: 0 !important;
+    bottom: 0;
+    height: 100%;
+  }
+
+}
+
 
 .btn-info {
   text-transform: uppercase;
@@ -153,15 +216,16 @@ header {
 
 .otkritie_sidbara {
   text-transform: uppercase;
-  background-color: #60beaf;
+  background-color: $color1;
   font-family: 'Myriad Pro', sans-serif;
-  padding: 5px 15px;
+  padding: 10px 15px;
   font-size: 11pt;
-  border: 1px solid #60beaf;
-  border-radius: 20px;
+  border: 1px solid $color1;
+  border-radius: 50%;
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 20px;
+
 }
 
 .btn-info:hover, .btn-info:active, .btn-info:visited {
@@ -210,11 +274,11 @@ header {
   position: fixed;
   top: 0;
   left: -340px;
-  height: 100vh;
+  height: 102vh;
   z-index: 999;
   transition: all 0.3s;
   /*overflow-y: scroll;*/
-  box-shadow: 10px 3px 20px rgb(96, 190, 175);
+  //box-shadow: 10px 3px 20px $color1;
 }
 
 .my_sidebar.active {
@@ -238,7 +302,15 @@ header {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 220px;
+  height: 155px;
+  //border-top:  1px solid #ccc;
+  background-color: #f5f5f5;
+  padding: 7px 20px;
+  box-sizing: border-box;
+
+  p {
+    margin-bottom: 7px;
+  }
 }
 
 
@@ -337,7 +409,7 @@ header {
   top: 0;
   bottom: 0;
   height: 140px;
-  padding: 40px 0 10px;
+  padding: 20px 0 10px;
   text-align: center;
 }
 
@@ -422,6 +494,12 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 /*sm*/
 @media (min-width: 576px) {
 
+}
+
+@media (max-width: 575px) {
+  .btn_lutchee {
+    font-size: 1rem;
+  }
 }
 
 
