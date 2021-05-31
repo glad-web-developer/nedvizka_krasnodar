@@ -245,12 +245,16 @@ header {
   right: 20px;
 }
 
+.zakazat_zvonok:active, .zakazat_zvonok:hover {
+  background-color: #fff !important;
+}
+
 .footer_sidebar {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 155px;
+  height: 200px;
   background-color: #f5f5f5;
   padding: 7px 20px;
   box-sizing: border-box;
