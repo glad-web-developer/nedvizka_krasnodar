@@ -1,7 +1,7 @@
 {% load sekizai_tags static cms_tags %}
 {% load thumbnail %}
 
-<div class="w-100  forma_obratnoi_sviazi" >
+<div class="w-100  forma_obratnoi_sviazi">
     <div>
         <form action="{% url 'formi_obratnoi_sviazi:otpravit_formu_zakaza_zvonka' %}" method="post"
               class="text-center row">
@@ -25,12 +25,11 @@
 
                     </div>
                     <div class="col-12 mt-4">
-                        <button type="submit" class="btn btn-info ten2  text-uppercase" style="width: 225px">
+                        <button type="submit" class="btn btn-warning ten2  text-uppercase" style="width: 225px">
                             <span class=""><b>Заказать звонок</b></span></button>
                     </div>
                 </div>
             </div>
-
 
 
         </form>
@@ -75,107 +74,5 @@
 
 {% addtoblock 'css' %}
     <style>
-        .forma_obratnoi_sviazi {
-            background-size: cover;
-            background-position: bottom;
-
-        }
-
-        .forma_obratnoi_sviazi .btn-info:hover, .forma_obratnoi_sviazi .btn-info[disabled='disabled']{
-            background-color: #fff !important;
-            color: #60beaf !important;
-        }
-
-
-        .form__group {
-            position: relative;
-            padding: 10px 0 0;
-            width: 100%;
-        }
-
-        .form__field {
-            font-family: inherit;
-            width: 100%;
-            border: 0;
-            border-bottom: 2px solid #9b9b9b;
-            outline: 0;
-            font-size: 1rem;
-            {#color: #fff;#}
-            padding: 7px 0;
-            background: transparent;
-            transition: border-color 0.2s;
-        }
-
-        .form__field::placeholder {
-            color: transparent;
-        }
-
-        .form__field:placeholder-shown ~ .form__label {
-            font-size: 1rem;
-            cursor: text;
-            top: 20px;
-        }
-
-        .form__label {
-            position: absolute;
-            top: 0;
-            display: block;
-            transition: 0.2s;
-            font-size: 1rem;
-            color: #bbb;
-        }
-
-        .form__field:focus {
-            padding-bottom: 6px;
-            font-weight: 700;
-            border-width: 3px;
-            border-image: linear-gradient(to right, #60beaf, #fff, #60beaf);
-            border-image-slice: 1;
-        }
-
-        .form__field:focus ~ .form__label {
-            position: absolute;
-            top: 0;
-            display: block;
-            transition: 0.2s;
-            font-size: 1rem;
-            color: #60beaf;
-            font-weight: 700;
-        }
-
-        /* reset input */
-        .form__field:required, .form__field:invalid {
-            box-shadow: none;
-        }
-
-
-        {#xl#}
-        @media (min-width: 1120px) {
-
-        }
-
-
-        {#lg#}
-        @media (min-width: 992px) {
-
-        }
-
-        {#md#}
-        @media (min-width: 768px) {
-
-        }
-
-        {#sm#}
-        @media (min-width: 576px) {
-
-        }
-
-        {#col#}
-        @media (max-width: 575px) {
-            .h4 {
-                font-size: 1.3rem;
-            }
-        }
-
     </style>
 {% endaddtoblock %}

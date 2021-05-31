@@ -145,6 +145,7 @@ INSTALLED_APPS = [
     'plugins.razmer_texta_plugin',
     'plugins.formi_obratnoi_sviazi_plugin',
     'plugins.modalnoe_okno_plugin',
+    'plugins.otzivi_skala',
     'apps.nedvizka',
     'apps.nedvizka_plugins',
 

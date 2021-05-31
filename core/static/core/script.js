@@ -1,8 +1,8 @@
 function vivisti_uvedomlenie(zagolovok, telo, type) {
 
-    $('#uvedomlenie').find('.uvedomlenie_header').removeClass('bg-info').removeClass('bg-danger');
+    $('#uvedomlenie').find('.uvedomlenie_header').removeClass('bg-warning').removeClass('bg-danger');
     if (type === 'success') {
-        $('#uvedomlenie').find('.uvedomlenie_header').addClass('bg-info');
+        $('#uvedomlenie').find('.uvedomlenie_header').addClass('bg-warning');
     }
     if (type === 'error') {
         $('#uvedomlenie').find('.uvedomlenie_header').addClass('bg-danger');

@@ -22,10 +22,30 @@ class PanoramiDomProdazaInline(admin.TabularInline):
 
 
 class DomProdazaAdmin(admin.ModelAdmin):
-    list_display = ['nomer', 'nazvanie', 'pokazivat', 'price_dollor']
-    search_fields = ['id', 'nomer', 'nazvanie', 'pokazivat', 'price_dollor']
-    list_filter = ['pokazivat', 'filter_peshai_dostupnost_k_pliazu', 'filter_kotedzni_poselok', 'filter_bassein',
-                   'filter_vid_na_moria']
+    list_display = [
+        'id',
+        'nomer',
+        'nazvanie',
+        'pokazivat',
+        'price_bazovaia',
+        'prrice_akzionnaia',
+        'naselenii_punkt',
+        'obshaia_ploshad',
+        'eto_luchoe_prodlozenie',
+    ]
+    search_fields = [
+        'id',
+         'nomer',
+        'nazvanie',
+        'price_bazovaia',
+        'prrice_akzionnaia',
+    ]
+    list_filter = [
+        'pokazivat',
+        'eto_luchoe_prodlozenie',
+        'naselenii_punkt',
+
+    ]
     inlines = [FotoDomProdazaInline, VideoDomProdazaInline, PanoramiDomProdazaInline]
 
     save_as = True
@@ -36,36 +56,17 @@ class DomProdazaAdmin(admin.ModelAdmin):
             'fields': (
                 'nomer',
                 'nazvanie',
-                'pokazivat',
+                'slug',
                 'previu',
-                ('price_dollor', 'price_rub',),
-                ('raspolozenie_gorod', 'kordinati_na_karte'),
-                ('obshaia_ploshad', 'ploshad_uchastka', 'ploshad_osnovnogo_doma',  'spalen',),
-
-            )
-        }),
-
-        ('Фильтры', {
-
-            'fields': (
-                'filter_peshai_dostupnost_k_pliazu',
-                'filter_kotedzni_poselok',
-                'filter_bassein',
-                'filter_vid_na_moria',
-            )
-        }),
-
-        ('Описание и таблица параметров', {
-            'classes': ('collapse',),
-            'fields': (
-                'opisaanaie_kratkoe',
+                ('pokazivat', 'eto_luchoe_prodlozenie',),
                 'opisaanaie',
-                'tabliza_harakterisstik',
+                ('price_bazovaia', 'prrice_akzionnaia',),
+                ('naselenii_punkt', 'kordinati_na_karte'),
+                ('obshaia_ploshad', 'ploshad_osnovnogo_doma'),
+                ('nalichie_gaza', 'nalichie_otdelki', ),
+                ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),
             )
         }),
-
-
-
     ]
 
 

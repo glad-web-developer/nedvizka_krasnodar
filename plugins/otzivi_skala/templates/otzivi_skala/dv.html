@@ -10,7 +10,10 @@
         <div class="col-9 col-md-9 text-left">
             <div>{{ instance.avtor }}</div>
             <span class="text-secondary small">{{ instance.data }}</span>
-            <div><a class="text-warning" href="{{ instance.ssilla }}">{{ instance.nazvanie_otzivnika }}</a></div>
+            <div>
+                {%  if instance.ssilla %}<a class="text-dark" href="{{ instance.ssilla }}"><b>{{ instance.nazvanie_otzivnika|default_if_none:'' }}</b></a>
+                {% else %}<span class="text-dark"><b>{{ instance.nazvanie_otzivnika|default_if_none:'' }}</b></span>
+            {% endif %}</div>
 
         </div>
 
