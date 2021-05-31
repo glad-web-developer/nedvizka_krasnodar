@@ -24,7 +24,6 @@ class PanoramiDomProdazaInline(admin.TabularInline):
 class DomProdazaAdmin(admin.ModelAdmin):
     list_display = [
         'id',
-        'nomer',
         'nazvanie',
         'pokazivat',
         'price_bazovaia',
@@ -35,7 +34,6 @@ class DomProdazaAdmin(admin.ModelAdmin):
     ]
     search_fields = [
         'id',
-         'nomer',
         'nazvanie',
         'price_bazovaia',
         'prrice_akzionnaia',
@@ -54,7 +52,6 @@ class DomProdazaAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
             'fields': (
-                'nomer',
                 'nazvanie',
                 'slug',
                 'previu',

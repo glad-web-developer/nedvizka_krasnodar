@@ -1,0 +1,1 @@
+from .Doma import DomProdazaAdmin

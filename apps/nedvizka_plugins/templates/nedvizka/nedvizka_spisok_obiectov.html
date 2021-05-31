@@ -6,7 +6,7 @@
     <div class="row">
         {% for i_nedvizka in dannie_nedvizki %}
             <div class="col-12 mb-3 ">
-                <div class="card p-3 ten">
+                <div class="card p-3 ten1">
                     <div class="row">
                         <div class="col-12 col-md-4 mb-3 mb-md-0">
                             <div class="embed-responsive embed-responsive-1by1 position-relative">
@@ -28,47 +28,37 @@
 
                         <div class="col-12 col-md-8">
 
-                            <div class="row">
-                                <div class="col-8">
-                                    <a href="{{ i_nedvizka.get_url }}"
-                                       class="h3 zagolovok"><b>{{ i_nedvizka.nazvanie }}</b></a>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a href="{{ i_nedvizka.get_url }}" class="btn-info mr-2">{{ i_nedvizka.nomer }}</a>
-                                    <a href="#" class="text-info mr-2 dobavit_v_izbranoe"><i class="fas fa-heart "></i></a>
-                                </div>
+                            <div>
+
+                                <a href="{{ i_nedvizka.get_url }}"
+                                   class=" zagolovok"><h3 class="h4"><b>{{ i_nedvizka.nazvanie }}</b></h3></a>
+
+
                             </div>
 
                             <div>
-                                <p>{{ i_nedvizka.opisaanaie_kratkoe }}</p>
+                                <p class="opisanie">{{ i_nedvizka.get_opisaanaie_kratkoe }}</p>
+                                <p>Площадь: {{ i_nedvizka.obshaia_ploshad|floatformat }} м<sup>2</sup></p>
                             </div>
 
                             <div class="row">
-                                <div class="col-12 col-xl-6">
-                                    <div class="row small text-center">
-                                        <div class="col-4">
-                                            <img height="30" width="30"
-                                                 src="{% static 'nedvizka/img/plosad_doma.png' %}" alt="площадь объекта">
-                                            <p><b>{{ i_nedvizka.ploshad_osnovnogo_doma|floatformat }} кв.м</b></p>
-                                        </div>
-                                        <div class="col-4">
-                                            <img height="25" style="margin-bottom: 5px"
-                                                 src="{% static 'nedvizka/img/ploshad_uchastka.png' %}" alt="площадь участка">
-                                            <p><b>{{ i_nedvizka.ploshad_uchastka|floatformat }} соток</b></p>
-                                        </div>
-                                        <div class="col-4">
-                                            <img height="30" src="{% static 'nedvizka/img/spalni.png' %}" alt="спален">
-                                            <p><b>{{ i_nedvizka.kolvo_spalen }} спальни</b></p>
-                                        </div>
-                                    </div>
+                                <div class="col-12 col-lg-8 align-self-center">
+                                    {% if i_nedvizka.prrice_akzionnaia %}
+                                        <div><span class="text-secondary staraia_zena">Старая цена: {{ i_nedvizka.price_bazovaia|floatformat }} руб</span></div>
+                                        <div><b>Новая цена: {{ i_nedvizka.prrice_akzionnaia|floatformat }} руб.</b></div>
+                                    {% else %}
+                                        <div><b>{{ i_nedvizka.price_bazovaia|floatformat }} руб</b></div>
+                                    {% endif %}
+
                                 </div>
 
-                                <div class="col-12 col-xl-6 text-xl-right text-center">
-                                    <a href="{{ i_nedvizka.get_url }}"
-                                       class="btn-info "><b>{{ i_nedvizka.price_rub|floatformat }} РУБ.
-                                        / {{ i_nedvizka.price_dollor|floatformat }} $</b></a>
+
+
+                                <div class="col-12 col-lg-4 align-self-center">
+                                    <a class="btn btn-warning" href="{{ i_nedvizka.get_url }}">Подробнее</a>
                                 </div>
                             </div>
+
 
                         </div>
 
@@ -81,12 +71,12 @@
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mt-3">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center ">
 
 
-                    <li class="page-item {% if page_now == 1 %}disabled{% endif %}">
+                    <li class="page-item d-none d-md-block {% if page_now == 1 %}disabled{% endif %}">
                         <a class="page-link page-link-10px" href="?page=1" aria-label="В начало">
                             <span aria-hidden="true"><b><i class="fa fa-fast-backward"></i></b></span>
                             <span class="sr-only">В начало</span>
@@ -101,32 +91,36 @@
                     </li>
 
                     {% if page_now > 2 %}
-                        <li class="page-item">
-                            <a class="page-link " href="?page={{ page_now|add:-2 }}"><b>{{ page_now|add:-2 }}</b></a>
+                        <li class="page-item d-none d-md-block">
+                            <a class="page-link micro_padding"
+                               href="?page={{ page_now|add:-2 }}"><b>{{ page_now|add:-2 }}</b></a>
                         </li>
                     {% endif %}
 
                     {% if page_now != 1 %}
                         <li class="page-item">
-                            <a class="page-link " href="?page={{ page_now|add:-1 }}"><b>{{ page_now|add:-1 }}</b></a>
+                            <a class="page-link micro_padding"
+                               href="?page={{ page_now|add:-1 }}"><b>{{ page_now|add:-1 }}</b></a>
                         </li>
                     {% endif %}
 
 
                     <li class="page-item active">
-                        <a class="page-link " href="?page={{ page_now }}"><b>{{ page_now }}</b></a>
+                        <a class="page-link micro_padding" href="?page={{ page_now }}"><b>{{ page_now }}</b></a>
                     </li>
 
 
                     {% if page_now != straniz_vsego %}
                         <li class="page-item ">
-                            <a class="page-link " href="?page={{ page_now|add:1 }}"><b>{{ page_now|add:1 }}</b></a>
+                            <a class="page-link micro_padding"
+                               href="?page={{ page_now|add:1 }}"><b>{{ page_now|add:1 }}</b></a>
                         </li>
                     {% endif %}
 
                     {% if page_now < straniz_vsego|add:-1 %}
-                        <li class="page-item">
-                            <a class="page-link " href="?page={{ page_now|add:2 }}"><b>{{ page_now|add:2 }}</b></a>
+                        <li class="page-item d-none d-md-block">
+                            <a class="page-link micro_padding"
+                               href="?page={{ page_now|add:2 }}"><b>{{ page_now|add:2 }}</b></a>
                         </li>
                     {% endif %}
 
@@ -140,7 +134,7 @@
                         </a>
                     </li>
 
-                    <li class="page-item {% if page_now == straniz_vsego %}disabled{% endif %}">
+                    <li class="page-item d-none d-md-block {% if page_now == straniz_vsego %}disabled{% endif %}">
                         <a class="page-link page-link-10px"
                            href="?page={{ straniz_vsego }}" aria-label="В конец">
                             <span aria-hidden="true"><b><i class="fa fa-fast-forward"></i> </b></span>
@@ -154,111 +148,3 @@
         </div>
     </div>
 </div>
-
-{% addtoblock 'css' %}
-    <style>
-
-        .nedvizka_spisok_obiectov .btn-info {
-            background-color: #60beaf !important;
-            padding: 2px 10px;
-            text-align: center;
-            color: #fff;
-            font-size: 11pt;
-            border: 1px solid #60beaf !important;
-            border-radius: 20px;
-
-        }
-
-        .page-link{
-            color: #60beaf;
-            border-radius: 25px !important;
-        }
-
-
-
-        .page-item{
-            margin: 0 10px;
-            border-radius: 25px;
-        }
-
-          .page-item.active .page-link, .page-item.active .page-link:hover{
-           background-color: #4DC7A0 !important;
-           border-color: #4DC7A0 !important;
-              color: #fff !important;
-        }
-
-          .page-item .page-link:hover{
-              color: #4DC7A0 !important;
-          }
-
-
-        .podshet_foto_wrap {
-            position: absolute;
-            width: 100%;
-            height: 30px;
-            bottom: 20px;
-            text-align: center;
-        }
-
-        .nedvizka_spisok_obiectov .podshet_foto {
-            padding: 2px 50px;
-            z-index: 500;
-            -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-            -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-            box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-            font-size: 80%;
-        }
-
-        .nedvizka_spisok_obiectov .img_ssilka_na_obect:hover .podshet_foto, .nedvizka_spisok_obiectov .img_ssilka_na_obect:active .podshet_foto {
-            color: #60beaf !important;
-            border-color: #60beaf !important;
-            background: none !important;
-        }
-
-        .nedvizka_spisok_obiectov .img_ssilka_na_obect img {
-            filter: brightness(100%);
-            transition: all 0.3s ease;
-        }
-
-        .nedvizka_spisok_obiectov .img_ssilka_na_obect:hover img, .nedvizka_spisok_obiectov .img_ssilka_na_obect:active img {
-            filter: brightness(40%);
-            transition: all 0.3s ease;
-        }
-
-        .nedvizka_spisok_obiectov .small {
-            font-size: 60%;
-        }
-
-        .nedvizka_spisok_obiectov .zagolovok {
-            color: #000;
-        }
-
-        .nedvizka_spisok_obiectov .zagolovok:hover, .nedvizka_spisok_obiectov .zagolovok:active {
-            color: #60beaf !important;
-        }
-
-        .nedvizka_spisok_obiectov .prevyu, .nedvizka_spisok_obiectov .card {
-            border-radius: 20px;
-        }
-
-        .nedvizka_spisok_obiectov .btn-info:hover, .nedvizka_spisok_obiectov .btn-info:active {
-            color: #60beaf;
-            background-color: #fff;
-        }
-
-        .nedvizka_spisok_obiectov .ten {
-            -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-            -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-            box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-            border-radius: 35px;
-        }
-
-        .nedvizka_spisok_obiectov .dobavit_v_izbranoe:hover, .nedvizka_spisok_obiectov .dobavit_v_izbranoe:active {
-            color: #60beaf !important;
-            cursor: pointer;
-        }
-
-
-    </style>
-
-{% endaddtoblock %}

@@ -3,7 +3,7 @@ from math import ceil
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from apps.nedvizka.models import DomProdaza
+from apps.nedvizka.models import DomProdaza, DomArenda
 from apps.nedvizka_plugins.models import NedvizkaSpisokObiectovPluginPluginSetting, \
     NedvizkaPanelUpravleniaPluginSetting, NedvizkaIzbranoePluginSetting, NedvizkaFiltriPoiskaPluginPluginSetting
 
@@ -23,18 +23,19 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
         page = 1
         kol_vo_obiectov = instance.obiectov_na_stranize
         tip_nedvizki = instance.tip_nedvizki
-        dannie_nedvizki = DomProdaza.objects.select_related('previu').all()
+        dannie_nedvizki = []
+
+        if tip_nedvizki =='dom_prodaza':
+            dannie_nedvizki = DomProdaza.objects.select_related('previu').all()
+
+        if tip_nedvizki =='dom_arenda':
+            dannie_nedvizki = DomArenda.objects.select_related('previu').all()
 
         try:
             page = int(context['request'].GET['page'])
         except Exception:
             pass
 
-
-        if tip_nedvizki == 'dom_prodaza':
-            dannie_nedvizki = dannie_nedvizki.filter(tip_operazii=1)
-        if tip_nedvizki == 'dom_arenda':
-            dannie_nedvizki = dannie_nedvizki.filter(tip_operazii=2)
 
         dannie_nedvizki_vsego = len(dannie_nedvizki)
         straniz_vsego = ceil(dannie_nedvizki_vsego / kol_vo_obiectov)

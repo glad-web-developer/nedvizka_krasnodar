@@ -1,5 +1,6 @@
 from cms.models import PlaceholderField, CMSPlugin
 from django.db import models
+from django.template.defaultfilters import striptags
 from django.utils.safestring import mark_safe
 from djangocms_text_ckeditor.fields import HTMLField
 from easy_thumbnails.files import get_thumbnailer
@@ -25,7 +26,7 @@ class DomProdaza(models.Model):
     ))
 
     nazvanie = models.CharField('Название', max_length=255, null=True, blank=True)
-    nomer = models.CharField('Номер(id объекта)', max_length=50, null=True, blank=True)
+    # nomer = models.CharField('Номер(id объекта)', max_length=50, null=True, blank=True)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
     previu = FilerImageField(verbose_name='Превью', null=True, blank=True, on_delete=models.CASCADE)
     price_bazovaia = models.FloatField('Базовая цена руб.', null=True, blank=True,)
@@ -54,7 +55,8 @@ class DomProdaza(models.Model):
 
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:
-            return self.opisaanaie[0:200] + '...'
+            opisanie = striptags(self.opisaanaie)
+            return opisanie[0:300] + '...'
 
     def get_foto_set(self):
         return self.foto_set.select_related('img')
@@ -139,7 +141,7 @@ class DomArenda(models.Model):
     ))
 
     nazvanie = models.CharField('Название', max_length=255)
-    nomer = models.CharField('Номер(id объекта)', max_length=50, null=True, blank=True)
+    # nomer = models.CharField('Номер(id объекта)', max_length=50, null=True, blank=True)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
     previu = FilerImageField(verbose_name='Превью', null=True, blank=True, on_delete=models.CASCADE)
     price_bazovaia = models.FloatField('Базовая цена руб.', null=True, blank=True, )
@@ -167,7 +169,8 @@ class DomArenda(models.Model):
 
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:
-            return self.opisaanaie[0:200] + '...'
+            opisanie = striptags(self.opisaanaie)
+            return opisanie[0:300] + '...'
 
     def get_foto_set(self):
         return self.foto_set.select_related('img')
