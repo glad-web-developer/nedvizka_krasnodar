@@ -34,6 +34,7 @@ class DomProdaza(models.Model):
 
     obshaia_ploshad = models.FloatField('Площадь участка и дома (кв. м)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)
+    adres = models.CharField('Адрес', null=True, blank=True, max_length=255)
     kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255, help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
     # ploshad_uchastka = models.FloatField('Площадь участка (соток)', null=True, blank=True, max_length=255)
     ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
@@ -149,6 +150,7 @@ class DomArenda(models.Model):
 
     obshaia_ploshad = models.FloatField('Плоащдь участка и дома (кв. м)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)
+    adres = models.CharField('Адрес', null=True, blank=True, max_length=255)
     kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
                                           help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
     # ploshad_uchastka = models.FloatField('Площадь участка (соток)', null=True, blank=True, max_length=255)
