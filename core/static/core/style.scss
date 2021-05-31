@@ -32,10 +32,26 @@ $color1: #fee500;
   box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
 }
 
+@mixin ten3() {
+-webkit-box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.2);
+-moz-box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.2);
+box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.2)
+}
+
+@mixin ten4() {
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
+}
+
 .ten1 {
   @include ten1()
 }
 
+
+.modal-content{
+  @include ten1();
+}
 
 .nedvizka_spisok_obiectov {
   .btn-info {
@@ -222,7 +238,7 @@ a.text-light {
     height: auto !important;
     background-color: #eee;
     color: #000000 !important;
-    @include ten1();
+    @include ten4();
 
     a {
       color: #000000 !important;
@@ -562,7 +578,7 @@ header {
 
 footer {
   position: relative;
-  @include ten1();
+  @include ten3();
 }
 
 .dropdown-menu {

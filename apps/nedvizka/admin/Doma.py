@@ -58,7 +58,7 @@ class DomProdazaAdmin(admin.ModelAdmin):
                 ('pokazivat', 'eto_luchoe_prodlozenie',),
                 'opisaanaie',
                 ('price_bazovaia', 'prrice_akzionnaia',),
-                ('naselenii_punkt', 'kordinati_na_karte'),
+                ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
                 ('obshaia_ploshad', 'ploshad_osnovnogo_doma'),
                 ('nalichie_gaza', 'nalichie_otdelki', ),
                 ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),

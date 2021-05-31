@@ -31,7 +31,7 @@
                             <div>
 
                                 <a href="{{ i_nedvizka.get_url }}"
-                                   class=" zagolovok"><h3 class="h4"><b>{{ i_nedvizka.nazvanie }}</b></h3></a>
+                                   class=" zagolovok"><h3 class="h5"><b>{{ i_nedvizka.nazvanie }}</b></h3></a>
 
 
                             </div>
@@ -43,7 +43,7 @@
                                          <span>Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'' }} {{ i_nedvizka.adres|default_if_none:'' }}</span>
                                     </div>
 
-                                    <div class="col-12 col-md-4">
+                                    <div class="col-12 col-md-4 text-right">
                                          <span>Площадь: {{ i_nedvizka.obshaia_ploshad|floatformat }} м<sup>2</sup></span>
                                     </div>
                                 </div>

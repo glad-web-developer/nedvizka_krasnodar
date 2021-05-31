@@ -172,7 +172,7 @@ class DomArenda(models.Model):
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:
             opisanie = striptags(self.opisaanaie)
-            return opisanie[0:300] + '...'
+            return opisanie[0:250] + '...'
 
     def get_foto_set(self):
         return self.foto_set.select_related('img')
