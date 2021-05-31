@@ -103,6 +103,28 @@ a.text-light {
 }
 
 
+.page_second_type {
+  .main_menu {
+    height: auto !important;
+    background-color: #eee;
+    color: #000000 !important;
+    @include ten1();
+
+    a {
+      color: #000000 !important;
+    }
+
+    .__header_logo_pc {
+      color: #000000 !important;
+    }
+
+    .navbar_phone_place span{
+      color: #000000 !important;
+    }
+  }
+}
+
+
 header {
   position: absolute;
   top: 0;
@@ -297,8 +319,8 @@ header {
   right: 20px;
 }
 
-.zakazat_zvonok{
-  &:active, &:hover{
+.zakazat_zvonok {
+  &:active, &:hover {
     background-color: #fff !important;
   }
 }
@@ -419,9 +441,20 @@ header {
   text-align: center;
 }
 
-.footer {
+footer {
   position: relative;
-  @include ten_verx();
+   @include ten1();
+}
+
+.dropdown-menu{
+  @include ten1();
+  text-transform: uppercase;
+  font-size: 0.8rem;
+
+  .dropdown-item:hover, .dropdown-item:focus{
+    background-color: $color1;
+    color: #000;
+  }
 }
 
 .predlozenia_na_ubk, .predlozenia_na_ubk .fonovoe_izobrazenie_plugin_zatemnenie {

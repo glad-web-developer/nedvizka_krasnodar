@@ -175,6 +175,7 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     ('core/page_templates/native.html', 'Нативный'),
+    ('core/page_templates/second.html', 'Второй тип'),
 
 )
 
