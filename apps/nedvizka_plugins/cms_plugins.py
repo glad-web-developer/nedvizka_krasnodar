@@ -3,9 +3,10 @@ from math import ceil
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
+from apps.nedvizka.forms import DomProdazaForm
 from apps.nedvizka.models import DomProdaza, DomArenda
 from apps.nedvizka_plugins.models import NedvizkaSpisokObiectovPluginPluginSetting, \
-    NedvizkaPanelUpravleniaPluginSetting, NedvizkaIzbranoePluginSetting, NedvizkaFiltriPoiskaPluginPluginSetting
+     NedvizkaFiltriPoiskaPluginPluginSetting
 
 
 @plugin_pool.register_plugin
@@ -51,36 +52,6 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
         context.update({'instance': instance, 'dannie_nedvizki': dannie_nedvizki, 'page_now':page, 'straniz_vsego':straniz_vsego})
         return context
 
-@plugin_pool.register_plugin
-class NedvizkaPanelUpravleniaPlugin(CMSPluginBase):
-
-    render_template = "nedvizka/nedvizka_panel_upravlenia.html"
-    module = '02. Недвижка'
-    name = 'Панель управления(карта+сортировка)'
-    cache = False
-    model = NedvizkaPanelUpravleniaPluginSetting
-
-    def render(self, context, instance, placeholder):
-        context.update({'instance': instance})
-        return context
-
-
-
-
-@plugin_pool.register_plugin
-class NedvizkaIzbranoePlugin(CMSPluginBase):
-
-    render_template = "nedvizka/nedvizka_izbranoe_plugin.html"
-    module = '02. Недвижка'
-    name = 'Избранное'
-    cache = False
-    model = NedvizkaIzbranoePluginSetting
-#
-    def render(self, context, instance, placeholder):
-
-        context.update({'instance':instance})
-        return context
-
 
 
 @plugin_pool.register_plugin
@@ -91,8 +62,12 @@ class NedvizkaFiltriPoiskaPluginPlugin(CMSPluginBase):
     name = 'Фильтр и поиск'
     cache = False
     model = NedvizkaFiltriPoiskaPluginPluginSetting
-#
-    def render(self, context, instance, placeholder):
 
-        context.update({'instance':instance})
+    def render(self, context, instance, placeholder):
+        form_url = ''
+        form = []
+        get_params = context['request'].GET
+        if instance.tip_nedvizki == 'dom_prodaza':
+            form = DomProdazaForm(get_params)
+        context.update({'instance':instance, 'form_url':form_url, 'form':form})
         return context

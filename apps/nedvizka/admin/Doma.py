@@ -31,6 +31,7 @@ class DomProdazaAdmin(admin.ModelAdmin):
         'naselenii_punkt',
         'obshaia_ploshad',
         'eto_luchoe_prodlozenie',
+        'akzia'
     ]
     search_fields = [
         'id',
@@ -41,8 +42,8 @@ class DomProdazaAdmin(admin.ModelAdmin):
     list_filter = [
         'pokazivat',
         'eto_luchoe_prodlozenie',
+        'akzia',
         'naselenii_punkt',
-
     ]
     inlines = [FotoDomProdazaInline, VideoDomProdazaInline, PanoramiDomProdazaInline]
 
@@ -57,7 +58,7 @@ class DomProdazaAdmin(admin.ModelAdmin):
                 'previu',
                 ('pokazivat', 'eto_luchoe_prodlozenie',),
                 'opisaanaie',
-                ('price_bazovaia', 'prrice_akzionnaia',),
+                ('price_bazovaia', 'prrice_akzionnaia', ),
                 ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
                 ('obshaia_ploshad', 'ploshad_osnovnogo_doma'),
                 ('nalichie_gaza', 'nalichie_otdelki', ),

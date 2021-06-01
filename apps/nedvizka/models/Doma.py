@@ -6,58 +6,50 @@ from djangocms_text_ckeditor.fields import HTMLField
 from easy_thumbnails.files import get_thumbnailer
 from filer.fields.image import FilerImageField
 
-
 # *** дома продажа ***
+from apps.nedvizka.CONST import CHOICES_POKAZIVAT, CHOICES_ETO_LUCHSHOE_PREDLOZENIE, CHOICES_NALICHIE_OTDELKI, \
+    KOLVO_SIMVOLOV_OBREZKI
+
 
 class DomProdaza(models.Model):
     class Meta:
         verbose_name = 'Дом - продажа'
         verbose_name_plural = 'Дома - продажа'
 
-    pokazivat = models.BooleanField('Показывать/скрыть', default=True, choices=(
-        (True, 'Показывать на сайте'),
-        (False, 'Не показывать на сайте'),
-    ))
+    pokazivat = models.BooleanField('Показывать/скрыть', default=True, choices=CHOICES_POKAZIVAT)
 
-    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1, choices=(
-        (1, 'Нет'),
-        (2, 'Да. Выводить только на странице лучших предложений'),
-        (3, 'Да. Выводить на странице лучших предложений и главной'),
-    ))
+    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
+                                                 choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
 
     nazvanie = models.CharField('Название', max_length=255, null=True, blank=True)
-    # nomer = models.CharField('Номер(id объекта)', max_length=50, null=True, blank=True)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
     previu = FilerImageField(verbose_name='Превью', null=True, blank=True, on_delete=models.CASCADE)
-    price_bazovaia = models.FloatField('Базовая цена руб.', null=True, blank=True,)
-    prrice_akzionnaia = models.FloatField('Акционная цена руб', null=True, blank=True,)
+    price_bazovaia = models.FloatField('Базовая цена руб.', default=0)
+    prrice_akzionnaia = models.FloatField('Акционная цена руб', default=0)
+
+    price_itogovaia = models.FloatField('Цена для поиска', default=0)
+    akzia = models.BooleanField('Акция/спец цена', default=False)
 
     obshaia_ploshad = models.FloatField('Площадь участка и дома (кв. м)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)
     adres = models.CharField('Адрес', null=True, blank=True, max_length=255)
-    kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255, help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
-    # ploshad_uchastka = models.FloatField('Площадь участка (соток)', null=True, blank=True, max_length=255)
+    kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
+                                          help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
     ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
 
     nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False)
     blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False)
     blizost_s_med = models.BooleanField('Близость с мед учереждением', default=False)
     blizost_s_metro = models.BooleanField('Близость с метро', default=False)
-    nalichie_otdelki = models.IntegerField('Наличие отделки', default=1, choices=(
-        (1, 'Без отделки'),
-        (2, 'Черновая'),
-        (3, 'С ремонтом'),
-    ))
+    nalichie_otdelki = models.IntegerField('Наличие отделки', default=1, choices=CHOICES_NALICHIE_OTDELKI)
 
     opisaanaie = HTMLField('Описание', null=True, blank=True,
                            help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
 
-
-
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:
             opisanie = striptags(self.opisaanaie)
-            return opisanie[0:300] + '...'
+            return opisanie[0:KOLVO_SIMVOLOV_OBREZKI] + '...'
 
     def get_foto_set(self):
         return self.foto_set.select_related('img')
@@ -67,7 +59,7 @@ class DomProdaza(models.Model):
 
     def __str__(self):
         try:
-            return f'{self.nomer} - {self.nazvanie}'
+            return f'{self.nazvanie}'
         except Exception:
             return ''
 
@@ -75,6 +67,15 @@ class DomProdaza(models.Model):
         if self.slug:
             return self.slug
         return self.id
+
+    def save(self, *args, **kwargs):
+        if self.prrice_akzionnaia > 0:
+            self.akzia = True
+            self.price_itogovaia = self.prrice_akzionnaia
+        else:
+            self.akzia = False
+            self.price_itogovaia = self.price_bazovaia
+        super().save(*args, **kwargs)
 
 
 class FotoDomProdaza(models.Model):
@@ -107,6 +108,7 @@ class VideoDomProdaza(models.Model):
     def __str__(self):
         return str(self.id)
 
+
 class PanoramiDomProdaza(models.Model):
     class Meta:
         verbose_name = 'Панорамы домов'
@@ -122,6 +124,7 @@ class PanoramiDomProdaza(models.Model):
     def __str__(self):
         return str(self.id)
 
+
 # -------------
 
 
@@ -130,23 +133,19 @@ class DomArenda(models.Model):
         verbose_name = 'Дом - аренда'
         verbose_name_plural = 'Дома - аренда'
 
-    pokazivat = models.BooleanField('Показывать', default=True, choices=(
-        (True, 'Показывать на сайте'),
-        (False, 'Не показывать на сайте'),
-    ))
+    pokazivat = models.BooleanField('Показывать', default=True, choices=CHOICES_POKAZIVAT)
 
-    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1, choices=(
-        (1, 'Нет'),
-        (2, 'Да. Выводить только на странице лучших предложений'),
-        (3, 'Да. Выводить на странице лучших предложений и главной'),
-    ))
+    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
+                                                 choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
 
     nazvanie = models.CharField('Название', max_length=255)
-    # nomer = models.CharField('Номер(id объекта)', max_length=50, null=True, blank=True)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
     previu = FilerImageField(verbose_name='Превью', null=True, blank=True, on_delete=models.CASCADE)
-    price_bazovaia = models.FloatField('Базовая цена руб.', null=True, blank=True, )
-    prrice_akzionnaia = models.FloatField('Акционная цена руб', null=True, blank=True, )
+    price_bazovaia = models.FloatField('Базовая цена руб.', default=0)
+    prrice_akzionnaia = models.FloatField('Акционная цена руб', default=0)
+
+    price_itogovaia = models.FloatField('Цена для поиска', default=0)
+    akzia = models.BooleanField('Акция/спец цена', default=False)
 
     obshaia_ploshad = models.FloatField('Плоащдь участка и дома (кв. м)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)
@@ -160,11 +159,7 @@ class DomArenda(models.Model):
     blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False)
     blizost_s_med = models.BooleanField('Близость с мед учереждением', default=False)
     blizost_s_metro = models.BooleanField('Близость с метро', default=False)
-    nalichie_otdelki = models.IntegerField('Наличие отделки', default=1, choices=(
-        (1, 'Без отделки'),
-        (2, 'Черновая'),
-        (3, 'С ремонтом'),
-    ))
+    nalichie_otdelki = models.IntegerField('Наличие отделки', default=1, choices=CHOICES_NALICHIE_OTDELKI)
 
     opisaanaie = HTMLField('Описание', null=True, blank=True,
                            help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
@@ -172,7 +167,7 @@ class DomArenda(models.Model):
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:
             opisanie = striptags(self.opisaanaie)
-            return opisanie[0:250] + '...'
+            return opisanie[0:KOLVO_SIMVOLOV_OBREZKI] + '...'
 
     def get_foto_set(self):
         return self.foto_set.select_related('img')
@@ -182,7 +177,7 @@ class DomArenda(models.Model):
 
     def __str__(self):
         try:
-            return f'{self.nomer} - {self.nazvanie}'
+            return f'{self.nazvanie}'
         except Exception:
             return ''
 
@@ -190,6 +185,15 @@ class DomArenda(models.Model):
         if self.slug:
             return self.slug
         return self.id
+
+    def save(self, *args, **kwargs):
+        if self.prrice_akzionnaia > 0:
+            self.akzia = True
+            self.price_itogovaia = self.prrice_akzionnaia
+        else:
+            self.akzia = False
+            self.price_itogovaia = self.price_bazovaia
+        super().save(*args, **kwargs)
 
 
 class FotoDomArenda(models.Model):

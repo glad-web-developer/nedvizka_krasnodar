@@ -114,6 +114,76 @@ html, body {
   box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
 }
 
+.nedvizka_filtr_i_poisk {
+  -webkit-box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
+  background-size: cover;
+  background-position: bottom;
+  /* reset input */
+}
+.nedvizka_filtr_i_poisk .card-header {
+  background-color: #fee500;
+}
+.nedvizka_filtr_i_poisk .card-body {
+  background-color: #f8f9fa;
+}
+.nedvizka_filtr_i_poisk .btn-warning:hover, .nedvizka_filtr_i_poisk .btn-warning:active {
+  color: #000 !important;
+}
+.nedvizka_filtr_i_poisk .btn-info:hover, .nedvizka_filtr_i_poisk .btn-info[disabled=disabled] {
+  background-color: #fff !important;
+  color: #fee500 !important;
+}
+.nedvizka_filtr_i_poisk .form__group {
+  position: relative;
+  padding: 25px 0 0;
+  width: 100%;
+}
+.nedvizka_filtr_i_poisk .form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1rem;
+}
+.nedvizka_filtr_i_poisk .form__field::placeholder {
+  color: transparent;
+}
+.nedvizka_filtr_i_poisk .form__field:placeholder-shown ~ .form__label {
+  font-size: 1rem;
+  cursor: text;
+  top: 20px;
+}
+.nedvizka_filtr_i_poisk .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #bbb;
+}
+.nedvizka_filtr_i_poisk .form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #fee500, #fff, #fee500);
+  border-image-slice: 1;
+}
+.nedvizka_filtr_i_poisk .form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #fee500;
+  font-weight: 700;
+}
+.nedvizka_filtr_i_poisk .form__field:required, .nedvizka_filtr_i_poisk .form__field:invalid {
+  box-shadow: none;
+}
+
 a.text-dark:hover, a.text-dark:active {
   color: #fee500 !important;
 }
@@ -174,7 +244,7 @@ a.text-light:hover, a.text-light:active {
 
 .page_second_type .main_menu {
   height: auto !important;
-  background-color: #eee;
+  background-color: #f8f9fa;
   color: #000000 !important;
   -webkit-box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
