@@ -4,7 +4,80 @@
             <p class="text-center text-uppercase h3"><b>Поиск</b></p>
         </div>
         <div class="card-body">
-            {{ form.as_p }}
+
+            {{ form.page }}
+
+            <div class="form_element">
+                {{ form.nazvanie.label_tag }}
+                {{ form.nazvanie }}
+            </div>
+
+            <div class="form_element">
+                <label for="">Цена</label>
+                <div class="row">
+                    <div class="col-12 col-md-6 pb-3 position-relative">
+                        {{ form.price_itogovaia_ot }}
+                        <span class="podpis_dlia_ot_do">от</span>
+                    </div>
+
+                    <div class="col-12 col-md-6 position-relative">
+                        {{ form.price_itogovaia_ot }}
+                        <span class="podpis_dlia_ot_do">до</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_element">
+                {{ form.naselenii_punkt.label_tag }}
+                {{ form.naselenii_punkt }}
+            </div>
+
+            <div class="form_element">
+                {{ form.adres.label_tag }}
+                {{ form.adres }}
+            </div>
+
+            <div class="form_element">
+                <label for="">Площадь</label>
+                <div class="row">
+                    <div class="col-12 col-md-6 pb-3 position-relative">
+                        {{ form.obshaia_ploshad_ot }}
+                        <span class="podpis_dlia_ot_do">от</span>
+                    </div>
+
+                    <div class="col-12 col-md-6 position-relative">
+                        {{ form.obshaia_ploshad_do }}
+                        <span class="podpis_dlia_ot_do">до</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form_element">
+                {{ form.nalichie_otdelki.label_tag }}
+                {{ form.nalichie_otdelki }}
+            </div>
+
+             <div class="form_element">
+                {{ form.nalichie_gaza.label_tag }}
+                {{ form.nalichie_gaza }}
+            </div>
+
+             <div class="form_element">
+                {{ form.blizost_so_shkoloi.label_tag }}
+                {{ form.blizost_so_shkoloi }}
+            </div>
+
+             <div class="form_element">
+                {{ form.blizost_s_med.label_tag }}
+                {{ form.blizost_s_med }}
+            </div>
+
+{#             <div class="form_element">#}
+{#                {{ form.blizost_s_metro.label_tag }}#}
+{#                {{ form.blizost_s_metro }}#}
+{#            </div>#}
+
+
             <div class="text-center">
                 <button class="btn btn-warning px-5" type="submit">Найти</button>
             </div>

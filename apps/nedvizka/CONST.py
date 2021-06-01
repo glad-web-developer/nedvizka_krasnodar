@@ -10,9 +10,16 @@ CHOICES_ETO_LUCHSHOE_PREDLOZENIE = (
 )
 
 CHOICES_NALICHIE_OTDELKI = (
+    (None, '---'),
     (1, 'Без отделки'),
     (2, 'Черновая'),
     (3, 'С ремонтом'),
+)
+
+CHOICES_DA_NET = (
+    (None, '---'),
+    (True, 'Да'),
+    (False, 'Нет'),
 )
 
 KOLVO_SIMVOLOV_OBREZKI = 250

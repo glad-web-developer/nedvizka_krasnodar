@@ -50,6 +50,9 @@ $color2: #f8f9fa;
 }
 
 
+
+
+
 .modal-content {
   @include ten1();
 }
@@ -162,8 +165,41 @@ $color2: #f8f9fa;
 }
 
 
+.cms-toolbar-expanded .nedvizka_filtr_i_poisk {
+  //top: 60px !important;
+}
+
 .nedvizka_filtr_i_poisk {
   @include ten2();
+
+  //position: sticky;
+  //bottom: 20px;
+
+
+  .podpis_dlia_ot_do{
+    position: absolute;
+    bottom:0;
+    left:45%;
+    font-size: 0.7rem;
+  }
+
+  select{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    background-clip: padding-box;
+    border:  none;
+    border-bottom:  2px solid #9b9b9b;
+    box-shadow: none;
+    background:none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  }
 
   .card-header {
     background-color: $color1;
@@ -181,67 +217,32 @@ $color2: #f8f9fa;
   }
 
   .btn-info:hover, .btn-info[disabled='disabled'] {
-    background-color: #fff !important;
     color: $color1 !important;
   }
 
-  .form__group {
-    position: relative;
-    padding: 25px 0 0;
-    width: 100%;
+  .form_element {
+    margin-bottom: 25px;
+    label {
+      display: block;
+      transition: 0.2s;
+      font-size: 0.9rem;
+      color: #000;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    input[type='text'], input[type='number'] {
+      font-family: inherit;
+      width: 100%;
+      border: 0;
+      border-bottom: 2px solid #9b9b9b;
+      outline: 0;
+      font-size: 1rem;
+      background: none;
+    }
   }
 
 
-  .form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid #9b9b9b;
-    outline: 0;
-    font-size: 1rem;
-  }
-
-  .form__field::placeholder {
-    color: transparent;
-  }
-
-  .form__field:placeholder-shown ~ .form__label {
-    font-size: 1rem;
-    cursor: text;
-    top: 20px;
-  }
-
-  .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: #bbb;
-  }
-
-  .form__field:focus {
-    padding-bottom: 6px;
-    font-weight: 700;
-    border-width: 3px;
-    border-image: linear-gradient(to right, $color1, #fff, $color1);
-    border-image-slice: 1;
-  }
-
-  .form__field:focus ~ .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: $color1;
-    font-weight: 700;
-  }
-
-  /* reset input */
-  .form__field:required, .form__field:invalid {
-    box-shadow: none;
-  }
 }
 
 
