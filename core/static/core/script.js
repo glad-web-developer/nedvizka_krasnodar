@@ -16,7 +16,7 @@ function vivisti_uvedomlenie(zagolovok, telo, type) {
 
 function podsvetit_aktivnoe_menu() {
     $('.main_menu').find('.nav-link').each(function () {
-        if ((window.location.href.indexOf( $(this).attr('href'))) > -1) {
+        if ((window.location.href.indexOf($(this).attr('href'))) > -1) {
             $(this).addClass('active');
         }
     });
@@ -39,6 +39,17 @@ $(() => {
             // $('.overlay').addClass('active');
             // $('.collapse.in').toggleClass('in');
             // $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+
+
+        $('.lightgallery2').lightGallery({
+            thumbnail: true,
+            share: false,
+            download: false,
+            zoom: false,
+            autoplay: false,
+            fullScreen: false,
+            autoplayControls: false
         });
     });
 

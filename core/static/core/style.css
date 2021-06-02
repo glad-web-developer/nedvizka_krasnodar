@@ -16,6 +16,38 @@ html, body {
   box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
 }
 
+.ten2 {
+  -webkit-box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 10px 0px rgba(34, 60, 80, 0.2);
+}
+
+.ten3 {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 0px 10px 0px rgba(34, 60, 80, 0.2);
+}
+
+.dv_nedvizka .previu {
+  -webkit-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
+}
+
+.lg-toolbar.lg-group {
+  z-index: 1000000000 !important;
+}
+
+.lg-outer {
+  z-index: 1000000000 !important;
+}
+
+.lg-close.lg-icon {
+  color: #fee500;
+  opacity: 1;
+  font-size: 30pt;
+}
+
 .modal-content {
   -webkit-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);

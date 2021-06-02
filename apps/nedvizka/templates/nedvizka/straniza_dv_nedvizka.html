@@ -1,471 +1,369 @@
 {% extends "core/base.html" %}
-{% load cms_tags menu_tags sekizai_tags static %}
+{% load thumbnail static cms_tags sekizai_tags %}
 {% block content %}
-    {% load thumbnail %}
+
+    <div id="wrapper" class="page_second_type">
+
+        {% include 'core/elements/navbar.html' %}
 
 
-    {% include 'core/elements/navbar.html' %}
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 99999; right: 0; top: 15px;">
+            <div id="uvedomlenie" style="opacity:1!important;" class="toast hide bg-white" role="alert"
+                 aria-live="assertive" aria-atomic="true" data-delay="5000">
+                <div class="toast-header uvedomlenie_header bg-warning ">
+                    <strong class="mr-auto uvedomlenie_title text-dark h6 text-uppercase"></strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body  uvedomlenie_telo h6 text-center ">
 
-
-    <main class="dv_nedvizka">
-
-        <div class="header_black"></div>
-
-        <!--  -->
-        <div class="bg-dark text-white oblast_zagolovka py-3">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-lg-3 d-none d-lg-block">
-                        <a href="#" class="text-uppercase px-3 btn btn-light"><b>Показать на карте</b></a>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <h1 class="text-uppercase text-center h2">
-                            <b>{{ danie_nedvizki.nazvanie|default_if_none:'Безымянный объект' }}</b></h1>
-                    </div>
-                    <div class="col-12 col-lg-3 text-center text-lg-right">
-                        <span class="mb-3 mr-2 d-block d-lg-inline"><b>{{ danie_nedvizki.raspolozenie_gorod|default_if_none:'' }}</b></span>
-                        <span class="btn btn-light py-1 d-inline-block d-lg-inline"><b>{{ danie_nedvizki.nomer|default_if_none:'' }}</b></span>
-                        {% if user.is_superuser %}
-                            <a target="_blank" href="/admin/nedvizka/dom/{{ danie_nedvizki.id }}/change/"
-                               class="text-info py-1 d-block "><b>Открыть в админке</b></a>{% endif %}
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- слайдер -->
 
-        <div class="owl-carousel owl_carousel_nedvizka owl-theme">
-            {% for i_nedvizka in danie_nedvizki.get_foto_set %}
-                <div class="item">
-                    <img class="img-fluid" src="{% thumbnail i_nedvizka.img 1800x900 %}" alt="">
-                </div>
-            {% endfor %}
-        </div>
+        <main>
+            <div class="dv_nedvizka">
+                <div class="container py-5">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 mb-3 text-md-left text-center">
+                            <h1><b>{{ danie_nedvizki.get_nazvanie }}</b></h1>
+                        </div>
 
-
-        <div class="bg-light py-3">
-
-            <!--  цена площади и тд -->
-            <div class="container-fluid mb-5">
-                <div class="row">
-
-                    <div class="col-12 col-lg-4 col-xl-5 text-center text-lg-left mb-5 mb-lg-0">
-                        <a href="#" class="btn btn-dark"><b>₽/$</b></a>
-                        <span class="h2"><b>{{ danie_nedvizki.price_dollor|floatformat }}$</b></span>
-                        <span class="h2 d-none"><b>{{ danie_nedvizki.price_rub|floatformat }}руб.</b></span>
-                    </div>
-
-                    <div class="col-12 col-lg-8 col-xl-7  text-center text-lg-right">
-                        <div class="row">
-
-
-                            <div class="col-4 text-center d-lg-inline">
-                                <img class=" d-lg-inline mb-2" height="35" width="35"
-                                     src="{% static 'nedvizka/img/plosad_doma.png' %}" alt="">
-
-                                <b class="h6 font-weight-bold m-0 ml-lg-1 mr-lg-4 d-lg-inline   d-block">{{ danie_nedvizki.ploshad_osnovnogo_doma|floatformat }}
-                                    кв.м</b>
+                        <div class="col-12 col-md-5 col-lg-4 mb-3">
+                            <img class="img-fluid previu" src="{% thumbnail danie_nedvizki.previu 500x500 %}"
+                                 alt="">
+                            <div class="text-center mt-4">
+                                <a href="#okno_zakaza_zvonka"
+                                   class="btn btn-warning zakazat_zvonok d-none d-md-inline btn-warning2    "
+                                   data-target="#okno_zakaza_zvonka" data-toggle="modal">Связаться с риэлтором</a>
                             </div>
 
-                            <div class="col-4 text-center d-lg-inline">
-                                <img class=" mb-2" height="35"
-                                     src="{% static 'nedvizka/img/ploshad_uchastka.png' %}" alt="">
-                                <b class="h6 font-weight-bold  m-0 ml-lg-1 mr-lg-4  d-lg-inline  d-block">{{ danie_nedvizki.ploshad_uchastka|floatformat }}
-                                    соток</b>
+                        </div>
+
+                        <div class="col-12 col-md-7 col-lg-8 mb-3">
+                            <table class="table ">
+
+                                {% if akzia %}
+                                    <tr>
+                                        <td>Цена до акции / спец предложения</td>
+                                        <td class="text-center">{{ danie_nedvizki.price_bazovaia|floatformat }} руб.
+                                        </td>
+
+                                        <td><b>Цена сейчас</b></td>
+                                        <td class="text-center"><b>{{ danie_nedvizki.price_bazovaia|floatformat }}
+                                            руб.</b>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td>Цена</td>
+                                        <td class="text-center">{{ danie_nedvizki.price_bazovaia|floatformat }} руб.
+                                        </td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.obshaia_ploshad %}
+                                    <tr>
+                                        <td>Площадь участка и дома (кв. м)</td>
+                                        <td class="text-center">{{ danie_nedvizki.obshaia_ploshad|floatformat }}
+                                            м<sup>2</sup></td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.ploshad_osnovnogo_doma %}
+                                    <tr>
+                                        <td>Площадь основного дома(кв.м)</td>
+                                        <td class="text-center">{{ danie_nedvizki.ploshad_osnovnogo_doma|floatformat }}
+                                            м<sup>2</sup></td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.naselenii_punkt %}
+                                    <tr>
+                                        <td>Населенный пункт</td>
+                                        <td class="text-center">{{ danie_nedvizki.naselenii_punkt }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.adres %}
+                                    <tr>
+                                        <td>Адрес</td>
+                                        <td class="text-center">{{ danie_nedvizki.adres }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.nalichie_gaza == False or  danie_nedvizki.nalichie_gaza == True %}
+                                    <tr>
+                                        <td>Наличие газа в доме</td>
+                                        <td class="text-center">{{ danie_nedvizki.get_nalichie_gaza_display }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.blizost_so_shkoloi == True or danie_nedvizki.blizost_so_shkoloi == False %}
+                                    <tr>
+                                        <td>Близость со школой</td>
+                                        <td class="text-center">{{ danie_nedvizki.get_blizost_so_shkoloi_display }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.blizost_s_med == True or danie_nedvizki.blizost_s_med == False %}
+                                    <tr>
+                                        <td>Близость с мед учереждением</td>
+                                        <td class="text-center">{{ danie_nedvizki.get_blizost_s_med_display }}</td>
+                                    </tr>
+                                {% endif %}
+
+                            </table>
+
+                        </div>
+
+
+                        <div class="col-12 mb-3">
+                            <div>{{ danie_nedvizki.opisaanaie|safe }}</div>
+                            <div class="text-center mt-4">
+                                <a href="#okno_zakaza_zvonka"
+                                   class="btn btn-warning zakazat_zvonok  d-md-none btn-warning2    "
+                                   data-target="#okno_zakaza_zvonka" data-toggle="modal">Связаться с риэлтором</a>
                             </div>
-                            <div class="col-4 text-center d-lg-inline">
-
-                                <img height="35" class=" mb-2" src="{% static 'nedvizka/img/spalni.png' %}" alt="">
-                                <b class="h6 font-weight-bold  m-0 ml-lg-1 mr-lg-4   d-block d-lg-inline">{{ danie_nedvizki.kolvo_spalen }}
-                                    спален</b>
-
-                            </div>
-
-
                         </div>
 
 
-                    </div>
-                </div>
-            </div>
+                        <div class="col-12">
+                            <div class=" text-center">
+                                <div class="lightgallery2 row">
+                                    {% for foto in danie_nedvizki.get_foto_set %}
+                                        <a class="col-6 col-md-4 col-lg-3" href="{{ foto.img.url }}">
 
-            <!-- таблица характеристик -->
-            <div class="container-fluid mt-5">
-                <div class="row tabliza_parametrov_obiekta">
-                    <div class="col-12 col-lg-6 odd">
-                        <div>
-                            <span><b>Общая площадь участка:</b></span>
-                            <span>{{ danie_nedvizki.obshaia_ploshad|floatformat }} соток</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 odd">
-                        <div>
-                            <span><b>Отделка:</b></span>
-                            <span>{{ danie_nedvizki.otdelka }}</span>
-                        </div>
-                    </div>
+                                            <img class="ten1 mb-2 w-100"
+                                                 src="{% thumbnail foto.img 700x300 %}">
 
-                    <div class="col-12 col-lg-6 not_odd">
-                        <div>
-                            <span><b>Общая площадь дома:</b></span>
-                            <span>{{ danie_nedvizki.ploshad_osnovnogo_doma|floatformat }} кв.м</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 not_odd">
-                        <div>
-                            <span><b>Мебель и техника:</b></span>
-                            <span>{{ danie_nedvizki.get_mebel_display }}</span>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 col-lg-6 odd">
-                        <div>
-                            <span><b>Этажность:</b></span>
-                            <span>{{ danie_nedvizki.etaznost }}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 odd">
-                        <div>
-                            <span><b>Бассеин:</b></span>
-                            <span>{{ danie_nedvizki.bassein }}</span>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 col-lg-6 not_odd">
-                        <div>
-                            <span><b>Количество комнат:</b></span>
-                            <span>{{ danie_nedvizki.kolvo_komnat }}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 not_odd">
-                        <div>
-                            <span><b>Зона барбекю:</b></span>
-                            <span>{{ danie_nedvizki.zona_barbeku }}</span>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 col-lg-6 odd">
-                        <div class="">
-                            <span><b>Количество спален:</b></span>
-                            <span>{{ danie_nedvizki.kolvo_spalen }}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 odd">
-                        <div>
-                            <span><b>Растояние до города:</b></span>
-                            <span>{{ danie_nedvizki.rastoianie_do_goroda }}</span>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-6 not_odd">
-                        <div>
-                            <span><b>Количество санузлов:</b></span>
-                            <span>{{ danie_nedvizki.kolvo_sanuzlov }}</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 not_odd">
-                        <div>
-                            <span><b>Растояние до моря:</b></span>
-                            <span>{{ danie_nedvizki.rastoianie_do_moria }}</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- табица описание и видео -->
-            <div class="container-fluid mt-5">
-                <div class="row">
-
-                    <div class="col- {% if danie_nedvizki.video_set.count > 0 or  danie_nedvizki.panorami_set.count > 0 %} col-lg-6 {% else %} col-lg-12  {% endif %}">
-                        <p>
-                            {{ danie_nedvizki.opisaanaie|safe }}
-                        </p>
-                    </div>
-
-
-                    <div class="col-12 col-lg-6">
-
-                        {% for i_video in danie_nedvizki.video_set.all %}
-                            <div class="mb-3">
-                                {{ i_video.video|safe }}
-                            </div>
-                        {% endfor %}
-
-                        {% for i_panorama in danie_nedvizki.panorami_set.all %}
-                            <div class="mb-3">
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <div class="embed-responsive-item">
-                                        {{ i_panorama.iframe_code|safe }}
-                                    </div>
+                                        </a>
+                                    {% endfor %}
                                 </div>
+
+
                             </div>
-                        {% endfor %}
-
-
+                        </div>
                     </div>
                 </div>
+
             </div>
-
-            <div class="w-100">
-                <div id="map"></div>
-            </div>
-        </div>
-
-
-    </main>
-
+        </main>
+    </div>
 
     {% include 'core/elements/footer.html' %}
-
-
-    {% addtoblock 'js' %}
-        <script src="{% static 'otzivi_plugin/lib/OwlCarousel2/owl.carousel.min.js' %}"></script>
-    {% endaddtoblock %}
-
-    {% addtoblock 'css' %}
-        <link rel="stylesheet" href="{% static 'otzivi_plugin/lib/OwlCarousel2/assets/owl.carousel.min.css' %}">
-        <link rel="stylesheet" href="{% static 'otzivi_plugin/lib/OwlCarousel2/assets/owl.theme.default.min.css' %}">
-    {% endaddtoblock %}
-
-    {% addtoblock 'js' %}
-        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>"
-                type="text/javascript"></script>
-    {% endaddtoblock %}
-
-
-    {% addtoblock 'js' %}
-        <script>
-            $(function () {
-                $('.owl_carousel_nedvizka').owlCarousel({
-                    loop: true,
-                    margin: 5,
-                    nav: true,
-                    center: true,
-                    autoWidth: true,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-
-
-                        800: {
-                            items: 2
-                        },
-                        1000: {
-                            items: 2
-                        }
-                    }
-                });
-            });
-
-
-            ymaps.ready(init);
-
-            function init() {
-                var myMap = new ymaps.Map("map", {
-                        center: [{{danie_nedvizki.kordinati_na_karte}}],
-                        zoom: 17
-                    }, {
-                        searchControlProvider: 'yandex#search'
-                    }),
-
-                    // Создаем геообъект с типом геометрии "Точка".
-                    myGeoObject = new ymaps.GeoObject();
-
-                myMap.geoObjects.add(
-                    new ymaps.Placemark([{{danie_nedvizki.kordinati_na_karte}}], {}, {
-                            preset: 'islands#circleDotIcon',
-                            iconColor: '#60beaf'
-                        }
-                    ));
-
-                myMap.behaviors.disable('scrollZoom')
-            }
-
-        </script>
-    {% endaddtoblock %}
-
-
-
-    {% addtoblock 'css' %}
-        <style>
-
-            .dv_nedvizka .btn-dark {
-                border-radius: 25px;
-                padding: 2px 20px;
-                vertical-align: text-bottom;
-            }
-
-
-            .owl_carousel_nedvizka .owl-nav {
-                position: absolute;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                margin: 0 !important;
-            }
-
-            .owl_carousel_nedvizka .owl-nav button.owl-next, .owl_carousel_nedvizka .owl-nav button.owl-prev {
-                background: rgba(0, 0, 0, 0.5);
-                color: inherit;
-                border: none;
-                font: inherit;
-                height: 100%;
-                margin: 0 !important;
-                border-radius: 0;
-                padding: 0 !important;
-                width: 90px;
-            }
-
-            .owl_carousel_nedvizka .owl-dots {
-                display: none;
-            }
-
-            .owl_carousel_nedvizka .owl-theme .owl-nav {
-                margin: 0;
-            }
-
-            .owl_carousel_nedvizka .owl-prev {
-                left: 0;
-                position: absolute;
-            }
-
-            .owl_carousel_nedvizka .owl-next {
-                right: 0;
-                position: absolute;
-            }
-
-            .owl_carousel_nedvizka .owl-next:hover, .owl_carousel_nedvizka .owl-prev:hover {
-                background: rgba(96, 190, 175, 0.7) !important;
-                color: #fff !important;
-            }
-
-            .owl_carousel_nedvizka .owl-next:hover span, .owl_carousel_nedvizka .owl-prev:hover span {
-                color: #fff !important;
-            }
-
-            .owl_carousel_nedvizka .owl-nav button span {
-                font-size: 80pt;
-                color: #60beaf;
-            }
-
-            .owl_carousel_nedvizka .owl-nav button span:hover {
-                color: #FFFFFF;
-            }
-
-            .owl_carousel_nedvizka .owl-dot.active span, .owl_carousel_nedvizka .owl-dot.active span:hover {
-                background: #60beaf !important;
-                color: #FFFFFF;
-
-
-            }
-
-            .dv_nedvizka .oblast_zagolovka .btn-light {
-                border-radius: 20px;
-            }
-
-            .dv_nedvizka .bg-light {
-                background-color: #eaeaea !important;
-            }
-
-            #map, iframe {
-                -webkit-box-shadow: 0px 5px 10px 6px rgba(34, 60, 80, 0.4);
-                -moz-box-shadow: 0px 5px 10px 6px rgba(34, 60, 80, 0.4);
-                box-shadow: 0px 5px 10px 6px rgba(34, 60, 80, 0.4);
-
-            }
-
-
-            {#col#}
-            @media (max-width: 575px) {
-                #map {
-                    height: 300px;
-                }
-            }
-
-            {#sm#}
-            @media (min-width: 576px) {
-                #map {
-                    height: 400px;
-                }
-            }
-
-
-            {#md#}
-            @media (min-width: 768px) {
-                #map {
-                    height: 500px;
-                }
-            }
-
-            {#lg#}
-            @media (max-width: 991px) {
-                .dv_nedvizka .tabliza_parametrov_obiekta .col-12:nth-child(odd) > div {
-                    background-color: #fff !important;
-                }
-
-                .dv_nedvizka .tabliza_parametrov_obiekta {
-
-                }
-
-                .dv_nedvizka .tabliza_parametrov_obiekta .col-12 > div {
-                    border-radius: 15px;
-                    padding: 2px 10px;
-                }
-
-            }
-
-            @media (min-width: 992px) {
-                #map {
-                    height: 600px;
-                }
-
-                .dv_nedvizka .tabliza_parametrov_obiekta .odd > div {
-                    background-color: #fff !important;
-                }
-
-                .dv_nedvizka .tabliza_parametrov_obiekta .col-12 > div {
-                    padding-left: 15px;
-                    height: 100%;
-                }
-
-
-                .dv_nedvizka .tabliza_parametrov_obiekta .odd:nth-child(2n+1) > div {
-                    padding-left: 15px;
-                    border-radius: 15px 0 0 15px;
-                }
-
-                .dv_nedvizka .tabliza_parametrov_obiekta .odd:nth-child(2n) > div {
-                    padding-right: 15px;
-                    border-radius: 0 15px 15px 0;
-                }
-
-                .dv_nedvizka .tabliza_parametrov_obiekta .col-12:nth-child(2n+1) {
-                    padding-right: 0 !important;
-                }
-
-                .dv_nedvizka .tabliza_parametrov_obiekta .col-12:nth-child(2n) {
-                    padding-left: 0 !important;
-                }
-
-
-            }
-
-            {#xl#}
-            @media (min-width: 1120px) {
-
-            }
-
-
-        </style>
-
-    {% endaddtoblock %}
-
+    {% static_placeholder 'modalnie_okna' %}
 
 {% endblock %}
+
+
+{% addtoblock 'js' %}
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>"
+            type="text/javascript"></script>
+{% endaddtoblock %}
+
+
+
+
+{##}
+{#ymaps.ready(init);#}
+{##}
+{#function init() {#}
+{#    var myMap = new ymaps.Map("map", {#}
+{#            center: [{{danie_nedvizki.kordinati_na_karte}}],#}
+{#            zoom: 17#}
+{#        }, {#}
+{#            searchControlProvider: 'yandex#search'#}
+{#        }),#}
+{##}
+{#        // Создаем геообъект с типом геометрии "Точка".#}
+{#        myGeoObject = new ymaps.GeoObject();#}
+{##}
+{#    myMap.geoObjects.add(#}
+{#        new ymaps.Placemark([{{danie_nedvizki.kordinati_na_karte}}], {}, {#}
+{#                preset: 'islands#circleDotIcon',#}
+{#                iconColor: '#60beaf'#}
+{#            }#}
+{#        ));#}
+{##}
+{#    myMap.behaviors.disable('scrollZoom')#}
+{#{#}
+
+
+
+{% addtoblock 'css' %}
+    {#    <style>#}
+    {##}
+    {#        .dv_nedvizka .btn-dark {#}
+    {#            border-radius: 25px;#}
+    {#            padding: 2px 20px;#}
+    {#            vertical-align: text-bottom;#}
+    {#        }#}
+    {##}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-nav {#}
+    {#            position: absolute;#}
+    {#            top: 0;#}
+    {#            width: 100%;#}
+    {#            height: 100%;#}
+    {#            margin: 0 !important;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-nav button.owl-next, .owl_carousel_nedvizka .owl-nav button.owl-prev {#}
+    {#            background: rgba(0, 0, 0, 0.5);#}
+    {#            color: inherit;#}
+    {#            border: none;#}
+    {#            font: inherit;#}
+    {#            height: 100%;#}
+    {#            margin: 0 !important;#}
+    {#            border-radius: 0;#}
+    {#            padding: 0 !important;#}
+    {#            width: 90px;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-dots {#}
+    {#            display: none;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-theme .owl-nav {#}
+    {#            margin: 0;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-prev {#}
+    {#            left: 0;#}
+    {#            position: absolute;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-next {#}
+    {#            right: 0;#}
+    {#            position: absolute;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-next:hover, .owl_carousel_nedvizka .owl-prev:hover {#}
+    {#            background: rgba(96, 190, 175, 0.7) !important;#}
+    {#            color: #fff !important;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-next:hover span, .owl_carousel_nedvizka .owl-prev:hover span {#}
+    {#            color: #fff !important;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-nav button span {#}
+    {#            font-size: 80pt;#}
+    {#            color: #60beaf;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-nav button span:hover {#}
+    {#            color: #FFFFFF;#}
+    {#        }#}
+    {##}
+    {#        .owl_carousel_nedvizka .owl-dot.active span, .owl_carousel_nedvizka .owl-dot.active span:hover {#}
+    {#            background: #60beaf !important;#}
+    {#            color: #FFFFFF;#}
+    {##}
+    {##}
+    {#        }#}
+    {##}
+    {#        .dv_nedvizka .oblast_zagolovka .btn-light {#}
+    {#            border-radius: 20px;#}
+    {#        }#}
+    {##}
+    {#        .dv_nedvizka .bg-light {#}
+    {#            background-color: #eaeaea !important;#}
+    {#        }#}
+    {##}
+    {#        #map, iframe {#}
+    {#            -webkit-box-shadow: 0px 5px 10px 6px rgba(34, 60, 80, 0.4);#}
+    {#            -moz-box-shadow: 0px 5px 10px 6px rgba(34, 60, 80, 0.4);#}
+    {#            box-shadow: 0px 5px 10px 6px rgba(34, 60, 80, 0.4);#}
+    {##}
+    {#        }#}
+    {##}
+    {##}
+    {#col#}
+    {#        @media (max-width: 575px) {#}
+    {#            #map {#}
+    {#                height: 300px;#}
+    {#            }#}
+    {#        }#}
+    {##}
+    {#sm#}
+    {#        @media (min-width: 576px) {#}
+    {#            #map {#}
+    {#                height: 400px;#}
+    {#            }#}
+    {#        }#}
+    {##}
+    {##}
+    {#md#}
+    {#        @media (min-width: 768px) {#}
+    {#            #map {#}
+    {#                height: 500px;#}
+    {#            }#}
+    {#        }#}
+    {##}
+    {#lg#}
+    {#        @media (max-width: 991px) {#}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .col-12:nth-child(odd) > div {#}
+    {#                background-color: #fff !important;#}
+    {#            }#}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta {#}
+    {##}
+    {#            }#}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .col-12 > div {#}
+    {#                border-radius: 15px;#}
+    {#                padding: 2px 10px;#}
+    {#            }#}
+    {##}
+    {#        }#}
+    {##}
+    {#        @media (min-width: 992px) {#}
+    {#            #map {#}
+    {#                height: 600px;#}
+    {#            }#}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .odd > div {#}
+    {#                background-color: #fff !important;#}
+    {#            }#}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .col-12 > div {#}
+    {#                padding-left: 15px;#}
+    {#                height: 100%;#}
+    {#            }#}
+    {##}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .odd:nth-child(2n+1) > div {#}
+    {#                padding-left: 15px;#}
+    {#                border-radius: 15px 0 0 15px;#}
+    {#            }#}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .odd:nth-child(2n) > div {#}
+    {#                padding-right: 15px;#}
+    {#                border-radius: 0 15px 15px 0;#}
+    {#            }#}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .col-12:nth-child(2n+1) {#}
+    {#                padding-right: 0 !important;#}
+    {#            }#}
+    {##}
+    {#            .dv_nedvizka .tabliza_parametrov_obiekta .col-12:nth-child(2n) {#}
+    {#                padding-left: 0 !important;#}
+    {#            }#}
+    {##}
+    {##}
+    {#        }#}
+    {##}
+    {#xl#}
+    {#        @media (min-width: 1120px) {#}
+    {##}
+    {#        }#}
+    {##}
+    {##}
+    {#    </style>#}
+
+{% endaddtoblock %}
 

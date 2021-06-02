@@ -8,7 +8,7 @@ from filer.fields.image import FilerImageField
 
 # *** дома продажа ***
 from apps.nedvizka.CONST import CHOICES_POKAZIVAT, CHOICES_ETO_LUCHSHOE_PREDLOZENIE, CHOICES_NALICHIE_OTDELKI, \
-    KOLVO_SIMVOLOV_OBREZKI
+    KOLVO_SIMVOLOV_OBREZKI, CHOICES_DA_NET
 
 
 class DomProdaza(models.Model):
@@ -37,14 +37,19 @@ class DomProdaza(models.Model):
                                           help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
     ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
 
-    nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False)
-    blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False)
-    blizost_s_med = models.BooleanField('Близость с мед учереждением', default=False)
-    blizost_s_metro = models.BooleanField('Близость с метро', default=False)
+    nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False, choices=CHOICES_DA_NET)
+    blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False, choices=CHOICES_DA_NET)
+    blizost_s_med = models.BooleanField('Близость с мед учереждением', default=False, choices=CHOICES_DA_NET)
+    blizost_s_metro = models.BooleanField('Близость с метро', default=False, choices=CHOICES_DA_NET)
     nalichie_otdelki = models.IntegerField('Наличие отделки', default=1, choices=CHOICES_NALICHIE_OTDELKI)
 
     opisaanaie = HTMLField('Описание', null=True, blank=True,
                            help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
+
+    def get_nazvanie(self):
+        if self.nazvanie:
+            return self.nazvanie
+        return f'Дом №{self.id}'
 
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:
@@ -163,6 +168,12 @@ class DomArenda(models.Model):
 
     opisaanaie = HTMLField('Описание', null=True, blank=True,
                            help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
+
+    def get_nazvanie(self):
+        if self.nazvanie:
+            return self.nazvanie
+        return f'Дом №{self.id}'
+
 
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:

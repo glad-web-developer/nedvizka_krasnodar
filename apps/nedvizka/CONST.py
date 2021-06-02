@@ -22,4 +22,5 @@ CHOICES_DA_NET = (
     (False, 'Нет'),
 )
 
+
 KOLVO_SIMVOLOV_OBREZKI = 250

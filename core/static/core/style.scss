@@ -49,6 +49,34 @@ $color2: #f8f9fa;
   @include ten1()
 }
 
+.ten2 {
+  @include ten2()
+}
+
+.ten3 {
+  @include ten3()
+}
+
+
+.dv_nedvizka{
+  .previu{
+    @include ten1();
+  }
+}
+
+.lg-toolbar.lg-group{
+  z-index: 1000000000!important;
+}
+
+.lg-outer{
+  z-index: 1000000000!important;
+}
+
+.lg-close.lg-icon{
+  color: $color1;
+  opacity: 1;
+  font-size: 30pt;
+}
 
 
 
