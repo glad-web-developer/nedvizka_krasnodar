@@ -3,8 +3,10 @@ from math import ceil
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from apps.nedvizka.forms import DomProdazaForm, KvartiraProdazaForm
-from apps.nedvizka.models import DomProdaza, DomArenda, KvartiraPervichkaProdaza
+from apps.nedvizka.forms import DomProdazaForm, KvartiraPervichkaProdazaForm, DomArendaForm, \
+    KvartiraPervichkaArendaForm, KvartiraVtorickaArendaForm, KvartiraVtorichkaProdazaForm, UchastkiProdazaForm, \
+    UchastkiArendaForm, NezelieProdazaForm, NezelieArendaForm, KomerchiskieProdazaForm, KomerchiskieArendaForm
+from apps.nedvizka.models import DomProdaza, DomArenda, KvartiraPervichkaProdaza, KvartiraPervichkaArenda
 from apps.nedvizka_plugins.models import NedvizkaSpisokObiectovPluginPluginSetting, \
     NedvizkaFiltriPoiskaPluginPluginSetting
 
@@ -72,14 +74,11 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
             dannie_nedvizki = DomArenda.objects.select_related('previu').all()
 
         if tip_nedvizki == 'kvartira_pervicka_prodaza':
-            dannie_nedvizki = KvartiraPervichkaProdaza.objects.select_related('previu').all
+            dannie_nedvizki = KvartiraPervichkaProdaza.objects.select_related('previu').all()
 
+        if tip_nedvizki == 'kvartira_pervicka_arenda':
+            dannie_nedvizki = KvartiraPervichkaArenda.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'kvartira_vtoricka_prodaza':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
-
-        # if tip_nedvizki == 'kvartira_vtoricka_arenda':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
 
         # if tip_nedvizki == 'kvartira_vtoricka_prodaza':
         #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
@@ -143,10 +142,42 @@ class NedvizkaFiltriPoiskaPluginPlugin(CMSPluginBase):
         form_url = ''
         form = []
         params = context['request'].GET
+
         if instance.tip_nedvizki == 'dom_prodaza':
             form = DomProdazaForm(params)
-        if instance.tip_nedvizki == 'kvartira_prodaza':
-            form = KvartiraProdazaForm(params)
+
+        if instance.tip_nedvizki == 'dom_arenda':
+            form = DomArendaForm(params)
+
+        if instance.tip_nedvizki == 'kvartira_pervicka_prodaza':
+            form = KvartiraPervichkaProdazaForm(params)
+
+        if instance.tip_nedvizki == 'kvartira_pervicka_arenda':
+            form = KvartiraPervichkaArendaForm(params)
+
+        if instance.tip_nedvizki == 'kvartira_vtoricka_prodaza':
+            form = KvartiraVtorichkaProdazaForm(params)
+
+        if instance.tip_nedvizki == 'kvartira_vtoricka_arenda':
+            form = KvartiraVtorickaArendaForm(params)
+
+        if instance.tip_nedvizki == 'uchactki_prodaza':
+            form = UchastkiProdazaForm(params)
+
+        if instance.tip_nedvizki == 'uchactki_arenda':
+            form = UchastkiArendaForm(params)
+
+        if instance.tip_nedvizki == 'nezilie_prodaza':
+            form = NezelieProdazaForm(params)
+
+        if instance.tip_nedvizki == 'nezilie_arenda':
+            form = NezelieArendaForm(params)
+
+        if instance.tip_nedvizki == 'komerchiskie_prodaza':
+            form = KomerchiskieProdazaForm(params)
+
+        if instance.tip_nedvizki == 'komerchiskie_arenda':
+            form = KomerchiskieArendaForm(params)
 
         context.update({'instance': instance, 'form_url': form_url, 'form': form})
         return context

@@ -6,15 +6,14 @@ from djangocms_text_ckeditor.fields import HTMLField
 from easy_thumbnails.files import get_thumbnailer
 from filer.fields.image import FilerImageField
 
-# *** дома продажа ***
 from apps.nedvizka.CONST import CHOICES_POKAZIVAT, CHOICES_ETO_LUCHSHOE_PREDLOZENIE, CHOICES_NALICHIE_OTDELKI, \
     KOLVO_SIMVOLOV_OBREZKI, CHOICES_DA_NET
 
 
-class DomProdaza(models.Model):
+class KvartiraVtorichkaProdaza(models.Model):
     class Meta:
-        verbose_name = 'Дом - продажа'
-        verbose_name_plural = 'Дома - продажа'
+        verbose_name = 'Квартира первичка - продажа'
+        verbose_name_plural = 'Квартира первичка - продажа'
 
     pokazivat = models.BooleanField('Показывать/скрыть', default=True, choices=CHOICES_POKAZIVAT)
 
@@ -35,7 +34,7 @@ class DomProdaza(models.Model):
     adres = models.CharField('Адрес', null=True, blank=True, max_length=255)
     kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
                                           help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
-    ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
+    # ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
 
     nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False, choices=CHOICES_DA_NET)
     blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False, choices=CHOICES_DA_NET)
@@ -83,13 +82,13 @@ class DomProdaza(models.Model):
         super().save(*args, **kwargs)
 
 
-class FotoDomProdaza(models.Model):
+class FotoKvartiraVtorichkaProdaza(models.Model):
     class Meta:
-        verbose_name = 'Фото дома'
-        verbose_name_plural = 'Фото дома'
+        verbose_name = 'Фото'
+        verbose_name_plural = 'Фото'
         ordering = ['-index_sortirivki']
 
-    dom = models.ForeignKey(DomProdaza, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+    nedvizka = models.ForeignKey(KvartiraVtorichkaProdaza, verbose_name='Недвижка', on_delete=models.CASCADE, null=True, blank=True,
                             related_name='foto_set')
     img = FilerImageField(verbose_name='Фото', on_delete=models.CASCADE)
     index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
@@ -98,13 +97,13 @@ class FotoDomProdaza(models.Model):
         return f'Фото {self.img.url}'
 
 
-class VideoDomProdaza(models.Model):
+class VideoKvartiraVtorichkaProdaza(models.Model):
     class Meta:
-        verbose_name = 'Видео дома'
-        verbose_name_plural = 'Видео дома'
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'
         ordering = ['-index_sortirivki']
 
-    dom = models.ForeignKey(DomProdaza, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+    nedvizka = models.ForeignKey(KvartiraVtorichkaProdaza, verbose_name='Недвижка', on_delete=models.CASCADE, null=True, blank=True,
                             related_name='video_set')
     video = models.TextField('Iframe код видео',
                              help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
@@ -114,13 +113,13 @@ class VideoDomProdaza(models.Model):
         return str(self.id)
 
 
-class PanoramiDomProdaza(models.Model):
+class PanoramiKvartiraVtorichkaProdaza(models.Model):
     class Meta:
-        verbose_name = 'Панорамы домов'
-        verbose_name_plural = 'Панорамы домов'
+        verbose_name = 'Панорамы'
+        verbose_name_plural = 'Панорамы'
         ordering = ['-index_sortirivki']
 
-    dom = models.ForeignKey(DomProdaza, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+    nedvizka = models.ForeignKey(KvartiraVtorichkaProdaza, verbose_name='Недвижка', on_delete=models.CASCADE, null=True, blank=True,
                             related_name='panorami_set')
     iframe_code = models.TextField('iframe код',
                                    help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
@@ -133,10 +132,10 @@ class PanoramiDomProdaza(models.Model):
 # -------------
 
 
-class DomArenda(models.Model):
+class KvartiraVtorichkaArenda(models.Model):
     class Meta:
-        verbose_name = 'Дом - аренда'
-        verbose_name_plural = 'Дома - аренда'
+        verbose_name = 'Квартиры первичка - аренда'
+        verbose_name_plural = 'Квартиры первичка - аренда'
 
     pokazivat = models.BooleanField('Показывать', default=True, choices=CHOICES_POKAZIVAT)
 
@@ -158,7 +157,7 @@ class DomArenda(models.Model):
     kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
                                           help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
     # ploshad_uchastka = models.FloatField('Площадь участка (соток)', null=True, blank=True, max_length=255)
-    ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
+    # ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
 
     nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False, choices=CHOICES_DA_NET)
     blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False, choices=CHOICES_DA_NET)
@@ -207,13 +206,13 @@ class DomArenda(models.Model):
         super().save(*args, **kwargs)
 
 
-class FotoDomArenda(models.Model):
+class FotoKvartiraVtorichkaArenda(models.Model):
     class Meta:
-        verbose_name = 'Фото дома'
-        verbose_name_plural = 'Фото дома'
+        verbose_name = 'Фото'
+        verbose_name_plural = 'Фото'
         ordering = ['-index_sortirivki']
 
-    dom = models.ForeignKey(DomArenda, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+    nedvizka = models.ForeignKey(KvartiraVtorichkaArenda, verbose_name='Недвижка', on_delete=models.CASCADE, null=True, blank=True,
                             related_name='foto_set')
     img = FilerImageField(verbose_name='Фото', on_delete=models.CASCADE)
     index_sortirivki = models.IntegerField('Индекс сортировки', default=0, help_text='Чем больше тем раньше выведет')
@@ -222,13 +221,13 @@ class FotoDomArenda(models.Model):
         return f'Фото {self.img.url}'
 
 
-class VideoDomArendda(models.Model):
+class VideoKvartiraVtorichkaArenda(models.Model):
     class Meta:
-        verbose_name = 'Видео дома'
-        verbose_name_plural = 'Видео дома'
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'
         ordering = ['-index_sortirivki']
 
-    dom = models.ForeignKey(DomArenda, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+    nedvizka = models.ForeignKey(KvartiraVtorichkaArenda, verbose_name='Недвижка', on_delete=models.CASCADE, null=True, blank=True,
                             related_name='video_set')
     video = models.TextField('Iframe код видео',
                              help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
@@ -238,13 +237,13 @@ class VideoDomArendda(models.Model):
         return str(self.id)
 
 
-class PanoramiDomaArenda(models.Model):
+class PanoramiKvartiraVtorichkaArenda(models.Model):
     class Meta:
-        verbose_name = 'Панорамы домов'
-        verbose_name_plural = 'Панорамы домов'
+        verbose_name = 'Панорамы'
+        verbose_name_plural = 'Панорамы'
         ordering = ['-index_sortirivki']
 
-    dom = models.ForeignKey(DomArenda, verbose_name='Дом', on_delete=models.CASCADE, null=True, blank=True,
+    nedvizka = models.ForeignKey(KvartiraVtorichkaArenda, verbose_name='Недвижка', on_delete=models.CASCADE, null=True, blank=True,
                             related_name='panorami_set')
     iframe_code = models.TextField('iframe код',
                                    help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')

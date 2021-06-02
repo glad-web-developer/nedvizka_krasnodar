@@ -3,7 +3,7 @@ from cms.apphook_pool import apphook_pool
 from django.conf.urls import url
 from django.urls import path
 
-from apps.nedvizka.views import dom_prodaza_dv
+from apps.nedvizka.views import dom_prodaza_dv, kvartira_pervichka_prodaza_dv, dom_arenda_dv, kvartiri_arenda_dv
 
 
 @apphook_pool.register
@@ -19,11 +19,11 @@ class ProdazaDomovApp(CMSApp):
 @apphook_pool.register
 class ArendaDomovApp(CMSApp):
     app_name = 'dom_arenda'
-    name = "Продажа домов"
+    name = "Аренда домов"
 
     def get_urls(self, page=None, language=None, **kwargs):
         return [
-            path(r'<slug_or_id>/', dom_prodaza_dv),
+            path(r'<slug_or_id>/', dom_arenda_dv),
         ]
 
 @apphook_pool.register
@@ -33,18 +33,18 @@ class ProdazaKvartirPervickaApp(CMSApp):
 
     def get_urls(self, page=None, language=None, **kwargs):
         return [
-            path(r'<slug_or_id>/', dom_prodaza_dv),
+            path(r'<slug_or_id>/', kvartira_pervichka_prodaza_dv),
         ]
 
-# @apphook_pool.register
-# class ArendaKvartirPervickaApp(CMSApp):
-#     app_name = 'kvartira_pervicka_arenda'
-#     name = "Аренда квартир первичка"
-#
-#     def get_urls(self, page=None, language=None, **kwargs):
-#         return [
-#             path(r'<slug_or_id>/', dom_prodaza_dv),
-#         ]
+@apphook_pool.register
+class ArendaKvartirPervickaApp(CMSApp):
+    app_name = 'kvartira_pervicka_arenda'
+    name = "Аренда квартир первичка"
+
+    def get_urls(self, page=None, language=None, **kwargs):
+        return [
+            path(r'<slug_or_id>/', kvartiri_arenda_dv),
+        ]
 
 # @apphook_pool.register
 # class ProdazaKvartirVtorickaApp(CMSApp):

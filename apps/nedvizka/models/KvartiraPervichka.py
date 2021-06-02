@@ -159,10 +159,10 @@ class KvartiraPervichkaArenda(models.Model):
     # ploshad_uchastka = models.FloatField('Площадь участка (соток)', null=True, blank=True, max_length=255)
     # ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
 
-    nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False)
-    blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False)
-    blizost_s_med = models.BooleanField('Близость с мед учереждением', default=False)
-    blizost_s_metro = models.BooleanField('Близость с метро', default=False)
+    nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False, choices=CHOICES_DA_NET)
+    blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False, choices=CHOICES_DA_NET)
+    blizost_s_med = models.BooleanField('Близость с мед учереждением', default=False, choices=CHOICES_DA_NET)
+    blizost_s_metro = models.BooleanField('Близость с метро', default=False, choices=CHOICES_DA_NET)
     nalichie_otdelki = models.IntegerField('Наличие отделки', default=1, choices=CHOICES_NALICHIE_OTDELKI)
 
     opisaanaie = HTMLField('Описание', null=True, blank=True,

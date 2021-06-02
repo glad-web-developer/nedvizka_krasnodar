@@ -132,6 +132,7 @@ INSTALLED_APPS = [
     'djangocms_googlemap',
     'djangocms_video',
     'fontawesome-free',
+    'import_export',
 
     'core',
     'plugins.fonovoe_izobrazenie_plugin',
