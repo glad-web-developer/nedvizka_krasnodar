@@ -20,4 +20,3 @@ class DomProdazaForm(forms.Form):
     blizost_so_shkoloi = forms.ChoiceField(label='Близость со школой', required=False, choices=CHOICES_DA_NET)
     blizost_s_med = forms.ChoiceField(label='Близость с мед учереждением', required=False, choices=CHOICES_DA_NET)
     blizost_s_metro = forms.ChoiceField(label='Близость с метро', required=False, choices=CHOICES_DA_NET)
-    page = forms.IntegerField(required=False, widget=forms.HiddenInput())

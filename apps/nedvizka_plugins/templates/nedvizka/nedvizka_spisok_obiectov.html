@@ -1,8 +1,9 @@
 {% load sekizai_tags static cms_tags thumbnail %}
 
+
+{% if dannie_nedvizki %}
 <div class="nedvizka_spisok_obiectov  {{ instance.css_class|default_if_none:'' }}" {% if instance.css_style %}
      style="{{ instance.css_style }}" {% endif %}>
-
     <div class="row">
         {% for i_nedvizka in dannie_nedvizki %}
             <div class="col-12 mb-3 ">
@@ -40,11 +41,11 @@
                                 <p class="opisanie">{{ i_nedvizka.get_opisaanaie_kratkoe }}</p>
                                 <div class="row opisanie">
                                     <div class="col-12 col-md-8">
-                                         <span>Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'' }} {{ i_nedvizka.adres|default_if_none:'' }}</span>
+                                        <span>Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'' }} {{ i_nedvizka.adres|default_if_none:'' }}</span>
                                     </div>
 
                                     <div class="col-12 col-md-4 text-right">
-                                         <span>Площадь: {{ i_nedvizka.obshaia_ploshad|floatformat }} м<sup>2</sup></span>
+                                        <span>Площадь: {{ i_nedvizka.obshaia_ploshad|floatformat }} м<sup>2</sup></span>
                                     </div>
                                 </div>
 
@@ -53,14 +54,16 @@
                             <div class="row">
                                 <div class="col-12 col-md-7 align-self-center">
                                     {% if i_nedvizka.prrice_akzionnaia %}
-                                        <div><span class="text-secondary staraia_zena">Старая цена: {{ i_nedvizka.price_bazovaia|floatformat }} руб</span></div>
-                                        <div><b>Новая цена: {{ i_nedvizka.prrice_akzionnaia|floatformat }} руб.</b></div>
+                                        <div><span
+                                                class="text-secondary staraia_zena">Старая цена: {{ i_nedvizka.price_bazovaia|floatformat }} руб</span>
+                                        </div>
+                                        <div><b>Новая цена: {{ i_nedvizka.prrice_akzionnaia|floatformat }} руб.</b>
+                                        </div>
                                     {% else %}
                                         <div><b>{{ i_nedvizka.price_bazovaia|floatformat }} руб</b></div>
                                     {% endif %}
 
                                 </div>
-
 
 
                                 <div class="col-12 col-md-5 align-self-center text-right">
@@ -78,7 +81,7 @@
         {% endfor %}
 
     </div>
-
+    <p class="text-center"> Записи {{ start }}-{{ end }}  из {{ dannie_nedvizki_vsego }} </p>
     <div class="row">
         <div class="col-12 mt-3">
             <nav aria-label="Page navigation example">
@@ -86,14 +89,14 @@
 
 
                     <li class="page-item d-none d-md-block {% if page_now == 1 %}disabled{% endif %}">
-                        <a class="page-link page-link-10px" href="?page=1" aria-label="В начало">
+                        <a class="page-link page-link-10px" href="?page=1" aria-label="В начало" data-page="1">
                             <span aria-hidden="true"><b><i class="fa fa-fast-backward"></i></b></span>
                             <span class="sr-only">В начало</span>
                         </a>
                     </li>
 
                     <li class="page-item {% if page_now == 1 %}disabled{% endif %}">
-                        <a class="page-link page-link-10px" href="?page={{ page_now|add:-1 }}" aria-label="Назад">
+                        <a class="page-link page-link-10px" href="?page={{ page_now|add:-1 }}" data-page="{{ page_now|add:-1 }}" aria-label="Назад">
                             <span aria-hidden="true"><b><i class="fa fa-backward"></i></b></span>
                             <span class="sr-only">Назад</span>
                         </a>
@@ -101,34 +104,34 @@
 
                     {% if page_now > 2 %}
                         <li class="page-item d-none d-md-block">
-                            <a class="page-link micro_padding"
+                            <a class="page-link micro_padding" data-page="{{ page_now|add:-2 }}"
                                href="?page={{ page_now|add:-2 }}"><b>{{ page_now|add:-2 }}</b></a>
                         </li>
                     {% endif %}
 
                     {% if page_now != 1 %}
                         <li class="page-item">
-                            <a class="page-link micro_padding"
+                            <a class="page-link micro_padding" data-page="{{ page_now|add:-1 }}"
                                href="?page={{ page_now|add:-1 }}"><b>{{ page_now|add:-1 }}</b></a>
                         </li>
                     {% endif %}
 
 
                     <li class="page-item active">
-                        <a class="page-link micro_padding" href="?page={{ page_now }}"><b>{{ page_now }}</b></a>
+                        <a class="page-link micro_padding" data-page="{{ page_now }}" href="?page={{ page_now }}"><b>{{ page_now }}</b></a>
                     </li>
 
 
                     {% if page_now != straniz_vsego %}
                         <li class="page-item ">
-                            <a class="page-link micro_padding"
+                            <a class="page-link micro_padding" data-page="{{ page_now|add:1 }}"
                                href="?page={{ page_now|add:1 }}"><b>{{ page_now|add:1 }}</b></a>
                         </li>
                     {% endif %}
 
                     {% if page_now < straniz_vsego|add:-1 %}
                         <li class="page-item d-none d-md-block">
-                            <a class="page-link micro_padding"
+                            <a class="page-link micro_padding" data-page="{{ page_now|add:2 }}"
                                href="?page={{ page_now|add:2 }}"><b>{{ page_now|add:2 }}</b></a>
                         </li>
                     {% endif %}
@@ -136,7 +139,7 @@
 
 
                     <li class="page-item {% if page_now == straniz_vsego %}disabled{% endif %}">
-                        <a class="page-link page-link-10px"
+                        <a class="page-link page-link-10px" data-page="{{ page_now|add:1 }}"
                            href="?page={{ page_now|add:1 }}" aria-label="Далее">
                             <span aria-hidden="true"><b><i class="fa fa-forward"></i></b></span>
                             <span class="sr-only">Далее</span>
@@ -144,7 +147,7 @@
                     </li>
 
                     <li class="page-item d-none d-md-block {% if page_now == straniz_vsego %}disabled{% endif %}">
-                        <a class="page-link page-link-10px"
+                        <a class="page-link page-link-10px" data-page="{{ straniz_vsego }}"
                            href="?page={{ straniz_vsego }}" aria-label="В конец">
                             <span aria-hidden="true"><b><i class="fa fa-fast-forward"></i> </b></span>
                             <span class="sr-only">В конец</span>
@@ -157,3 +160,29 @@
         </div>
     </div>
 </div>
+{% else %}
+    <div class="card bg-light text-uppercase text-center">
+    <div class="card-body my-3">
+        <p class="h4"><b>По Ващему запросу нет результатов=(</b></p>
+        <p class="my-3 h5"><b>Попробуйте указать другие параметры поиска</b></p>
+    </div>
+
+    </div>
+
+{% endif %}
+
+{% addtoblock 'js' %}
+    <script>
+        $(function () {
+            $('.nedvizka_spisok_obiectov .page-link').click(function (e) {
+                e.preventDefault();
+                let page = e.currentTarget.dataset.page
+                let url = new URL(window.location);  // == window.location.href
+                url.searchParams.set('page', page);
+                history.pushState(null, null, url);
+                document.location.href = url;
+            })
+
+        });
+    </script>
+{% endaddtoblock %}

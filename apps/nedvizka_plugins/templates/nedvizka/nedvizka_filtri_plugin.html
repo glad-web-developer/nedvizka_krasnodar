@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
 
-            {{ form.page }}
+
 
             <div class="form_element">
                 {{ form.nazvanie.label_tag }}
@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="col-12 col-md-6 position-relative">
-                        {{ form.price_itogovaia_ot }}
+                        {{ form.price_itogovaia_do }}
                         <span class="podpis_dlia_ot_do">до</span>
                     </div>
                 </div>
@@ -79,7 +79,8 @@
 
 
             <div class="text-center">
-                <button class="btn btn-warning px-5" type="submit">Найти</button>
+                <button class="btn btn-warning px-5 mb-3 mr-3" type="submit">Найти</button>
+                <a href="." class="btn btn-light mb-3" type="reset">очистить</a>
             </div>
 
         </div>

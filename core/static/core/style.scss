@@ -259,6 +259,28 @@ a.text-dark {
   background-color: $color1 !important;
 }
 
+.btn-light{
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: none;
+  background-color: #fff;
+
+  color: #000 !important;
+
+
+  border: 1px solid #fff;
+  -webkit-box-shadow: 4px 4px 8px 0px rgb(34 60 80 / 20%);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgb(34 60 80 / 20%);
+
+  &:hover, &:active, &:focus {
+    background: none !important;
+    color: #000 !important;
+    border: 1px solid $color1;
+  }
+}
+
 .btn-warning, .btn-warning2 {
   display: inline-block;
   margin-top: 10px;
