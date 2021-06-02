@@ -12,8 +12,8 @@ from apps.nedvizka.CONST import CHOICES_POKAZIVAT, CHOICES_ETO_LUCHSHOE_PREDLOZE
 
 class UchactkiProdaza(models.Model):
     class Meta:
-        verbose_name = 'Квартира первичка - продажа'
-        verbose_name_plural = 'Квартира первичка - продажа'
+        verbose_name = 'Участки - продажа'
+        verbose_name_plural = 'Участки - продажа'
 
     pokazivat = models.BooleanField('Показывать/скрыть', default=True, choices=CHOICES_POKAZIVAT)
 
@@ -134,8 +134,8 @@ class PanoramiUchactkiProdaza(models.Model):
 
 class UchactkiArenda(models.Model):
     class Meta:
-        verbose_name = 'Квартиры первичка - аренда'
-        verbose_name_plural = 'Квартиры первичка - аренда'
+        verbose_name = 'Участки - аренда'
+        verbose_name_plural = 'Участки - аренда'
 
     pokazivat = models.BooleanField('Показывать', default=True, choices=CHOICES_POKAZIVAT)
 

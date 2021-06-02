@@ -6,7 +6,9 @@ from cms.plugin_pool import plugin_pool
 from apps.nedvizka.forms import DomProdazaForm, KvartiraPervichkaProdazaForm, DomArendaForm, \
     KvartiraPervichkaArendaForm, KvartiraVtorickaArendaForm, KvartiraVtorichkaProdazaForm, UchastkiProdazaForm, \
     UchastkiArendaForm, NezelieProdazaForm, NezelieArendaForm, KomerchiskieProdazaForm, KomerchiskieArendaForm
-from apps.nedvizka.models import DomProdaza, DomArenda, KvartiraPervichkaProdaza, KvartiraPervichkaArenda
+from apps.nedvizka.models import DomProdaza, DomArenda, KvartiraPervichkaProdaza, KvartiraPervichkaArenda, \
+    KvartiraVtorichkaProdaza, KvartiraVtorichkaArenda, UchactkiProdaza, UchactkiArenda, NezelieProdaza, NezelieArenda, \
+    KomerchiskieProdaza, KomerchiskieArenda
 from apps.nedvizka_plugins.models import NedvizkaSpisokObiectovPluginPluginSetting, \
     NedvizkaFiltriPoiskaPluginPluginSetting
 
@@ -80,29 +82,29 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
             dannie_nedvizki = KvartiraPervichkaArenda.objects.select_related('previu').all()
 
 
-        # if tip_nedvizki == 'kvartira_vtoricka_prodaza':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'kvartira_vtoricka_prodaza':
+            dannie_nedvizki = KvartiraVtorichkaProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'kvartira_vtoricka_arenda':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'kvartira_vtoricka_arenda':
+            dannie_nedvizki = KvartiraVtorichkaArenda.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'uchactki_prodaza':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'uchactki_prodaza':
+            dannie_nedvizki = UchactkiProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'uchactki_arenda':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'uchactki_arenda':
+            dannie_nedvizki = UchactkiArenda.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'nezilie_prodaza':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'nezilie_prodaza':
+            dannie_nedvizki = NezelieProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'nezilie_arenda':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'nezilie_arenda':
+            dannie_nedvizki = NezelieArenda.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'komerchiskie_prodaza':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'komerchiskie_prodaza':
+            dannie_nedvizki = KomerchiskieProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'komerchiskie_arenda':
-        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+        if tip_nedvizki == 'komerchiskie_arenda':
+            dannie_nedvizki = KomerchiskieArenda.objects.select_related('previu').all()
 
         params_poiska = context['request'].GET
         dannie_nedvizki = self.filtrazia_po_bazovim_poliam(dannie_nedvizki, params_poiska)
