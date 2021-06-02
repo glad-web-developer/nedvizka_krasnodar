@@ -43,7 +43,7 @@ html, body {
 }
 
 .lg-close.lg-icon {
-  color: #fee500;
+  color: #fdc532;
   opacity: 1;
   font-size: 30pt;
 }
@@ -55,12 +55,12 @@ html, body {
 }
 
 .nedvizka_spisok_obiectov .btn-info {
-  background-color: #fee500 !important;
+  background-color: #fdc532 !important;
   padding: 2px 10px;
   text-align: center;
   color: #000;
   font-size: 11pt;
-  border: 1px solid #fee500 !important;
+  border: 1px solid #fdc532 !important;
   border-radius: 5px;
   -webkit-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
@@ -88,13 +88,13 @@ html, body {
   color: #ddd !important;
 }
 .nedvizka_spisok_obiectov .page-item.active .page-link, .nedvizka_spisok_obiectov .page-item.active .page-link:hover {
-  background-color: #fee500 !important;
-  border-color: #fee500 !important;
+  background-color: #fdc532 !important;
+  border-color: #fdc532 !important;
   color: #000 !important;
 }
 .nedvizka_spisok_obiectov .page-item .page-link:hover {
   color: #000 !important;
-  background-color: #fee500 !important;
+  background-color: #fdc532 !important;
 }
 .nedvizka_spisok_obiectov .podshet_foto_wrap {
   position: absolute;
@@ -112,8 +112,8 @@ html, body {
   font-size: 80%;
 }
 .nedvizka_spisok_obiectov .img_ssilka_na_obect:hover .podshet_foto, .nedvizka_spisok_obiectov .img_ssilka_na_obect:active .podshet_foto {
-  color: #fee500 !important;
-  border-color: #fee500 !important;
+  color: #fdc532 !important;
+  border-color: #fdc532 !important;
   background: none !important;
 }
 .nedvizka_spisok_obiectov .img_ssilka_na_obect img {
@@ -131,13 +131,13 @@ html, body {
   color: #000;
 }
 .nedvizka_spisok_obiectov .zagolovok:hover, .nedvizka_spisok_obiectov .zagolovok:active {
-  color: #fee500 !important;
+  color: #fdc532 !important;
 }
 .nedvizka_spisok_obiectov .prevyu, .nedvizka_spisok_obiectov .card {
   border-radius: 7px;
 }
 .nedvizka_spisok_obiectov .btn-info:hover, .nedvizka_spisok_obiectov .btn-info:active {
-  color: #fee500;
+  color: #fdc532;
   background-color: #fff;
 }
 .nedvizka_spisok_obiectov .ten {
@@ -176,7 +176,7 @@ html, body {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .nedvizka_filtr_i_poisk .card-header {
-  background-color: #fee500;
+  background-color: #fdc532;
 }
 .nedvizka_filtr_i_poisk .card-body {
   background-color: #f8f9fa;
@@ -185,7 +185,7 @@ html, body {
   color: #000 !important;
 }
 .nedvizka_filtr_i_poisk .btn-info:hover, .nedvizka_filtr_i_poisk .btn-info[disabled=disabled] {
-  color: #fee500 !important;
+  color: #fdc532 !important;
 }
 .nedvizka_filtr_i_poisk .form_element {
   margin-bottom: 25px;
@@ -209,11 +209,11 @@ html, body {
 }
 
 a.text-dark:hover, a.text-dark:active {
-  color: #fee500 !important;
+  color: #fdc532 !important;
 }
 
 .bg-warning {
-  background-color: #fee500 !important;
+  background-color: #fdc532 !important;
 }
 
 .btn-light {
@@ -222,6 +222,7 @@ a.text-dark:hover, a.text-dark:active {
   margin-bottom: 10px;
   background: none;
   background-color: #fff;
+  border-radius: 25px;
   color: #000 !important;
   border: 1px solid #fff;
   -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
@@ -231,37 +232,38 @@ a.text-dark:hover, a.text-dark:active {
 .btn-light:hover, .btn-light:active, .btn-light:focus {
   background: none !important;
   color: #000 !important;
-  border: 1px solid #fee500;
+  border: 1px solid #fdc532;
 }
 
-.btn-warning, .btn-warning2 {
+.btn-warning, .btn-warning2, .main_menu .btn-warning {
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 10px;
   background: none;
-  background-color: #fee500;
+  background-color: #fdc532;
+  border-radius: 25px;
   color: #000 !important;
   text-transform: uppercase;
   font-weight: bold;
-  border: 1px solid #fee500;
+  border: 1px solid #fdc532;
   -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
-.btn-warning:hover, .btn-warning:active, .btn-warning:focus, .btn-warning2:hover, .btn-warning2:active, .btn-warning2:focus {
+.btn-warning:hover, .btn-warning:active, .btn-warning:focus, .btn-warning2:hover, .btn-warning2:active, .btn-warning2:focus, .main_menu .btn-warning:hover, .main_menu .btn-warning:active, .main_menu .btn-warning:focus {
   background: none !important;
   color: #000 !important;
-  border: 1px solid #fee500;
+  border: 1px solid #fdc532;
 }
 
 .btn.btn-warning2:hover, .btn.btn-warning2:active, .btn.btn-warning2:focus {
   background: #fff !important;
   color: #000 !important;
-  border: 1px solid #fee500;
+  border: 1px solid #fdc532;
 }
 
 a, body, form, button {
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 a:focus, button:focus {
@@ -274,34 +276,47 @@ a:hover, button.btn:hover {
 }
 
 a.text-light:hover, a.text-light:active {
-  color: #fee500 !important;
+  color: #fdc532 !important;
 }
 
 .zakritie_sidbara a {
   color: #000;
 }
 .zakritie_sidbara a:hover, .zakritie_sidbara a:active {
-  color: #fee500;
+  color: #fdc532;
 }
 
-.page_second_type .main_menu {
-  height: auto !important;
-  background-color: #f8f9fa;
-  color: #000000 !important;
+.otstup_menu {
+  padding-bottom: 1.5rem;
+  padding-top: 2.5rem;
+}
+
+.main_menu {
+  height: 180px !important;
+  background-color: #000;
+  color: #fff !important;
   -webkit-box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
+  position: sticky !important;
+  top: 0 !important;
 }
-.page_second_type .main_menu a {
-  color: #000000 !important;
+.main_menu .dropdown-item {
+  color: #000 !important;
 }
-.page_second_type .main_menu .__header_logo_pc {
-  color: #000000 !important;
+.main_menu a {
+  color: #fff !important;
+  font-weight: bold;
 }
-.page_second_type .main_menu .navbar_phone_place span {
-  color: #000000 !important;
+.main_menu .__header_logo_pc {
+  color: #fff !important;
+  padding-bottom: 40px;
 }
-.page_second_type header {
+.main_menu .navbar_phone_place span {
+  color: #fff !important;
+}
+
+header {
   position: relative !important;
   top: 0 !important;
 }
@@ -321,7 +336,8 @@ header {
   text-transform: uppercase;
   font-size: 12pt;
   line-height: 1;
-  font-family: "Brygada 1918", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 20px;
 }
 .__header_logo_pc strong {
   font-size: 30pt;
@@ -333,7 +349,7 @@ header {
   text-transform: uppercase;
   font-size: 8pt;
   line-height: 1;
-  font-family: "Brygada 1918", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .__header_logo_mobile strong {
   font-size: 15pt;
@@ -357,7 +373,7 @@ header {
   text-transform: uppercase;
   font-size: 9pt;
   line-height: 1;
-  font-family: "Brygada 1918", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .__header_footer_pc strong {
   font-size: 20pt;
@@ -403,11 +419,11 @@ header {
 
 .otkritie_sidbara {
   text-transform: uppercase;
-  background-color: #fee500;
-  font-family: "Myriad Pro", sans-serif;
+  background-color: #fdc532;
+  font-family: "Montserrat", sans-serif;
   padding: 10px 15px;
   font-size: 11pt;
-  border: 1px solid #fee500;
+  border: 1px solid #fdc532;
   border-radius: 50%;
   position: absolute;
   right: 15px;
@@ -423,7 +439,7 @@ header {
   border: 1px solid #60beaf !important;
   color: #fff;
   text-transform: uppercase;
-  font-family: "Myriad Pro", sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding: 10px 35px;
   font-size: 11pt;
   border-radius: 20px;
@@ -487,7 +503,6 @@ header {
   left: 0;
   right: 0;
   height: 200px;
-  background-color: #f5f5f5;
   padding: 7px 20px;
   box-sizing: border-box;
 }
@@ -501,8 +516,8 @@ header {
 
 .nav-link.active, .nav-link:hover {
   /*border-bottom: 3px solid rgba(96, 190, 175, 0.5);*/
-  border-bottom: 3px solid #fee500;
-  color: #fee500 !important;
+  border-bottom: 1px solid #fdc532;
+  color: #fdc532 !important;
 }
 
 .forma_obratnoi_sviazi {
@@ -515,7 +530,7 @@ header {
 }
 .forma_obratnoi_sviazi .btn-info:hover, .forma_obratnoi_sviazi .btn-info[disabled=disabled] {
   background-color: #fff !important;
-  color: #fee500 !important;
+  color: #fdc532 !important;
 }
 .forma_obratnoi_sviazi .form__group {
   position: relative;
@@ -550,7 +565,7 @@ header {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #fee500, #fff, #fee500);
+  border-image: linear-gradient(to right, #fdc532, #fff, #fdc532);
   border-image-slice: 1;
 }
 .forma_obratnoi_sviazi .form__field:focus ~ .form__label {
@@ -559,7 +574,7 @@ header {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #fee500;
+  color: #fdc532;
   font-weight: 700;
 }
 .forma_obratnoi_sviazi .form__field:required, .forma_obratnoi_sviazi .form__field:invalid {
@@ -593,7 +608,7 @@ footer {
   font-size: 0.8rem;
 }
 .dropdown-menu .dropdown-item:hover, .dropdown-menu .dropdown-item:focus {
-  background-color: #fee500;
+  background-color: #fdc532;
   color: #000;
 }
 

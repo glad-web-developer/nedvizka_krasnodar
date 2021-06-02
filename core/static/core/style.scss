@@ -12,7 +12,7 @@ html, body {
 }
 
 
-$color1: #fee500;
+$color1: #fdc532;
 $color2: #f8f9fa;
 
 @mixin ten_verx() {
@@ -45,6 +45,7 @@ $color2: #f8f9fa;
   box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
 }
 
+
 .ten1 {
   @include ten1()
 }
@@ -58,27 +59,25 @@ $color2: #f8f9fa;
 }
 
 
-.dv_nedvizka{
-  .previu{
+.dv_nedvizka {
+  .previu {
     @include ten1();
   }
 }
 
-.lg-toolbar.lg-group{
-  z-index: 1000000000!important;
+.lg-toolbar.lg-group {
+  z-index: 1000000000 !important;
 }
 
-.lg-outer{
-  z-index: 1000000000!important;
+.lg-outer {
+  z-index: 1000000000 !important;
 }
 
-.lg-close.lg-icon{
+.lg-close.lg-icon {
   color: $color1;
   opacity: 1;
   font-size: 30pt;
 }
-
-
 
 
 .modal-content {
@@ -204,14 +203,14 @@ $color2: #f8f9fa;
   //bottom: 20px;
 
 
-  .podpis_dlia_ot_do{
+  .podpis_dlia_ot_do {
     position: absolute;
-    bottom:0;
-    left:45%;
+    bottom: 0;
+    left: 45%;
     font-size: 0.7rem;
   }
 
-  select{
+  select {
     display: block;
     width: 100%;
     height: calc(1.5em + .75rem + 2px);
@@ -221,11 +220,11 @@ $color2: #f8f9fa;
     line-height: 1.5;
     color: #000;
     background-clip: padding-box;
-    border:  none;
-    border-bottom:  2px solid #9b9b9b;
+    border: none;
+    border-bottom: 2px solid #9b9b9b;
     box-shadow: none;
-    background:none;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    background: none;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
   }
 
@@ -250,6 +249,7 @@ $color2: #f8f9fa;
 
   .form_element {
     margin-bottom: 25px;
+
     label {
       display: block;
       transition: 0.2s;
@@ -287,12 +287,13 @@ a.text-dark {
   background-color: $color1 !important;
 }
 
-.btn-light{
+.btn-light {
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 10px;
   background: none;
   background-color: #fff;
+  border-radius: 25px;
 
   color: #000 !important;
 
@@ -309,12 +310,13 @@ a.text-dark {
   }
 }
 
-.btn-warning, .btn-warning2 {
+.btn-warning, .btn-warning2, .main_menu .btn-warning {
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 10px;
   background: none;
   background-color: $color1;
+  border-radius: 25px;
 
   color: #000 !important;
 
@@ -342,7 +344,7 @@ a.text-dark {
 
 a, body, form, button {
   //font-family: 'Prata', sans-serif;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -369,32 +371,48 @@ a.text-light {
   }
 }
 
-
-.page_second_type {
-  .main_menu {
-    height: auto !important;
-    background-color: $color2;
-    color: #000000 !important;
-    @include ten4();
-
-    a {
-      color: #000000 !important;
-    }
-
-    .__header_logo_pc {
-      color: #000000 !important;
-    }
-
-    .navbar_phone_place span {
-      color: #000000 !important;
-    }
-  }
-
-  header {
-    position: relative !important;
-    top: 0 !important;
-  }
+.otstup_menu {
+  padding-bottom: 1.5rem;
+  padding-top: 2.5rem;
 }
+
+//.page_second_type {
+.main_menu {
+  height: 180px !important;
+  background-color: #000;
+  color: #fff !important;
+  @include ten4();
+
+  position: sticky !important;
+  top: 0 !important;
+
+  .dropdown-item {
+    color: #000 !important;
+  }
+
+  a {
+    color: #fff !important;
+    font-weight: bold;
+  }
+
+  .__header_logo_pc {
+    color: #fff !important;
+    padding-bottom: 40px;
+  }
+
+  .navbar_phone_place span {
+    color: #fff !important;
+  }
+
+
+}
+
+header {
+  position: relative !important;
+  top: 0 !important;
+}
+
+//}
 
 
 header {
@@ -412,7 +430,8 @@ header {
   text-transform: uppercase;
   font-size: 12pt;
   line-height: 1;
-  font-family: 'Brygada 1918', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 20px;
 
   strong {
     font-size: 30pt;
@@ -426,7 +445,7 @@ header {
   text-transform: uppercase;
   font-size: 8pt;
   line-height: 1;
-  font-family: 'Brygada 1918', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
   strong {
     font-size: 15pt;
@@ -455,7 +474,7 @@ header {
   text-transform: uppercase;
   font-size: 9pt;
   line-height: 1;
-  font-family: 'Brygada 1918', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 
   strong {
     font-size: 20pt;
@@ -511,7 +530,7 @@ header {
 .otkritie_sidbara {
   text-transform: uppercase;
   background-color: $color1;
-  font-family: 'Myriad Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 10px 15px;
   font-size: 11pt;
   border: 1px solid $color1;
@@ -531,7 +550,7 @@ header {
   border: 1px solid #60beaf !important;
   color: #fff;
   text-transform: uppercase;
-  font-family: 'Myriad Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 10px 35px;
   font-size: 11pt;
   border-radius: 20px;
@@ -604,7 +623,7 @@ header {
   right: 0;
   height: 200px;
   //border-top:  1px solid #ccc;
-  background-color: #f5f5f5;
+  //background-color: #f5f5f5;
   padding: 7px 20px;
   box-sizing: border-box;
 
@@ -620,7 +639,7 @@ header {
 
 .nav-link.active, .nav-link:hover {
   /*border-bottom: 3px solid rgba(96, 190, 175, 0.5);*/
-  border-bottom: 3px solid $color1;
+  border-bottom: 1px solid $color1;
   color: $color1 !important;
 
 }
