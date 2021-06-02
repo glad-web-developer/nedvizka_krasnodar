@@ -51,7 +51,10 @@ $(() => {
             fullScreen: false,
             autoplayControls: false
         });
+
     });
 
 
 });
+
+
