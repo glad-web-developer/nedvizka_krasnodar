@@ -8,6 +8,25 @@ from filer.fields.image import FilerImageField
 TIP_NEDVIZKI = (
     ('dom_prodaza', 'Дом-продажа'),
     ('dom_arenda', 'Дом-аренда'),
+
+    ('kvartira_pervicka_prodaza', 'Квартира первичка - продажа'),
+    ('kvartira_pervicka_arenda', 'Квартира первичка - аренда'),
+
+    ('kvartira_vtoricka_prodaza', 'Квартира вторичка - продажа'),
+    ('kvartira_vtoricka_arenda', 'Квартира вторичка - аренда'),
+
+    ('kvartira_vtoricka_prodaza', 'Квартира вторичка - продажа'),
+    ('kvartira_vtoricka_arenda', 'Квартира вторичка - аренда'),
+
+    ('uchactki_prodaza', 'Участки - продажа'),
+    ('uchactki_arenda', 'Участки - аренда'),
+
+    ('nezilie_prodaza', 'Нежилые - продажа'),
+    ('nezilie_arenda', 'Нежилые - аренда'),
+
+    ('komerchiskie_prodaza', 'Комерчиские - продажа'),
+    ('komerchiskie_arenda', 'Комерчиские - аренда'),
+
 )
 
 # *** ПЛАГИНЫ ***

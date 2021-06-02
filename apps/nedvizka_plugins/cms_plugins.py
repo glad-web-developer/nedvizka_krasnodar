@@ -3,8 +3,8 @@ from math import ceil
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from apps.nedvizka.forms import DomProdazaForm
-from apps.nedvizka.models import DomProdaza, DomArenda
+from apps.nedvizka.forms import DomProdazaForm, KvartiraProdazaForm
+from apps.nedvizka.models import DomProdaza, DomArenda, KvartiraPervichkaProdaza
 from apps.nedvizka_plugins.models import NedvizkaSpisokObiectovPluginPluginSetting, \
     NedvizkaFiltriPoiskaPluginPluginSetting
 
@@ -61,15 +61,49 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
 
         page = 1
+        dannie_nedvizki = []
         kol_vo_obiectov = instance.obiectov_na_stranize
         tip_nedvizki = instance.tip_nedvizki
-        dannie_nedvizki = DomProdaza.objects.select_related('previu').all()
 
         if tip_nedvizki == 'dom_prodaza':
             dannie_nedvizki = DomProdaza.objects.select_related('previu').all()
 
         if tip_nedvizki == 'dom_arenda':
             dannie_nedvizki = DomArenda.objects.select_related('previu').all()
+
+        if tip_nedvizki == 'kvartira_pervicka_prodaza':
+            dannie_nedvizki = KvartiraPervichkaProdaza.objects.select_related('previu').all
+
+
+        # if tip_nedvizki == 'kvartira_vtoricka_prodaza':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'kvartira_vtoricka_arenda':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'kvartira_vtoricka_prodaza':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'kvartira_vtoricka_arenda':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'uchactki_prodaza':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'uchactki_arenda':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'nezilie_prodaza':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'nezilie_arenda':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'komerchiskie_prodaza':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
+
+        # if tip_nedvizki == 'komerchiskie_arenda':
+        #     dannie_nedvizki = KvartiraProdaza.objects.select_related('previu').all()
 
         params_poiska = context['request'].GET
         dannie_nedvizki = self.filtrazia_po_bazovim_poliam(dannie_nedvizki, params_poiska)
@@ -111,6 +145,8 @@ class NedvizkaFiltriPoiskaPluginPlugin(CMSPluginBase):
         params = context['request'].GET
         if instance.tip_nedvizki == 'dom_prodaza':
             form = DomProdazaForm(params)
+        if instance.tip_nedvizki == 'kvartira_prodaza':
+            form = KvartiraProdazaForm(params)
 
         context.update({'instance': instance, 'form_url': form_url, 'form': form})
         return context
