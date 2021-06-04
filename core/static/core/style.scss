@@ -395,10 +395,6 @@ a.text-light {
     font-weight: bold;
   }
 
-  .__header_logo_pc {
-    color: #fff !important;
-    padding-bottom: 40px;
-  }
 
   .navbar_phone_place span {
     color: #fff !important;
@@ -432,18 +428,24 @@ header {
   line-height: 1;
   font-family: 'Montserrat', sans-serif;
   margin-top: 20px;
+    font-weight: 700;
 
   strong {
     font-size: 30pt;
     letter-spacing: 7px;
 
   }
+  padding-bottom: 40px;
+
+  a:hover p, a:focus p {
+    color: $color1;
+  }
 }
 
 .__header_logo_mobile {
-  color: #000;
   text-transform: uppercase;
   font-size: 8pt;
+  font-weight: 700;
   line-height: 1;
   font-family: 'Montserrat', sans-serif;
 
@@ -459,7 +461,9 @@ header {
 
 .__header_logo_mobile_link {
   .nav-link {
-    border-bottom: 3px solid #fee500;
+    border-bottom: 5px solid transparent;
+    border-image: url(/static/core/img/border.png) 30;
+
     display: inline-block;
     font-size: 10pt;
   }
@@ -537,7 +541,7 @@ header {
   border-radius: 50%;
   position: absolute;
   right: 15px;
-  top: 20px;
+  top: 10px;
 
 }
 
@@ -608,6 +612,14 @@ header {
   position: absolute;
   top: 20px;
   right: 20px;
+  a{
+    color: $color1 !important;
+  }
+
+}
+
+b, strong{
+  font-weight: 700;
 }
 
 .zakazat_zvonok {
@@ -639,7 +651,8 @@ header {
 
 .nav-link.active, .nav-link:hover {
   /*border-bottom: 3px solid rgba(96, 190, 175, 0.5);*/
-  border-bottom: 1px solid $color1;
+  border-bottom: 5px solid transparent;
+  border-image: url(/static/core/img/border.png) 30;
   color: $color1 !important;
 
 }

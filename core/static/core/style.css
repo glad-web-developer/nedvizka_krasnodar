@@ -308,10 +308,6 @@ a.text-light:hover, a.text-light:active {
   color: #fff !important;
   font-weight: bold;
 }
-.main_menu .__header_logo_pc {
-  color: #fff !important;
-  padding-bottom: 40px;
-}
 .main_menu .navbar_phone_place span {
   color: #fff !important;
 }
@@ -338,16 +334,21 @@ header {
   line-height: 1;
   font-family: "Montserrat", sans-serif;
   margin-top: 20px;
+  font-weight: 700;
+  padding-bottom: 40px;
 }
 .__header_logo_pc strong {
   font-size: 30pt;
   letter-spacing: 7px;
 }
+.__header_logo_pc a:hover p, .__header_logo_pc a:focus p {
+  color: #fdc532;
+}
 
 .__header_logo_mobile {
-  color: #000;
   text-transform: uppercase;
   font-size: 8pt;
+  font-weight: 700;
   line-height: 1;
   font-family: "Montserrat", sans-serif;
 }
@@ -360,7 +361,8 @@ header {
 }
 
 .__header_logo_mobile_link .nav-link {
-  border-bottom: 3px solid #fee500;
+  border-bottom: 5px solid transparent;
+  border-image: url(/static/core/img/border.png) 30;
   display: inline-block;
   font-size: 10pt;
 }
@@ -427,7 +429,7 @@ header {
   border-radius: 50%;
   position: absolute;
   right: 15px;
-  top: 20px;
+  top: 10px;
 }
 
 .btn-info:hover, .btn-info:active, .btn-info:visited {
@@ -492,6 +494,13 @@ header {
   top: 20px;
   right: 20px;
 }
+.zakritie_sidbara a {
+  color: #fdc532 !important;
+}
+
+b, strong {
+  font-weight: 700;
+}
 
 .zakazat_zvonok:active, .zakazat_zvonok:hover {
   background-color: #fff !important;
@@ -516,7 +525,8 @@ header {
 
 .nav-link.active, .nav-link:hover {
   /*border-bottom: 3px solid rgba(96, 190, 175, 0.5);*/
-  border-bottom: 1px solid #fdc532;
+  border-bottom: 5px solid transparent;
+  border-image: url(/static/core/img/border.png) 30;
   color: #fdc532 !important;
 }
 
