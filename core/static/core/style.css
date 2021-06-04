@@ -7,7 +7,8 @@ html, body {
 #wrapper {
   min-height: 100%;
   height: auto;
-  padding: 0 0 0;
+  padding: 0 0 270px;
+  margin-bottom: -270px;
 }
 
 .ten1 {
@@ -144,6 +145,10 @@ html, body {
   -webkit-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
   box-shadow: 0px 5px 7px 9px rgba(34, 60, 80, 0.2);
+}
+
+.cms-toolbar-expanded .main_menu {
+  top: 45px !important;
 }
 
 .nedvizka_filtr_i_poisk {
@@ -292,7 +297,7 @@ a.text-light:hover, a.text-light:active {
 }
 
 .main_menu {
-  height: 180px !important;
+  height: 200px !important;
   background-color: #000;
   color: #fff !important;
   -webkit-box-shadow: 0px 2px 10px 0px rgba(34, 60, 80, 0.2);
@@ -364,13 +369,13 @@ header {
 
 .__header_logo_mobile {
   text-transform: uppercase;
-  font-size: 8pt;
+  font-size: 10pt;
   font-weight: 700;
   line-height: 1;
   font-family: "Montserrat", sans-serif;
 }
 .__header_logo_mobile strong {
-  font-size: 15pt;
+  font-size: 22pt;
   letter-spacing: 7px;
 }
 .__header_logo_mobile p {
@@ -404,8 +409,21 @@ header {
 }
 
 @media (max-width: 576px) {
-  .cms-toolbar-expanded header {
-    top: 0;
+  .__header_logo_pc p {
+    margin: 0;
+    text-align: left !important;
+  }
+
+  .otstup_menu {
+    padding: 15px;
+  }
+
+  .main_menu {
+    height: 120px !important;
+  }
+
+  .cms-toolbar-expanded .main_menu {
+    top: 0 !important;
   }
 
   .cms-toolbar {
@@ -528,7 +546,7 @@ b, strong {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 200px;
+  height: 170px;
   padding: 7px 20px;
   box-sizing: border-box;
 }

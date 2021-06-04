@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+{% load cms_tags menu_tags sekizai_tags static %}
+{% block content %}
+
+    <div id="wrapper" >
+
+        {% include 'core/elements/navbar.html' %}
+
+{#        уведомление#}
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 9999999999; right: 0; top: 15px;">
+            <div id="uvedomlenie" style="opacity:1!important;" class="toast hide bg-white" role="alert"
+                 aria-live="assertive" aria-atomic="true" data-delay="5000">
+                <div class="toast-header uvedomlenie_header bg-warning ">
+                    <strong class="mr-auto uvedomlenie_title text-dark h6 text-uppercase"></strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body  uvedomlenie_telo h6 text-center ">
+
+                </div>
+            </div>
+        </div>
+
+
+        <main class="text-center py-5 ">
+           <p class="h2 font-weight-bold">Ошибка 404. <br>Извините, но такой страницы нет=(</p>
+            <a class="btn btn-warning px-5 btn-lg" href="../">На главную</a>
+        </main>
+
+    </div>
+
+    {% include 'core/elements/footer.html' %}
+         {% static_placeholder 'modalnie_okna' %}
+
+{% endblock %}
+

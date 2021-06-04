@@ -8,6 +8,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.shortcuts import render
 from django.views.static import serve
 
 
@@ -19,9 +20,14 @@ urlpatterns = [
         {'sitemaps': {'cmspages': CMSSitemap}}),
 ]
 
+def render_page_404(request):
+    return render(request, 'core/page_templates/404.html')
+
+
 urlpatterns += (
     url(r'^admin/', admin.site.urls),  # NOQA
     url(r'^formi_obratnoi_sviazi/', include('plugins.formi_obratnoi_sviazi_plugin.urls', namespace='formi_obratnoi_sviazi')),
+    url(r'^error_404/', render_page_404),
     url(r'^', include('cms.urls')),
 )
 
