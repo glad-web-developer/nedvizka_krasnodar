@@ -327,6 +327,23 @@ header {
   height: 145px;
 }
 
+.my_logo {
+  text-transform: uppercase;
+  font-size: 12pt;
+  line-height: 1;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 20px;
+  font-weight: 700;
+  padding-bottom: 40px;
+}
+.my_logo strong {
+  font-size: 30pt;
+  letter-spacing: 7px;
+}
+.my_logo a:hover p, .my_logo a:focus p {
+  color: #fdc532;
+}
+
 .__header_logo_pc {
   color: #fff;
   text-transform: uppercase;

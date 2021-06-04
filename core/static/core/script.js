@@ -17,7 +17,16 @@ function vivisti_uvedomlenie(zagolovok, telo, type) {
 function podsvetit_aktivnoe_menu() {
     $('.main_menu').find('.nav-link').each(function () {
         if ((window.location.href.indexOf($(this).attr('href'))) > -1) {
-            $(this).addClass('active');
+            console.log(window.location.href)
+            if ($(this).attr('href') !== '//95.189.108.18/') {
+                $(this).addClass('active');
+            } else {
+                if (window.location.href === 'http://95.189.108.18/') {
+                    $(this).addClass('active');
+                }
+            }
+
+
         }
     });
 }
