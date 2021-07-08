@@ -140,4 +140,4 @@ class NezelieArendaAdmin(ImportExportModelAdmin):
     ]
 
 
-admin.site.register(NezelieArenda, NezelieArendaAdmin)
+# admin.site.register(NezelieArenda, NezelieArendaAdmin)

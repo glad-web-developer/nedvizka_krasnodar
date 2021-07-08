@@ -140,4 +140,4 @@ class DomArendaAdmin(ImportExportModelAdmin):
     ]
 
 
-admin.site.register(DomArenda, DomArendaAdmin)
+# admin.site.register(DomArenda, DomArendaAdmin)

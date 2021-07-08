@@ -140,4 +140,4 @@ class UchactkiArendaAdmin(ImportExportModelAdmin):
     ]
 
 
-admin.site.register(UchactkiArenda, UchactkiArendaAdmin)
+# admin.site.register(UchactkiArenda, UchactkiArendaAdmin)

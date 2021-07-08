@@ -13,15 +13,26 @@
                             <div class="embed-responsive embed-responsive-1by1 position-relative">
                                 <a href="{{ i_nedvizka.get_url }}" class="img_ssilka_na_obect">
 
+                                    {% if i_nedvizka.previu %}
                                     <img class="embed-responsive-item img-fluid p-1 prevyu"
                                          src="{% thumbnail i_nedvizka.previu 600x600 crop %}"
                                          alt="">
+
 
 
                                     <div class="podshet_foto_wrap">
                                         <p class="btn btn-info podshet_foto"><b>{{ i_nedvizka.get_colvo_img }} фото</b>
                                         </p>
                                     </div>
+                                        {% else %}
+                                                                 <img class="embed-responsive-item img-fluid p-1 prevyu"
+                                         src="{% static 'core/img/net_photo.jpg' %}"
+                                         alt="">
+                                        <div class="podshet_foto_wrap">
+                                        <p class="btn btn-info podshet_foto"><b>{{ i_nedvizka.get_colvo_img }} фото</b>
+                                        </p>
+                                    </div>
+                                    {% endif %}
 
                                 </a>
 

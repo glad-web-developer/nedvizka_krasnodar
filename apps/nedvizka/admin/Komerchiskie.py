@@ -140,4 +140,4 @@ class KomerchiskieArendaAdmin(ImportExportModelAdmin):
     ]
 
 
-admin.site.register(KomerchiskieArenda, KomerchiskieArendaAdmin)
+# admin.site.register(KomerchiskieArenda, KomerchiskieArendaAdmin)

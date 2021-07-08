@@ -771,4 +771,13 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
   padding-right: 10px;
 }
 
+.razmer1 {
+  font-size: 0.9rem;
+}
+@media (min-width: 768px) {
+  .razmer1 {
+    font-size: 1.3rem;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

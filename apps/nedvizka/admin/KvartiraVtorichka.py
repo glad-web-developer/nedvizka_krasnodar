@@ -140,4 +140,4 @@ class KvartiraVtorichkaArendaAdmin(ImportExportModelAdmin):
     ]
 
 
-admin.site.register(KvartiraVtorichkaArenda, KvartiraVtorichkaArendaAdmin)
+# admin.site.register(KvartiraVtorichkaArenda, KvartiraVtorichkaArendaAdmin)

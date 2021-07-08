@@ -32,8 +32,14 @@
                         </div>
 
                         <div class="col-12 col-md-5 col-lg-4 mb-3">
+                            {% if  danie_nedvizki.previu %}
                             <img class="img-fluid previu" src="{% thumbnail danie_nedvizki.previu 500x500 %}"
                                  alt="">
+                            {% else %}
+                                   <img class="img-fluid  "
+                                         src="{% static 'core/img/net_photo.jpg' %}"
+                                         alt="">
+                            {% endif %}
                             <div class="text-center mt-4">
                                 <a href="#okno_zakaza_zvonka"
                                    class="btn btn-warning zakazat_zvonok d-none d-md-inline btn-warning2    "
