@@ -4,8 +4,8 @@ from core.settings import BASE_DIR, DATA_DIR
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 2525
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
+EMAIL_HOST_USER = "gladkikhit@mail.ru"
+EMAIL_HOST_PASSWORD = "ItItIt254004"
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 SERVER_EMAIL = EMAIL_HOST_USER

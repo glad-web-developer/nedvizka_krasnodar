@@ -44,20 +44,20 @@
                             <div>
 
                                 <a href="{{ i_nedvizka.get_url }}"
-                                   class=" zagolovok"><h3 class="h5"><b>{{ i_nedvizka.nazvanie }}</b></h3></a>
+                                   class=" zagolovok"><h3 class="h5"><b>{{ i_nedvizka.get_nazvanie }}</b></h3></a>
 
 
                             </div>
 
                             <div>
-                                <p class="opisanie">{{ i_nedvizka.get_opisaanaie_kratkoe }}</p>
+                                <p class="opisanie">{{ i_nedvizka.get_opisaanaie_kratkoe|default_if_none:'' }}</p>
                                 <div class="row opisanie">
                                     <div class="col-12 col-md-8">
-                                        <span>Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'' }} {{ i_nedvizka.adres|default_if_none:'' }}</span>
+                                        <span>Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'не укаазн' }} {{ i_nedvizka.adres|default_if_none:'' }}</span>
                                     </div>
 
                                     <div class="col-12 col-md-4 text-right">
-                                        <span>Площадь: {{ i_nedvizka.obshaia_ploshad|floatformat }} м<sup>2</sup></span>
+                                        <span>Площадь: {{ i_nedvizka.obshaia_ploshad|default_if_none:0|floatformat }} м<sup>2</sup></span>
                                     </div>
                                 </div>
 
@@ -67,12 +67,12 @@
                                 <div class="col-12 col-md-7 align-self-center">
                                     {% if i_nedvizka.prrice_akzionnaia %}
                                         <div><span
-                                                class="text-secondary staraia_zena">Старая цена: {{ i_nedvizka.price_bazovaia|floatformat }} руб</span>
+                                                class="text-secondary staraia_zena">Старая цена: {{ i_nedvizka.price_bazovaia|floatformat|default_if_none:0 }} руб</span>
                                         </div>
-                                        <div><b>Новая цена: {{ i_nedvizka.prrice_akzionnaia|floatformat }} руб.</b>
+                                        <div><b>Новая цена: {{ i_nedvizka.prrice_akzionnaia|floatformat|default_if_none:0 }} руб.</b>
                                         </div>
                                     {% else %}
-                                        <div><b>{{ i_nedvizka.price_bazovaia|floatformat }} руб</b></div>
+                                        <div><b>{{ i_nedvizka.price_bazovaia|floatformat|default_if_none:0 }} руб</b></div>
                                     {% endif %}
 
                                 </div>

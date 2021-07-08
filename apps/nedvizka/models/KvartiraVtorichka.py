@@ -48,7 +48,7 @@ class KvartiraVtorichkaProdaza(models.Model):
     def get_nazvanie(self):
         if self.nazvanie:
             return self.nazvanie
-        return f'Дом №{self.id}'
+        return f'Квартира №{self.id}'
 
     def get_opisaanaie_kratkoe(self):
         if self.opisaanaie:

@@ -1,4 +1,7 @@
 {% extends "core/base.html" %}
+{% block title %}
+    {% if danie_nedvizki.nazvanie %}{{ danie_nedvizki.nazvanie }}{% else %}Агентство недвижимости Альтаир{% endif %}
+{% endblock %}
 {% load thumbnail static cms_tags sekizai_tags %}
 {% block content %}
 
@@ -73,7 +76,7 @@
                                 {% if danie_nedvizki.obshaia_ploshad %}
                                     <tr>
                                         <td>Площадь участка и дома (кв. м)</td>
-                                        <td class="text-center">{{ danie_nedvizki.obshaia_ploshad|floatformat }}
+                                        <td class="text-center">{{ danie_nedvizki.obshaia_ploshad|floatformat|default_if_none:0 }}
                                             м<sup>2</sup></td>
                                     </tr>
                                 {% endif %}
@@ -81,7 +84,7 @@
                                 {% if danie_nedvizki.ploshad_osnovnogo_doma %}
                                     <tr>
                                         <td>Площадь основного дома(кв.м)</td>
-                                        <td class="text-center">{{ danie_nedvizki.ploshad_osnovnogo_doma|floatformat }}
+                                        <td class="text-center">{{ danie_nedvizki.ploshad_osnovnogo_doma|floatformat|default_if_none:0 }}
                                             м<sup>2</sup></td>
                                     </tr>
                                 {% endif %}
@@ -89,14 +92,14 @@
                                 {% if danie_nedvizki.naselenii_punkt %}
                                     <tr>
                                         <td>Населенный пункт</td>
-                                        <td class="text-center">{{ danie_nedvizki.naselenii_punkt }}</td>
+                                        <td class="text-center">{{ danie_nedvizki.naselenii_punkt|default_if_none:"-" }}</td>
                                     </tr>
                                 {% endif %}
 
                                 {% if danie_nedvizki.adres %}
                                     <tr>
                                         <td>Адрес</td>
-                                        <td class="text-center">{{ danie_nedvizki.adres }}</td>
+                                        <td class="text-center">{{ danie_nedvizki.adres|default_if_none:"-" }}</td>
                                     </tr>
                                 {% endif %}
 
@@ -127,7 +130,7 @@
 
 
                         <div class="col-12 mb-3">
-                            <div>{{ danie_nedvizki.opisaanaie|safe }}</div>
+                            <div>{{ danie_nedvizki.opisaanaie|safe|default_if_none:"-" }}</div>
                             <div class="text-center mt-4">
                                 <a href="#okno_zakaza_zvonka"
                                    class="btn btn-warning zakazat_zvonok  d-md-none btn-warning2    "
