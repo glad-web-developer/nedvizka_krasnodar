@@ -46,6 +46,10 @@ class DomProdaza(models.Model):
     opisaanaie = HTMLField('Описание', null=True, blank=True,
                            help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
 
+    def get_pervonochalnii_vznos(self):
+        if self.price_itogovaia:
+            return int(self.price_itogovaia / 10)
+
     def get_nazvanie(self):
         if self.nazvanie:
             return self.nazvanie

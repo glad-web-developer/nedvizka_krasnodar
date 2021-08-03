@@ -11,7 +11,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.shortcuts import render
 from django.views.static import serve
 
-
+from apps.nedvizka.views import api_ipoteka
 
 admin.autodiscover()
 
@@ -27,6 +27,7 @@ def render_page_404(request):
 urlpatterns += (
     url(r'^admin/', admin.site.urls),  # NOQA
     url(r'^formi_obratnoi_sviazi/', include('plugins.formi_obratnoi_sviazi_plugin.urls', namespace='formi_obratnoi_sviazi')),
+    url(r'^api/ipoteka/', api_ipoteka),
     url(r'^error_404/', render_page_404),
     url(r'^', include('cms.urls')),
 )

@@ -64,6 +64,24 @@ $color2: #f8f9fa;
   .previu {
     @include ten1();
   }
+
+  input[type=number] {
+
+  }
+
+  .legenda-kredit {
+    height: 10px;
+    width: 10px;
+    background-color: #28a745 !important;
+    border-radius: 100%;
+  }
+
+  .legenda-pereplata {
+    height: 10px;
+    width: 10px;
+    background-color: #fdc532 !important;
+    border-radius: 100%;
+  }
 }
 
 
@@ -901,6 +919,12 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
 
 }
 
+@media (max-width: 991px) {
+  .border-do-lg-top {
+    border-top: 1px solid #dee2e6!important;
+  }
+}
+
 /*xl*/
 @media (min-width: 1120px) {
 
@@ -946,3 +970,4 @@ a.text-info:hover, a.text-info:active, a.text-info:focus {
     font-size: 1.3rem;
   }
 }
+

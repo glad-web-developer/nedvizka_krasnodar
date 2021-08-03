@@ -63,7 +63,47 @@ $(() => {
 
     });
 
+    $('.dv_nedvizka input.number').keyup(function (e) {
+        this.value = this.value.replace(" ", "").replace(" ", "");
+        this.value = this.value.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, "$1 ");
+        rashitatIpoteku();
+    });
+
+    $('#input_srok').change(function (){
+        rashitatIpoteku();
+    })
+
+
+    function rashitatIpoteku() {
+        let data = {
+            'stoimost': $('#input_stoimost').val(),
+            'pervonachalni_vznos': $('#input_pervonachalni_vznos').val(),
+            'srok': $('#input_srok').val(),
+            'stavka': $('#input_stavka').val(),
+        };
+
+        $.get("/api/ipoteka/", data).done(function (data){
+            $('.val_summa_kredita').text(data.summa_kredita.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, "$1 "));
+            $('.val_ezemes_platez').text(data.ezemes_platez.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, "$1 "));
+            $('.val_pereplata').text(data.pereplata.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, "$1 "));
+            $('.val_obshaia_viplata').text(data.obshaia_viplata.replace(/(\d)(?=(\d{3})+([^\d]|$))/g, "$1 "));
+            $('.progress-bar-kredit').css('width', data.dolia_kredita+'%');
+            $('.progress-bar-pereplata').css('width', data.dolia_pereplati+'%');
+
+
+        }).fail(function (error) {
+            $('.val_summa_kredita').text(0);
+            $('.val_ezemes_platez').text(0);
+            $('.val_pereplata').text(0);
+            $('.val_obshaia_viplata').text(0);
+            $('.progress-bar-kredit').css('width', 0);
+            $('.progress-bar-pereplata').css('width', 0);
+        })
+
+    }
+
+    rashitatIpoteku();
+
 
 });
-
 
