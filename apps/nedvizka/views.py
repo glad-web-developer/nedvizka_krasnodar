@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 
 from apps.nedvizka.models import DomProdaza, KvartiraPervichkaProdaza, DomArenda, KvartiraPervichkaArenda, \
     KvartiraVtorichkaProdaza, KvartiraVtorichkaArenda, UchactkiProdaza, UchactkiArenda, NezelieArenda, NezelieProdaza, \
-    KomerchiskieProdaza, KomerchiskieArenda
+    KomerchiskieProdaza, KomerchiskieArenda, MaloEtaznoeStroitelstvoProdaza
 
 
 def dom_prodaza_dv(request, slug_or_id):
@@ -101,6 +101,11 @@ def komerchiskie_arenda_dv(request, slug_or_id):
     except:
         danie_nedvizki = get_object_or_404(KomerchiskieArenda, id=slug_or_id)
     return render(request, 'nedvizka/straniza_dv_nedvizka.html', {'danie_nedvizki':danie_nedvizki})
+
+
+def maloetaznoe_stroitelstvo_dv(request, slug_or_id):
+    danie_nedvizki = get_object_or_404(MaloEtaznoeStroitelstvoProdaza, id=slug_or_id)
+    return render(request, 'nedvizka/straniza_dv_nedvizka.html', {'danie_nedvizki': danie_nedvizki})
 
 
 def toFixed(numObj, digits=0):

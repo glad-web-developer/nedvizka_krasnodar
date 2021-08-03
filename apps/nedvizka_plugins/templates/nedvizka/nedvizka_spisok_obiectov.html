@@ -53,7 +53,8 @@
                                 <p class="opisanie">{{ i_nedvizka.get_opisaanaie_kratkoe|default_if_none:'' }}</p>
                                 <div class="row opisanie">
                                     <div class="col-12 col-md-8">
-                                        <span>Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'не укаазн' }} {{ i_nedvizka.adres|default_if_none:'' }}</span>
+                                        <span>{% if i_nedvizka.naselenii_punkt or  i_nedvizka.adres %}Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'не укаазн' }} {{ i_nedvizka.adres|default_if_none:'' }}{% endif %}</span>
+                                        <span> <b>{% if i_nedvizka.tip_maloetaznoi_postroiki %}{{ i_nedvizka.tip_maloetaznoi_postroiki.nazvanie }} {% endif %}</b></span>
                                     </div>
 
                                     <div class="col-12 col-md-4 text-right">

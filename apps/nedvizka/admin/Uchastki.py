@@ -33,7 +33,7 @@ class UchactkiProdazaAdmin(ImportExportModelAdmin):
         'prrice_akzionnaia',
         'naselenii_punkt',
         'obshaia_ploshad',
-        'eto_luchoe_prodlozenie',
+
         'akzia'
     ]
     search_fields = [
@@ -44,31 +44,31 @@ class UchactkiProdazaAdmin(ImportExportModelAdmin):
     ]
     list_filter = [
         'pokazivat',
-        'eto_luchoe_prodlozenie',
+
         'akzia',
         'naselenii_punkt',
     ]
-    inlines = [FotoUchactkiProdazaInline, VideoUchactkiProdazaInline, PanoramiUchactkiProdazaInline]
+    inlines = [FotoUchactkiProdazaInline, ]
 
     save_as = True
     save_on_top = True
 
-    fieldsets = [
-        (None, {
-            'fields': (
-                'nazvanie',
-                'slug',
-                'previu',
-                ('pokazivat', 'eto_luchoe_prodlozenie',),
-                'opisaanaie',
-                ('price_bazovaia', 'prrice_akzionnaia', ),
-                ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
-                ('obshaia_ploshad'),
-                ('nalichie_gaza', 'nalichie_otdelki', ),
-                ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),
-            )
-        }),
-    ]
+    # fieldsets = [
+    #     (None, {
+    #         'fields': (
+    #             'nazvanie',
+    #             'slug',
+    #             'previu',
+    #             ('pokazivat', ),
+    #             'opisaanaie',
+    #             ('price_bazovaia', 'prrice_akzionnaia', ),
+    #             ('naselenii_punkt', 'adres'),
+    #             ('obshaia_ploshad'),
+    #             ('nalichie_gaza', 'nalichie_otdelki', ),
+    #             ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),
+    #         )
+    #     }),
+    # ]
 
 
 admin.site.register(UchactkiProdaza, UchactkiProdazaAdmin)
@@ -102,7 +102,7 @@ class UchactkiArendaAdmin(ImportExportModelAdmin):
         'prrice_akzionnaia',
         'naselenii_punkt',
         'obshaia_ploshad',
-        'eto_luchoe_prodlozenie',
+
         'akzia'
     ]
     search_fields = [
@@ -113,7 +113,7 @@ class UchactkiArendaAdmin(ImportExportModelAdmin):
     ]
     list_filter = [
         'pokazivat',
-        'eto_luchoe_prodlozenie',
+
         'akzia',
         'naselenii_punkt',
     ]
@@ -128,10 +128,10 @@ class UchactkiArendaAdmin(ImportExportModelAdmin):
                 'nazvanie',
                 'slug',
                 'previu',
-                ('pokazivat', 'eto_luchoe_prodlozenie',),
+                ('pokazivat', ),
                 'opisaanaie',
                 ('price_bazovaia', 'prrice_akzionnaia', ),
-                ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
+                ('naselenii_punkt', 'adres'),
                 ('obshaia_ploshad'),
                 ('nalichie_gaza', 'nalichie_otdelki', ),
                 ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),

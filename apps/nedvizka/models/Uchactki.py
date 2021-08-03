@@ -14,11 +14,12 @@ class UchactkiProdaza(models.Model):
     class Meta:
         verbose_name = 'Участки - продажа'
         verbose_name_plural = 'Участки - продажа'
+        ordering = ['-id']
 
     pokazivat = models.BooleanField('Показывать/скрыть', default=True, choices=CHOICES_POKAZIVAT)
 
-    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
-                                                 choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
+    # eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
+    #                                              choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
 
     nazvanie = models.CharField('Название', max_length=255, null=True, blank=True)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
@@ -26,21 +27,24 @@ class UchactkiProdaza(models.Model):
     price_bazovaia = models.FloatField('Базовая цена руб.', default=0)
     prrice_akzionnaia = models.FloatField('Акционная цена руб', default=0)
 
-    price_itogovaia = models.FloatField('Цена для поиска', default=0)
-    akzia = models.BooleanField('Акция/спец цена', default=False)
+    price_itogovaia = models.FloatField('Цена для поиска', default=0, editable=False)
+    akzia = models.BooleanField('Акция/спец цена', default=False,  editable=False)
 
-    obshaia_ploshad = models.FloatField('Площадь участка и дома (кв. м)', null=True, blank=True)
+    obshaia_ploshad = models.FloatField('Площадь участка (м2)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)
     adres = models.CharField('Адрес', null=True, blank=True, max_length=255)
-    kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
-                                          help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
+    # kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
+    #                                       help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
     # ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
 
-    nalichie_gaza = models.BooleanField('Наличие газа в доме', default=False, choices=CHOICES_DA_NET)
-    blizost_so_shkoloi = models.BooleanField('Близость со школой', default=False, choices=CHOICES_DA_NET)
-    blizost_s_med = models.BooleanField('Близость с мед учереждением', default=False, choices=CHOICES_DA_NET)
-    blizost_s_metro = models.BooleanField('Близость с метро', default=False, choices=CHOICES_DA_NET)
-    nalichie_otdelki = models.IntegerField('Наличие отделки', default=1, choices=CHOICES_NALICHIE_OTDELKI)
+
+    blizost_so_shkoloi = models.BooleanField('Близость со школой', null=True, blank=True, choices=CHOICES_DA_NET, )
+    blizost_s_med = models.BooleanField('Близость с мед учереждением', null=True, blank=True, choices=CHOICES_DA_NET)
+    blizost_s_metro = models.BooleanField('Близость с метро', null=True, blank=True, choices=CHOICES_DA_NET)
+    vodoprovod = models.BooleanField('Водопровод',  null=True, blank=True, choices=CHOICES_DA_NET)
+    electrichestvo = models.BooleanField('Электричество',  null=True, blank=True, choices=CHOICES_DA_NET)
+    ostanovki = models.CharField('Остановки', blank=True, null=True, max_length=255)
+
 
     opisaanaie = HTMLField('Описание', null=True, blank=True,
                            help_text='Будет выводиться только если выбран шаблонное оформление страницы объекта')
@@ -144,8 +148,8 @@ class UchactkiArenda(models.Model):
 
     pokazivat = models.BooleanField('Показывать', default=True, choices=CHOICES_POKAZIVAT)
 
-    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
-                                                 choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
+    # eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
+    #                                              choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
 
     nazvanie = models.CharField('Название', max_length=255)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
@@ -154,13 +158,13 @@ class UchactkiArenda(models.Model):
     prrice_akzionnaia = models.FloatField('Акционная цена руб', default=0)
 
     price_itogovaia = models.FloatField('Цена для поиска', default=0)
-    akzia = models.BooleanField('Акция/спец цена', default=False)
+    akzia = models.BooleanField('Акция/спец цена', default=False,  editable=False)
 
     obshaia_ploshad = models.FloatField('Плоащдь участка и дома (кв. м)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)
     adres = models.CharField('Адрес', null=True, blank=True, max_length=255)
-    kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
-                                          help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
+    # kordinati_na_karte = models.CharField('Координаты на карте', null=True, blank=True, max_length=255,
+    #                                       help_text='Например "44.533249, 33.455248" без кавычек (https://snipp.ru/tools/address-coord)')
     # ploshad_uchastka = models.FloatField('Площадь участка (соток)', null=True, blank=True, max_length=255)
     # ploshad_osnovnogo_doma = models.FloatField('Площадь основного дома(кв.м)', null=True, blank=True, max_length=255)
 

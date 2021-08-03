@@ -18,8 +18,8 @@ class DomProdaza(models.Model):
 
     pokazivat = models.BooleanField('Показывать/скрыть', default=True, choices=CHOICES_POKAZIVAT)
 
-    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
-                                                 choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
+    # eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
+    #                                              choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
 
     nazvanie = models.CharField('Название', max_length=255, null=True, blank=True)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
@@ -28,7 +28,7 @@ class DomProdaza(models.Model):
     prrice_akzionnaia = models.FloatField('Акционная цена руб', default=0)
 
     price_itogovaia = models.FloatField('Цена для поиска', default=0)
-    akzia = models.BooleanField('Акция/спец цена', default=False)
+    akzia = models.BooleanField('Акция/спец цена', default=False,  editable=False)
 
     obshaia_ploshad = models.FloatField('Площадь участка и дома (кв. м)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)
@@ -144,8 +144,8 @@ class DomArenda(models.Model):
 
     pokazivat = models.BooleanField('Показывать', default=True, choices=CHOICES_POKAZIVAT)
 
-    eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
-                                                 choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
+    # eto_luchoe_prodlozenie = models.IntegerField('Лучшее предложение?', default=1,
+    #                                              choices=CHOICES_ETO_LUCHSHOE_PREDLOZENIE)
 
     nazvanie = models.CharField('Название', max_length=255)
     slug = models.SlugField('Ссылка', max_length=255, null=True, blank=True)
@@ -154,7 +154,7 @@ class DomArenda(models.Model):
     prrice_akzionnaia = models.FloatField('Акционная цена руб', default=0)
 
     price_itogovaia = models.FloatField('Цена для поиска', default=0)
-    akzia = models.BooleanField('Акция/спец цена', default=False)
+    akzia = models.BooleanField('Акция/спец цена', default=False,  editable=False)
 
     obshaia_ploshad = models.FloatField('Плоащдь участка и дома (кв. м)', null=True, blank=True)
     naselenii_punkt = models.CharField('Населенный пункт', null=True, blank=True, max_length=255)

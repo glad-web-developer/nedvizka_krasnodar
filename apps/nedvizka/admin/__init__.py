@@ -4,3 +4,4 @@ from .KvartiraVtorichka import KvartiraVtorichkaArenda, KvartiraVtorichkaProdaza
 from .Komerchiskie import KomerchiskieArenda, KomerchiskieProdaza
 from .Uchastki import UchactkiArenda, UchactkiProdaza
 from .Nezilie import NezelieProdaza, NezelieArenda
+from .MaloEtaznoeStroitelstvo import MaloEtaznoeStroitelstvoProdazaAdmin

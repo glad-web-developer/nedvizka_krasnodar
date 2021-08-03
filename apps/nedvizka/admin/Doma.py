@@ -34,7 +34,7 @@ class DomProdazaAdmin(ImportExportModelAdmin):
         'prrice_akzionnaia',
         'naselenii_punkt',
         'obshaia_ploshad',
-        'eto_luchoe_prodlozenie',
+        # 'eto_luchoe_prodlozenie',
         'akzia'
     ]
     search_fields = [
@@ -45,11 +45,11 @@ class DomProdazaAdmin(ImportExportModelAdmin):
     ]
     list_filter = [
         'pokazivat',
-        'eto_luchoe_prodlozenie',
+        # 'eto_luchoe_prodlozenie',
         'akzia',
         'naselenii_punkt',
     ]
-    inlines = [FotoDomProdazaInline, VideoDomProdazaInline, PanoramiDomProdazaInline]
+    inlines = [FotoDomProdazaInline,]
 
     save_as = True
     save_on_top = True
@@ -60,10 +60,10 @@ class DomProdazaAdmin(ImportExportModelAdmin):
                 'nazvanie',
                 'slug',
                 'previu',
-                ('pokazivat', 'eto_luchoe_prodlozenie',),
+                'pokazivat',
                 'opisaanaie',
                 ('price_bazovaia', 'prrice_akzionnaia', ),
-                ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
+                ('naselenii_punkt', 'adres'),
                 ('obshaia_ploshad', 'ploshad_osnovnogo_doma'),
                 ('nalichie_gaza', 'nalichie_otdelki', ),
                 ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),
@@ -102,7 +102,7 @@ class DomArendaAdmin(ImportExportModelAdmin):
         'prrice_akzionnaia',
         'naselenii_punkt',
         'obshaia_ploshad',
-        'eto_luchoe_prodlozenie',
+
         'akzia'
     ]
     search_fields = [
@@ -113,7 +113,7 @@ class DomArendaAdmin(ImportExportModelAdmin):
     ]
     list_filter = [
         'pokazivat',
-        'eto_luchoe_prodlozenie',
+
         'akzia',
         'naselenii_punkt',
     ]
@@ -128,10 +128,10 @@ class DomArendaAdmin(ImportExportModelAdmin):
                 'nazvanie',
                 'slug',
                 'previu',
-                ('pokazivat', 'eto_luchoe_prodlozenie',),
+                ('pokazivat', ),
                 'opisaanaie',
                 ('price_bazovaia', 'prrice_akzionnaia', ),
-                ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
+                ('naselenii_punkt', 'adres'),
                 ('obshaia_ploshad', 'ploshad_osnovnogo_doma'),
                 ('nalichie_gaza', 'nalichie_otdelki', ),
                 ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),

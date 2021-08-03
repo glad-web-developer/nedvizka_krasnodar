@@ -13,3 +13,6 @@ from .Nezelie import NezelieArenda, FotoNezelieArenda, FotoNezelieProdaza, Panor
 from .Komerchiskie import KomerchiskieArenda, PanoramiKomerchiskieArenda, PanoramiKomerchiskieProdaza, \
     VideoKomerchiskieProdaza, VideoKomerchiskieArenda, FotoKomerchiskieArenda, FotoKomerchiskieProdaza, \
     KomerchiskieProdaza
+
+from .MaloEtaznoeStroitelstvo import MaloEtaznoeStroitelstvoProdaza, FotoMaloEtaznoeStroitelstvoProdaza, \
+    TipMaloetaznoiPostroiki, MaterialMaoetaznoiPostroiki

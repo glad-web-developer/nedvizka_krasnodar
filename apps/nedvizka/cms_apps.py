@@ -5,7 +5,8 @@ from django.urls import path
 
 from apps.nedvizka.views import dom_prodaza_dv, kvartira_pervichka_prodaza_dv, dom_arenda_dv, \
     kvartiri_pervicka_arenda_dv, kvartira_vtorichka_prodaza_dv, kvartiri_vtorichka_arenda_dv, uchactki_prodaza_dv, \
-    uchactki_arenda_dv, nezilie_prodaza_dv, nezilie_arenda_dv, komerchiskie_arenda_dv, komerchiskie_prodaza_dv
+    uchactki_arenda_dv, nezilie_prodaza_dv, nezilie_arenda_dv, komerchiskie_arenda_dv, komerchiskie_prodaza_dv, \
+    maloetaznoe_stroitelstvo_dv
 
 
 @apphook_pool.register
@@ -127,4 +128,14 @@ class ArendaKomerchiskieApp(CMSApp):
     def get_urls(self, page=None, language=None, **kwargs):
         return [
             path(r'<slug_or_id>/', komerchiskie_arenda_dv),
+        ]
+
+@apphook_pool.register
+class MaloetaznoeStroitelstvoApp(CMSApp):
+    app_name = 'maloetaznoe_sroitelstvo_app'
+    name = "Малоэтажное строительство"
+
+    def get_urls(self, page=None, language=None, **kwargs):
+        return [
+            path(r'<slug_or_id>/', maloetaznoe_stroitelstvo_dv),
         ]

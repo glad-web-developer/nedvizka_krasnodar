@@ -33,7 +33,7 @@ class NezelieProdazaAdmin(ImportExportModelAdmin):
         'prrice_akzionnaia',
         'naselenii_punkt',
         'obshaia_ploshad',
-        'eto_luchoe_prodlozenie',
+
         'akzia'
     ]
     search_fields = [
@@ -44,11 +44,11 @@ class NezelieProdazaAdmin(ImportExportModelAdmin):
     ]
     list_filter = [
         'pokazivat',
-        'eto_luchoe_prodlozenie',
+
         'akzia',
         'naselenii_punkt',
     ]
-    inlines = [FotoNezelieProdazaInline, VideoNezelieProdazaInline, PanoramiNezelieProdazaInline]
+    inlines = [FotoNezelieProdazaInline, ]
 
     save_as = True
     save_on_top = True
@@ -59,10 +59,10 @@ class NezelieProdazaAdmin(ImportExportModelAdmin):
                 'nazvanie',
                 'slug',
                 'previu',
-                ('pokazivat', 'eto_luchoe_prodlozenie',),
+                ('pokazivat', ),
                 'opisaanaie',
                 ('price_bazovaia', 'prrice_akzionnaia', ),
-                ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
+                ('naselenii_punkt', 'adres'),
                 ('obshaia_ploshad'),
                 ('nalichie_gaza', 'nalichie_otdelki', ),
                 ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),
@@ -102,7 +102,7 @@ class NezelieArendaAdmin(ImportExportModelAdmin):
         'prrice_akzionnaia',
         'naselenii_punkt',
         'obshaia_ploshad',
-        'eto_luchoe_prodlozenie',
+
         'akzia'
     ]
     search_fields = [
@@ -113,7 +113,7 @@ class NezelieArendaAdmin(ImportExportModelAdmin):
     ]
     list_filter = [
         'pokazivat',
-        'eto_luchoe_prodlozenie',
+
         'akzia',
         'naselenii_punkt',
     ]
@@ -128,10 +128,10 @@ class NezelieArendaAdmin(ImportExportModelAdmin):
                 'nazvanie',
                 'slug',
                 'previu',
-                ('pokazivat', 'eto_luchoe_prodlozenie',),
+                ('pokazivat', ),
                 'opisaanaie',
                 ('price_bazovaia', 'prrice_akzionnaia', ),
-                ('naselenii_punkt', 'adres', 'kordinati_na_karte'),
+                ('naselenii_punkt', 'adres'),
                 ('obshaia_ploshad'),
                 ('nalichie_gaza', 'nalichie_otdelki', ),
                 ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),
