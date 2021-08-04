@@ -75,18 +75,43 @@
 
                                 {% if danie_nedvizki.tip_maloetaznoi_postroiki %}
                                     <tr>
-                                        <td>Тип: </td>
+                                        <td>Тип:</td>
                                         <td class="text-center">{{ danie_nedvizki.tip_maloetaznoi_postroiki.nazvanie }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.tip_neziloe %}
+                                    <tr>
+                                        <td>Тип:</td>
+                                        <td class="text-center">{{ danie_nedvizki.tip_neziloe.nazvanie }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.tip_komerch %}
+                                    <tr>
+                                        <td>Тип:</td>
+                                        <td class="text-center">{{ danie_nedvizki.tip_komerch.nazvanie }}</td>
                                     </tr>
                                 {% endif %}
 
                                 {% if danie_nedvizki.obshaia_ploshad %}
                                     <tr>
-                                        <td>Общая площадь</td>
+                                        <td>Площадь</td>
                                         <td class="text-center">{{ danie_nedvizki.obshaia_ploshad|floatformat|default_if_none:0 }}
                                             м<sup>2</sup></td>
                                     </tr>
                                 {% endif %}
+
+                                {% if danie_nedvizki.ploshad_uchastka %}
+                                    <tr>
+                                        <td>Площадь участка</td>
+                                        <td class="text-center">{{ danie_nedvizki.ploshad_uchastka|floatformat|default_if_none:0 }}
+                                            м<sup>2</sup></td>
+                                    </tr>
+                                {% endif %}
+
+
+
 
                                 {% if danie_nedvizki.material_postroiki %}
                                     <tr>
@@ -109,11 +134,12 @@
                                     </tr>
                                 {% endif %}
 
-                                {% if danie_nedvizki.ploshad_osnovnogo_doma %}
+
+
+                                {% if danie_nedvizki.ploshad_uchastka %}
                                     <tr>
-                                        <td>Площадь основного дома(кв.м)</td>
-                                        <td class="text-center">{{ danie_nedvizki.ploshad_osnovnogo_doma|floatformat|default_if_none:0 }}
-                                            м<sup>2</sup></td>
+                                        <td>Площадь участка</td>
+                                        <td class="text-center">{{ danie_nedvizki.ploshad_uchastka }}</td>
                                     </tr>
                                 {% endif %}
 
@@ -131,6 +157,27 @@
                                     </tr>
                                 {% endif %}
 
+                                {% if danie_nedvizki.nalichie_otdelki %}
+                                    <tr>
+                                        <td>Наличие внутренней отделки</td>
+                                        <td class="text-center">{{ danie_nedvizki.get_nalichie_otdelki_display }}</td>
+                                    </tr>
+                                {% endif %}
+
+                              {% if danie_nedvizki.nalichie_vnesheni_otdelki %}
+                                    <tr>
+                                        <td>Наличие внешней отделки</td>
+                                        <td class="text-center">{{ danie_nedvizki.get_nalichie_vnesheni_otdelki_display }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.ostanovki %}
+                                    <tr>
+                                        <td>Отстановки</td>
+                                        <td class="text-center">{{ danie_nedvizki.ostanovki|default_if_none:"-" }}</td>
+                                    </tr>
+                                {% endif %}
+
                                 {% if danie_nedvizki.nalichie_gaza == False or  danie_nedvizki.nalichie_gaza == True %}
                                     <tr>
                                         <td>Наличие газа в доме</td>
@@ -138,10 +185,28 @@
                                     </tr>
                                 {% endif %}
 
+
+
                                 {% if danie_nedvizki.blizost_so_shkoloi == True or danie_nedvizki.blizost_so_shkoloi == False %}
                                     <tr>
-                                        <td>Близость со школой</td>
+                                        <td>Близость со школой или дет. садом</td>
                                         <td class="text-center">{{ danie_nedvizki.get_blizost_so_shkoloi_display }}</td>
+                                    </tr>
+                                {% endif %}
+
+
+
+                                {% if danie_nedvizki.vodoprovod == True or danie_nedvizki.vodoprovod == False %}
+                                    <tr>
+                                        <td>Водопровод</td>
+                                        <td class="text-center">{{ danie_nedvizki.get_vodoprovod_display }}</td>
+                                    </tr>
+                                {% endif %}
+
+                                {% if danie_nedvizki.electrichestvo == True or danie_nedvizki.electrichestvo == False %}
+                                    <tr>
+                                        <td>Электричество</td>
+                                        <td class="text-center">{{ danie_nedvizki.get_electrichestvo_display }}</td>
                                     </tr>
                                 {% endif %}
 

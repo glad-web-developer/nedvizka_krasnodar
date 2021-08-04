@@ -53,8 +53,10 @@
                                 <p class="opisanie">{{ i_nedvizka.get_opisaanaie_kratkoe|default_if_none:'' }}</p>
                                 <div class="row opisanie">
                                     <div class="col-12 col-md-8">
-                                        <span>{% if i_nedvizka.naselenii_punkt or  i_nedvizka.adres %}Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'не укаазн' }} {{ i_nedvizka.adres|default_if_none:'' }}{% endif %}</span>
+                                        <span>{% if i_nedvizka.naselenii_punkt or  i_nedvizka.adres %}Адрес: {{ i_nedvizka.naselenii_punkt|default_if_none:'не укаазн' }} {{ i_nedvizka.adres|default_if_none:'' }}<br>{% endif %}</span>
                                         <span> <b>{% if i_nedvizka.tip_maloetaznoi_postroiki %}{{ i_nedvizka.tip_maloetaznoi_postroiki.nazvanie }} {% endif %}</b></span>
+                                        <span> <b>{% if i_nedvizka.tip_neziloe %}{{ i_nedvizka.tip_neziloe.nazvanie }} {% endif %}</b></span>
+                                        <span> <b>{% if i_nedvizka.tip_komerch %}{{ i_nedvizka.tip_komerch.nazvanie }} {% endif %}</b></span>
                                     </div>
 
                                     <div class="col-12 col-md-4 text-right">
@@ -176,7 +178,7 @@
 {% else %}
     <div class="card bg-light text-uppercase text-center mb-3">
     <div class="card-body my-3">
-        <p class="h4"><b>По Ващему запросу нет результатов=(</b></p>
+        <p class="h4"><b>По Ващему запросу нет результатов</b></p>
         <p class="my-3 h5"><b>Попробуйте указать другие параметры поиска</b></p>
     </div>
 

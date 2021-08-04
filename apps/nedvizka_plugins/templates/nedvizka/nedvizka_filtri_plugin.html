@@ -5,12 +5,12 @@
         </div>
         <div class="card-body">
 
-
-
-            <div class="form_element">
-                {{ form.nazvanie.label_tag }}
-                {{ form.nazvanie }}
-            </div>
+            {% if form.nazvanie %}
+                <div class="form_element">
+                    {{ form.nazvanie.label_tag }}
+                    {{ form.nazvanie }}
+                </div>
+            {% endif %}
 
             <div class="form_element">
                 <label for="">Цена</label>
@@ -27,15 +27,19 @@
                 </div>
             </div>
 
-            <div class="form_element">
-                {{ form.naselenii_punkt.label_tag }}
-                {{ form.naselenii_punkt }}
-            </div>
+            {% if form.naselenii_punkt %}
+                <div class="form_element">
+                    {{ form.naselenii_punkt.label_tag }}
+                    {{ form.naselenii_punkt }}
+                </div>
+            {% endif %}
 
-            <div class="form_element">
-                {{ form.adres.label_tag }}
-                {{ form.adres }}
-            </div>
+            {% if form.adres %}
+                <div class="form_element">
+                    {{ form.adres.label_tag }}
+                    {{ form.adres }}
+                </div>
+            {% endif %}
 
             <div class="form_element">
                 <label for="">Площадь</label>
@@ -52,30 +56,96 @@
                 </div>
             </div>
 
-            <div class="form_element">
-                {{ form.nalichie_otdelki.label_tag }}
-                {{ form.nalichie_otdelki }}
-            </div>
+            {% if form.nalichie_otdelki %}
+                <div class="form_element">
+                    {{ form.nalichie_otdelki.label_tag }}
+                    {{ form.nalichie_otdelki }}
+                </div>
+            {% endif %}
 
-             <div class="form_element">
-                {{ form.nalichie_gaza.label_tag }}
-                {{ form.nalichie_gaza }}
-            </div>
+            {% if form.nalichie_vnesheni_otdelki %}
+                <div class="form_element">
+                    {{ form.nalichie_vnesheni_otdelki.label_tag }}
+                    {{ form.nalichie_vnesheni_otdelki }}
+                </div>
+            {% endif %}
 
-             <div class="form_element">
-                {{ form.blizost_so_shkoloi.label_tag }}
-                {{ form.blizost_so_shkoloi }}
-            </div>
+            {% if form.vodoprovod %}
+                <div class="form_element">
+                    {{ form.vodoprovod.label_tag }}
+                    {{ form.vodoprovod }}
+                </div>
+            {% endif %}
 
-             <div class="form_element">
-                {{ form.blizost_s_med.label_tag }}
-                {{ form.blizost_s_med }}
-            </div>
+            {% if form.electrichestvo %}
+                <div class="form_element">
+                    {{ form.electrichestvo.label_tag }}
+                    {{ form.electrichestvo }}
+                </div>
+            {% endif %}
 
-{#             <div class="form_element">#}
-{#                {{ form.blizost_s_metro.label_tag }}#}
-{#                {{ form.blizost_s_metro }}#}
-{#            </div>#}
+            {% if form.ostanovki %}
+                <div class="form_element">
+                    {{ form.ostanovki.label_tag }}
+                    {{ form.ostanovki }}
+                </div>
+            {% endif %}
+
+            {% if form.tip_maloetaznoi_postroiki %}
+                <div class="form_element">
+                    {{ form.tip_maloetaznoi_postroiki.label_tag }}
+                    {{ form.tip_maloetaznoi_postroiki }}
+                </div>
+            {% endif %}
+
+            {% if form.material_postroiki %}
+                <div class="form_element">
+                    {{ form.material_postroiki.label_tag }}
+                    {{ form.material_postroiki }}
+                </div>
+            {% endif %}
+
+            {% if form.tip_komerch %}
+                <div class="form_element">
+                    {{ form.tip_komerch.label_tag }}
+                    {{ form.tip_komerch }}
+                </div>
+            {% endif %}
+
+            {% if form.tip_neziloe %}
+                <div class="form_element">
+                    {{ form.tip_neziloe.label_tag }}
+                    {{ form.tip_neziloe }}
+                </div>
+            {% endif %}
+
+            {% if form.nalichie_gaza %}
+                <div class="form_element">
+                    {{ form.nalichie_gaza.label_tag }}
+                    {{ form.nalichie_gaza }}
+                </div>
+            {% endif %}
+
+            {% if form.blizost_so_shkoloi %}
+                <div class="form_element">
+                    {{ form.blizost_so_shkoloi.label_tag }}
+                    {{ form.blizost_so_shkoloi }}
+                </div>
+            {% endif %}
+
+            {% if form.blizost_s_med %}
+                <div class="form_element">
+                    {{ form.blizost_s_med.label_tag }}
+                    {{ form.blizost_s_med }}
+                </div>
+            {% endif %}
+
+            {% if form.blizost_s_metro %}
+                <div class="form_element">
+                    {{ form.blizost_s_metro.label_tag }}
+                    {{ form.blizost_s_metro }}
+                </div>
+            {% endif %}
 
 
             <div class="text-center">

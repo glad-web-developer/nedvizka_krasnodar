@@ -1,7 +1,7 @@
-from .Doma import DomProdazaAdmin, DomArenda
-from .KvartiraPervichka import KvartiraPervichkaProdaza, KvartiraPervichkaArenda
-from .KvartiraVtorichka import KvartiraVtorichkaArenda, KvartiraVtorichkaProdaza
-from .Komerchiskie import KomerchiskieArenda, KomerchiskieProdaza
-from .Uchastki import UchactkiArenda, UchactkiProdaza
-from .Nezilie import NezelieProdaza, NezelieArenda
+from .Doma import DomProdazaAdmin
 from .MaloEtaznoeStroitelstvo import MaloEtaznoeStroitelstvoProdazaAdmin
+from .KvartiraVtorichka import KvartiraVtorichkaProdazaAdmin
+from .KvartiraPervichka import KvartiraPervichkaProdazaAdmin
+from .Uchastki import UchactkiProdazaAdmin
+from .Komerchiskie import KomerchiskieProdazaAdmin
+from .Nezilie import NezelieProdazaAdmin

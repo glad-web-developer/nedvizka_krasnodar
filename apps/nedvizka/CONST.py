@@ -16,6 +16,12 @@ CHOICES_NALICHIE_OTDELKI = (
     (3, 'С ремонтом'),
 )
 
+CHOICES_NALICHIE_VNESNEI_OTDELKI = (
+    (None, '---'),
+    (1, 'Без отделки'),
+    (2, 'Есть'),
+)
+
 CHOICES_DA_NET = (
     (None, '---'),
     (True, 'Да'),

@@ -1,8 +1,5 @@
 from django.contrib import admin
 
-from apps.nedvizka.models import FotoDomProdaza, VideoDomProdaza, PanoramiDomProdaza, DomProdaza, FotoDomArenda, \
-    VideoDomArendda, PanoramiDomaArenda, DomArenda
-
 from import_export.admin import ImportExportModelAdmin
 
 from apps.nedvizka.models.MaloEtaznoeStroitelstvo import MaloEtaznoeStroitelstvoProdaza, TipMaloetaznoiPostroiki, \
@@ -11,8 +8,7 @@ from apps.nedvizka.models.MaloEtaznoeStroitelstvo import MaloEtaznoeStroitelstvo
 
 class FotoMaloEtaznoeStroitelstvoInline(admin.TabularInline):
     model = FotoMaloEtaznoeStroitelstvoProdaza
-    extra = 4
-    # classes = ['collapse']
+    extra = 0
 
 class TipMaloetaznoiPostroikiAdmin(ImportExportModelAdmin):
     save_as = True
@@ -50,22 +46,6 @@ class MaloEtaznoeStroitelstvoProdazaAdmin(ImportExportModelAdmin):
     save_as = True
     save_on_top = True
 
-    # fieldsets = [
-    #     (None, {
-    #         'fields': (
-    #             'nazvanie',
-    #             'slug',
-    #             'previu',
-    #             'pokazivat',
-    #             'opisaanaie',
-    #             ('price_bazovaia', 'prrice_akzionnaia', ),
-    #             ('naselenii_punkt', 'adres'),
-    #             ('obshaia_ploshad', 'ploshad_osnovnogo_doma'),
-    #             ('nalichie_gaza', 'nalichie_otdelki', ),
-    #             ('blizost_s_med', 'blizost_so_shkoloi', 'blizost_s_metro'),
-    #         )
-    #     }),
-    # ]
 
 
 admin.site.register(MaloEtaznoeStroitelstvoProdaza, MaloEtaznoeStroitelstvoProdazaAdmin)

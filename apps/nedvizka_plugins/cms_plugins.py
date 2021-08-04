@@ -3,12 +3,12 @@ from math import ceil
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from apps.nedvizka.forms import DomProdazaForm, KvartiraPervichkaProdazaForm, DomArendaForm, \
-    KvartiraPervichkaArendaForm, KvartiraVtorickaArendaForm, KvartiraVtorichkaProdazaForm, UchastkiProdazaForm, \
-    UchastkiArendaForm, NezelieProdazaForm, NezelieArendaForm, KomerchiskieProdazaForm, KomerchiskieArendaForm
-from apps.nedvizka.models import DomProdaza, DomArenda, KvartiraPervichkaProdaza, KvartiraPervichkaArenda, \
-    KvartiraVtorichkaProdaza, KvartiraVtorichkaArenda, UchactkiProdaza, UchactkiArenda, NezelieProdaza, NezelieArenda, \
-    KomerchiskieProdaza, KomerchiskieArenda, MaloEtaznoeStroitelstvoProdaza
+from apps.nedvizka.forms import DomProdazaForm, KvartiraPervichkaProdazaForm, \
+    KvartiraVtorichkaProdazaForm, UchastkiProdazaForm, \
+    NezelieProdazaForm, KomerchiskieProdazaForm, MaloEtaznoeForm
+from apps.nedvizka.models import DomProdaza, KvartiraPervichkaProdaza, \
+    KvartiraVtorichkaProdaza, UchactkiProdaza, NezelieProdaza, \
+    KomerchiskieProdaza, MaloEtaznoeStroitelstvoProdaza, Doma
 from apps.nedvizka_plugins.models import NedvizkaSpisokObiectovPluginPluginSetting, \
     NedvizkaFiltriPoiskaPluginPluginSetting
 
@@ -41,6 +41,24 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
             if params_poiska['naselenii_punkt']:
                 dannie_nedvizki = dannie_nedvizki.filter(naselenii_punkt__icontains=params_poiska['naselenii_punkt'])
 
+        if 'nalichie_vnesheni_otdelki' in params_poiska:
+            if params_poiska['nalichie_vnesheni_otdelki']:
+                dannie_nedvizki = dannie_nedvizki.filter(
+                    nalichie_vnesheni_otdelki=params_poiska['nalichie_vnesheni_otdelki'])
+
+        if 'vodoprovod' in params_poiska:
+            if params_poiska['vodoprovod']:
+                dannie_nedvizki = dannie_nedvizki.filter(vodoprovod=params_poiska['vodoprovod'])
+
+        if 'electrichestvo' in params_poiska:
+            if params_poiska['electrichestvo']:
+                dannie_nedvizki = dannie_nedvizki.filter(vodoprovod=params_poiska['electrichestvo'])
+
+        if 'ostanovki' in params_poiska:
+            if params_poiska['ostanovki']:
+                tmp = not params_poiska['ostanovki']
+                dannie_nedvizki = dannie_nedvizki.filter(ostanovki__isnull=tmp)
+
         if 'adres' in params_poiska:
             if params_poiska['adres']:
                 dannie_nedvizki = dannie_nedvizki.filter(adres__icontains=params_poiska['adres'])
@@ -60,6 +78,22 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
             if params_poiska['blizost_s_metro']:
                 dannie_nedvizki = dannie_nedvizki.filter(blizost_s_metro=params_poiska['blizost_s_metro'])
 
+        if 'tip_komerch' in params_poiska:
+            if params_poiska['tip_komerch']:
+                dannie_nedvizki = dannie_nedvizki.filter(tip_komerch=params_poiska['tip_komerch'])
+
+        if 'tip_neziloe' in params_poiska:
+            if params_poiska['tip_neziloe']:
+                dannie_nedvizki = dannie_nedvizki.filter(tip_neziloe=params_poiska['tip_neziloe'])
+
+
+        if 'material_postroiki' in params_poiska:
+            if params_poiska['material_postroiki']:
+                dannie_nedvizki = dannie_nedvizki.filter(material_postroiki_id=params_poiska['material_postroiki'])
+        if 'tip_maloetaznoi_postroiki' in params_poiska:
+            if params_poiska['tip_maloetaznoi_postroiki']:
+                dannie_nedvizki = dannie_nedvizki.filter(tip_maloetaznoi_postroiki_id=params_poiska['tip_maloetaznoi_postroiki'])
+
         return dannie_nedvizki
 
     def render(self, context, instance, placeholder):
@@ -72,44 +106,34 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
         if tip_nedvizki == 'dom_prodaza':
             dannie_nedvizki = DomProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'dom_arenda':
-        #     dannie_nedvizki = DomArenda.objects.select_related('previu').all()
 
         if tip_nedvizki == 'kvartira_pervicka_prodaza':
             dannie_nedvizki = KvartiraPervichkaProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'kvartira_pervicka_arenda':
-        #     dannie_nedvizki = KvartiraPervichkaArenda.objects.select_related('previu').all()
 
 
         if tip_nedvizki == 'kvartira_vtoricka_prodaza':
             dannie_nedvizki = KvartiraVtorichkaProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'kvartira_vtoricka_arenda':
-        #     dannie_nedvizki = KvartiraVtorichkaArenda.objects.select_related('previu').all()
 
         if tip_nedvizki == 'uchactki_prodaza':
             dannie_nedvizki = UchactkiProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'uchactki_arenda':
-        #     dannie_nedvizki = UchactkiArenda.objects.select_related('previu').all()
+
 
         if tip_nedvizki == 'nezilie_prodaza':
             dannie_nedvizki = NezelieProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'nezilie_arenda':
-        #     dannie_nedvizki = NezelieArenda.objects.select_related('previu').all()
 
         if tip_nedvizki == 'komerchiskie_prodaza':
             dannie_nedvizki = KomerchiskieProdaza.objects.select_related('previu').all()
 
-        # if tip_nedvizki == 'komerchiskie_arenda':
-        #     dannie_nedvizki = KomerchiskieArenda.objects.select_related('previu').all()
 
         if tip_nedvizki == 'maloetaznoe_stroitelstvo':
             dannie_nedvizki = MaloEtaznoeStroitelstvoProdaza.objects.select_related('previu').all()
 
         params_poiska = context['request'].GET
+        dannie_nedvizki = dannie_nedvizki.filter(pokazivat=True)
         dannie_nedvizki = self.filtrazia_po_bazovim_poliam(dannie_nedvizki, params_poiska)
 
         try:
@@ -131,7 +155,8 @@ class NedvizkaSpisokObiectovPlugin(CMSPluginBase):
 
         context.update(
             {'instance': instance, 'dannie_nedvizki': dannie_nedvizki, 'page_now': page, 'straniz_vsego': straniz_vsego,
-             'naideno_zapisei': naideno_zapisei, 'dannie_nedvizki_vsego': dannie_nedvizki_vsego, 'start':start+1, 'end':start+naideno_zapisei})
+             'naideno_zapisei': naideno_zapisei, 'dannie_nedvizki_vsego': dannie_nedvizki_vsego, 'start': start + 1,
+             'end': start + naideno_zapisei})
         return context
 
 
@@ -151,38 +176,29 @@ class NedvizkaFiltriPoiskaPluginPlugin(CMSPluginBase):
         if instance.tip_nedvizki == 'dom_prodaza':
             form = DomProdazaForm(params)
 
-        if instance.tip_nedvizki == 'dom_arenda':
-            form = DomArendaForm(params)
+        if instance.tip_nedvizki == 'maloetaznoe_stroitelstvo':
+            form = MaloEtaznoeForm(params)
+
 
         if instance.tip_nedvizki == 'kvartira_pervicka_prodaza':
             form = KvartiraPervichkaProdazaForm(params)
 
-        if instance.tip_nedvizki == 'kvartira_pervicka_arenda':
-            form = KvartiraPervichkaArendaForm(params)
 
         if instance.tip_nedvizki == 'kvartira_vtoricka_prodaza':
             form = KvartiraVtorichkaProdazaForm(params)
 
-        if instance.tip_nedvizki == 'kvartira_vtoricka_arenda':
-            form = KvartiraVtorickaArendaForm(params)
 
         if instance.tip_nedvizki == 'uchactki_prodaza':
             form = UchastkiProdazaForm(params)
 
-        if instance.tip_nedvizki == 'uchactki_arenda':
-            form = UchastkiArendaForm(params)
 
         if instance.tip_nedvizki == 'nezilie_prodaza':
             form = NezelieProdazaForm(params)
 
-        if instance.tip_nedvizki == 'nezilie_arenda':
-            form = NezelieArendaForm(params)
 
         if instance.tip_nedvizki == 'komerchiskie_prodaza':
             form = KomerchiskieProdazaForm(params)
 
-        if instance.tip_nedvizki == 'komerchiskie_arenda':
-            form = KomerchiskieArendaForm(params)
 
         context.update({'instance': instance, 'form_url': form_url, 'form': form})
         return context
